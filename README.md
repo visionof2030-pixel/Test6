@@ -50,7 +50,7 @@ textarea {
   min-height: 80px;
 }
 
-/* شبكة المدخلات الصغيرة */
+/* شبكة المدخلات الصغيرة - كارتون بجانب بعضها */
 .small-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -295,23 +295,29 @@ button#printBtn:hover {
   font-weight: normal;
 }
 
-/* صف أول: 3 مربعات صغيرة جداً */
+/* صف أول: 3 مربعات صغيرة جداً - بجانب بعضها */
 .top-info-row1 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 4px;
   margin-bottom: 4px;
 }
 
-/* صف ثاني: 4 مربعات صغيرة جداً */
+.top-info-row1 .box {
+  flex: 1;
+}
+
+/* صف ثاني: 4 مربعات صغيرة جداً - بجانب بعضها */
 .top-info-row2 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 4px;
   margin-bottom: 8px;
 }
 
-/* ✅ استبدال تعريف .box بالكامل */
+.top-info-row2 .box {
+  flex: 1;
+}
+
+/* تعريف .box بالكامل */
 .box {
   border: 1px solid #0a3b40;
   padding: 1px;
@@ -326,9 +332,10 @@ button#printBtn:hover {
   border-radius: 2px;
   background: #f8f9fa;
   overflow: hidden;
+  min-width: 0; /* يسمح للتقلص */
 }
 
-/* ✅ استبدال النصوص الداخلية */
+/* النصوص الداخلية */
 .box strong {
   font-size: 6.5pt;
   margin-bottom: 0;
@@ -570,7 +577,7 @@ button#printBtn:hover {
   }
 }
 
-/* تصميم متجاوب */
+/* تصميم متجاوب - تعديلات لجعل المربعات تبقى بجانب بعضها */
 @media (max-width: 768px) {
   .header-content {
     flex-direction: column;
@@ -585,9 +592,16 @@ button#printBtn:hover {
     grid-template-columns: repeat(2, 1fr);
   }
   
+  /* على الشاشات الصغيرة، نقل المربعات إلى صفين ولكن كل 2 مربع بجانب بعضها */
   .top-info-row1,
   .top-info-row2 {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+  }
+  
+  .top-info-row1 .box,
+  .top-info-row2 .box {
+    flex: 1 1 calc(50% - 2px);
+    min-width: 120px;
   }
   
   .optional-fields {
@@ -604,9 +618,15 @@ button#printBtn:hover {
     grid-template-columns: 1fr;
   }
   
+  /* على الشاشات الصغيرة جداً، جعل المربعات في عمود واحد */
   .top-info-row1,
   .top-info-row2 {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+  
+  .top-info-row1 .box,
+  .top-info-row2 .box {
+    width: 100%;
   }
 }
 </style>
@@ -735,14 +755,14 @@ button#printBtn:hover {
   <div id="hijriDate" class="hijri">جاري تحميل التاريخ الهجري...</div>
 </div>
 
-<!-- صف أول: 3 مربعات صغيرة جداً -->
+<!-- صف أول: 3 مربعات صغيرة جداً - بجانب بعضها -->
 <div class="top-info-row1">
   <div class="box"><strong>الفصل الدراسي</strong><div id="semester">الفصل الأول</div></div>
   <div class="box"><strong>الصف</strong><div id="grade">الصف الثالث</div></div>
   <div class="box"><strong>المادة الدراسية</strong><div id="subject">التربية الفنية</div></div>
 </div>
 
-<!-- صف ثاني: 4 مربعات صغيرة جداً -->
+<!-- صف ثاني: 4 مربعات صغيرة جداً - بجانب بعضها -->
 <div class="top-info-row2">
   <div class="box"><strong>التقرير</strong><div id="reportTitle">تقرير نشاط إثرائي</div></div>
   <div class="box"><strong>المستهدفون</strong><div id="target">طلاب الصف الثالث</div></div>
