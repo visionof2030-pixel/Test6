@@ -311,37 +311,34 @@ button#printBtn:hover {
   margin-bottom: 8px;
 }
 
+/* ✅ استبدال تعريف .box بالكامل */
 .box {
   border: 1px solid #0a3b40;
-  padding: 2px;
+  padding: 1px;
   text-align: center;
-  font-size: 7pt;
-  min-height: 28px;
-  max-height: 32px;
+  font-size: 6.5pt;
+  min-height: 22px;
+  max-height: 26px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 2px;
   background: #f8f9fa;
   overflow: hidden;
 }
 
+/* ✅ استبدال النصوص الداخلية */
 .box strong {
-  display: block;
-  margin-bottom: 1px;
-  font-size: 7pt;
-  color: #0a3b40;
+  font-size: 6.5pt;
+  margin-bottom: 0;
   line-height: 1;
-  padding: 0 1px;
+  color: #0a3b40;
 }
 
 .box div {
-  font-size: 6.5pt;
+  font-size: 6pt;
   line-height: 1.1;
-  max-height: 14px;
-  overflow: hidden;
-  padding: 0 1px;
 }
 
 .goal-section {
@@ -494,9 +491,8 @@ button#printBtn:hover {
   }
   
   .box {
-    padding: 1px;
-    min-height: 26px;
-    max-height: 30px;
+    min-height: 20px;
+    max-height: 24px;
   }
   
   .goal-section {
