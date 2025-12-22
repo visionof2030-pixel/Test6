@@ -50,25 +50,20 @@ textarea {
   min-height: 80px;
 }
 
-/* شبكة المدخلات الصغيرة - صفين */
+/* شبكة المدخلات الصغيرة */
 .small-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  margin: 10px 0;
-}
-
-.small-grid-2 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
-  margin: 10px 0;
+  margin: 8px 0;
+}
+
+.small-grid.three-cols {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .small-grid input,
-.small-grid select,
-.small-grid-2 input,
-.small-grid-2 select {
+.small-grid select {
   font-size: 11px;
   padding: 5px 4px;
   margin-top: 0;
@@ -219,13 +214,13 @@ button#printBtn:hover {
 }
 
 /* ===== التقرير - مع تصغير المربعات ===== */
-/* تصغير الهيدر - بدون شعار */
+/* الهيدر مع الشعار */
 .header {
   background: #0a3b40;
   color: white;
   text-align: center;
   padding: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   border-radius: 6px;
   font-size: 10pt;
   position: relative;
@@ -233,20 +228,46 @@ button#printBtn:hover {
 
 .header-content {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  gap: 15px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 6px;
+  padding: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ministry-info {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 3px;
+  justify-content: center;
 }
 
 .ministry-title {
-  font-size: 16pt;
+  font-size: 14pt;
   font-weight: bold;
   color: white;
   margin-bottom: 2px;
 }
 
 .ministry-subtitle {
-  font-size: 10pt;
+  font-size: 9pt;
   color: white;
   opacity: 0.9;
   margin-top: 2px;
@@ -258,13 +279,14 @@ button#printBtn:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 3px;
   width: 100%;
 }
 
 .school-info div {
-  margin: 2px 0;
+  margin: 1px 0;
   font-weight: bold;
+  font-size: 10pt;
 }
 
 .header .hijri {
@@ -273,18 +295,19 @@ button#printBtn:hover {
   font-weight: normal;
 }
 
-/* صفين من المربعات الصغيرة جداً */
+/* صف أول: 3 مربعات صغيرة جداً */
 .top-info-row1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  margin-bottom: 3px;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
+/* صف ثاني: 4 مربعات صغيرة جداً */
 .top-info-row2 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
+  gap: 4px;
   margin-bottom: 8px;
 }
 
@@ -467,7 +490,7 @@ button#printBtn:hover {
   .top-info-row1,
   .top-info-row2 {
     gap: 2px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
   
   .box {
@@ -504,11 +527,20 @@ button#printBtn:hover {
   }
   
   /* تصغير الهيدر في الطباعة */
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+  
   .ministry-title {
-    font-size: 14pt;
+    font-size: 12pt;
   }
   
   .ministry-subtitle {
+    font-size: 8pt;
+  }
+  
+  .school-info div {
     font-size: 9pt;
   }
 }
@@ -532,27 +564,53 @@ button#printBtn:hover {
     box-shadow: 0 2px 8px rgba(230,184,0,0.2);
     transform: translateY(-1px);
   }
+  
+  .logo {
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
 }
 
 /* تصميم متجاوب */
 @media (max-width: 768px) {
-  .small-grid,
-  .small-grid-2 {
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .small-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .small-grid.three-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .top-info-row1,
+  .top-info-row2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .optional-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .small-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .small-grid.three-cols {
     grid-template-columns: 1fr;
   }
   
   .top-info-row1,
   .top-info-row2 {
     grid-template-columns: 1fr;
-  }
-  
-  .optional-fields {
-    grid-template-columns: 1fr;
-  }
-  
-  .header-content {
-    flex-direction: column;
-    gap: 5px;
   }
 }
 </style>
@@ -573,15 +631,15 @@ button#printBtn:hover {
 <label>اسم المدرسة</label>
 <input id="schoolInput" placeholder="أدخل اسم المدرسة" oninput="sync('school',this.value)" value="مدرسة النموذجية الابتدائية">
 
-<!-- الصف الأول: 3 مربعات -->
-<div class="small-grid">
+<!-- شبكة المدخلات - صف أول: 3 مربعات -->
+<div class="small-grid three-cols">
   <input id="semesterInput" placeholder="الفصل الدراسي" oninput="sync('semester',this.value)" value="الفصل الأول">
   <input id="gradeInput" placeholder="الصف" oninput="sync('grade',this.value)" value="الصف الثالث">
   <input id="subjectInput" placeholder="المادة الدراسية" oninput="sync('subject',this.value)" value="التربية الفنية">
 </div>
 
-<!-- الصف الثاني: 4 مربعات -->
-<div class="small-grid-2">
+<!-- شبكة المدخلات - صف ثاني: 4 مربعات -->
+<div class="small-grid">
   <select id="reportSelect" onchange="syncReport()">
     <option value="">اختر التقرير</option>
     <option value="تقرير نشاط إثرائي" selected>تقرير نشاط إثرائي</option>
@@ -666,26 +724,29 @@ button#printBtn:hover {
 <div class="report">
 <div class="header">
   <div class="header-content">
-    <div class="logo-text">
+    <div class="logo">
+      <img src="https://i.ibb.co/G43RzNZJ/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png" alt="شعار وزارة التعليم" border="0">
+    </div>
+    <div class="ministry-info">
       <div class="ministry-title">وزارة التـعليـم</div>
       <div class="ministry-subtitle">Ministry of Education</div>
-    </div>
-    <div class="school-info">
-      <div id="edu">الإدارة العامة للتعليم بمنطقة الرياض</div>
-      <div id="school">مدرسة النموذجية الابتدائية</div>
+      <div class="school-info">
+        <div id="edu">الإدارة العامة للتعليم بمنطقة الرياض</div>
+        <div id="school">مدرسة النموذجية الابتدائية</div>
+      </div>
     </div>
   </div>
   <div id="hijriDate" class="hijri">جاري تحميل التاريخ الهجري...</div>
 </div>
 
-<!-- الصف الأول: 3 مربعات صغيرة جداً -->
+<!-- صف أول: 3 مربعات صغيرة جداً -->
 <div class="top-info-row1">
   <div class="box"><strong>الفصل الدراسي</strong><div id="semester">الفصل الأول</div></div>
   <div class="box"><strong>الصف</strong><div id="grade">الصف الثالث</div></div>
   <div class="box"><strong>المادة الدراسية</strong><div id="subject">التربية الفنية</div></div>
 </div>
 
-<!-- الصف الثاني: 4 مربعات صغيرة جداً -->
+<!-- صف ثاني: 4 مربعات صغيرة جداً -->
 <div class="top-info-row2">
   <div class="box"><strong>التقرير</strong><div id="reportTitle">تقرير نشاط إثرائي</div></div>
   <div class="box"><strong>المستهدفون</strong><div id="target">طلاب الصف الثالث</div></div>
