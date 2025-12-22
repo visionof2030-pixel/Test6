@@ -287,17 +287,15 @@ button#printBtn {
 .images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin: 15px 0;
+  gap: 15px; /* زيادة الجاب بين الصور */
+  margin: 15px 0; /* زيادة الهامش */
 }
 .images img {
-  width: 100%; /* عرض كامل للحاوية */
-  height: auto; /* ارتفاع تلقائي حسب نسبة الصورة */
-  max-width: 100%; /* لا تتجاوز عرض الحاوية */
-  object-fit: contain; /* عرض الصورة كاملة بدون اقتصاص */
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  display: block;
+  width: 100%;
+  max-height: 185px; /* زيادة بنسبة 30% من 120px إلى 185px */
+  object-fit: cover;
+  border-radius: 6px; /* زيادة نصف القطر */
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* إضافة ظل خفيف */
 }
 .signatures {
   margin-top: 15px;
@@ -629,16 +627,6 @@ function loadImages(input) {
     reader.onload = e => {
       const img = document.createElement("img");
       img.src = e.target.result;
-      
-      // إضافة حدث لتحميل الصورة والحصول على أبعادها الحقيقية
-      img.onload = function() {
-        console.log('الصورة الأصلية:', {
-          عرض: img.naturalWidth + 'px',
-          ارتفاع: img.naturalHeight + 'px',
-          نسبة: (img.naturalWidth / img.naturalHeight).toFixed(2)
-        });
-      };
-      
       box.appendChild(img);
     };
     reader.readAsDataURL(file);
