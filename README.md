@@ -100,7 +100,7 @@ button#printBtn {
   background: #0a3b40;
   color: white;
   text-align: center;
-  padding: 5px;
+  padding: 6px;
   margin-bottom: 8px;
   border-radius: 4px;
   min-height: auto;
@@ -118,7 +118,18 @@ button#printBtn {
 .ministry-subtitle {
   font-size: 8pt;
 }
-.school-info div {
+.school-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
+}
+.edu-info {
+  font-weight: bold;
+  font-size: 9pt;
+}
+.school-name {
   font-weight: bold;
   font-size: 9pt;
 }
@@ -232,8 +243,8 @@ button#printBtn {
 }
 /* مربعات نقاط القوة ومواطن القصور */
 .section.strengths {
-  border: 1px solid #2e7d32;
-  background: #e8f5e9;
+  border: 1px solid #0d47a1; /* أزرق غامق */
+  background: #e3f2fd; /* خلفية زرقاء فاتحة */
   min-height: 50px;
   height: auto;
   padding: 3px;
@@ -242,7 +253,7 @@ button#printBtn {
 .section.strengths strong {
   font-size: 9.5px;
   margin-bottom: 1px;
-  color: #2e7d32;
+  color: #0d47a1; /* أزرق غامق */
 }
 .section.strengths div {
   font-size: 9px;
@@ -312,7 +323,7 @@ button#printBtn {
 <h2>أداة إعداد التقارير التعليمية (نموذج تجريبي)</h2>
 
 <label>إدارة التعليم</label>
-<select id="eduSelect" onchange="sync('edu',this.value)">
+<select id="eduSelect" onchange="updateEduInfo(this.value)">
   <option value="الإدارة العامة للتعليم بمنطقة الرياض" selected>الإدارة العامة للتعليم بمنطقة الرياض</option>
 </select>
 
@@ -403,8 +414,8 @@ button#printBtn {
     <div class="ministry-title">وزارة التعليم</div>
     <div class="ministry-subtitle">Ministry of Education</div>
     <div class="school-info">
-      <div id="edu"></div>
-      <div id="school"></div>
+      <div class="edu-info" id="eduHeader">الإدارة العامة للتعليم بمنطقة الرياض</div>
+      <div class="school-name" id="school"></div>
     </div>
   </div>
 </div>
@@ -479,6 +490,14 @@ const reportTexts = {
     weaknesses: "نقص بعض الوسائل التعليمية، محدودية المساحة، ضعف مشاركة بعض الطلاب الخجولين"
   }
 };
+
+// دالة لتحديث معلومات إدارة التعليم في الهيدر
+function updateEduInfo(value) {
+  const eduHeader = document.getElementById('eduHeader');
+  if (eduHeader) {
+    eduHeader.textContent = value;
+  }
+}
 
 function sync(id, value) {
   const el = document.getElementById(id);
@@ -582,6 +601,7 @@ function loadImages(input) {
 window.onload = function() {
   document.getElementById('schoolInput').value = "مدرسة التجربة النموذجية";
   sync('school', "مدرسة التجربة النموذجية");
+  updateEduInfo("الإدارة العامة للتعليم بمنطقة الرياض");
   autoFillReport("تقرير درس تم تنفيذه");
 };
 </script>
