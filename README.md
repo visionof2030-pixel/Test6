@@ -1,3 +1,4 @@
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +9,7 @@ body {
   background: #eef7f5;
   margin: 0;
   padding: 20px;
-  font-size: 12px; /* تصغير الخط العام */
+  font-size: 12px;
 }
 .tool {
   max-width: 900px;
@@ -22,14 +23,14 @@ body {
   text-align: center;
   color: #0a3b40;
   margin-bottom: 16px;
-  font-size: 18px; /* تصغير حجم العنوان */
+  font-size: 18px;
 }
 label {
   font-weight: 700;
   margin-top: 12px;
   display: block;
   color: #0a3b40;
-  font-size: 11px; /* تصغير حجم العناوين */
+  font-size: 11px;
 }
 input, textarea, select {
   width: 100%;
@@ -37,7 +38,7 @@ input, textarea, select {
   margin-top: 4px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 12px; /* تصغير حجم النصوص */
+  font-size: 12px;
   box-sizing: border-box;
 }
 textarea {
@@ -52,7 +53,7 @@ textarea {
 }
 .small-grid input,
 .small-grid select {
-  font-size: 10px; /* تصغير أكثر */
+  font-size: 10px;
   padding: 4px 3px;
   height: 32px;
 }
@@ -99,27 +100,27 @@ button#printBtn {
   background: #0a3b40;
   color: white;
   text-align: center;
-  padding: 5px; /* تصغير الارتفاع */
+  padding: 5px;
   margin-bottom: 8px;
   border-radius: 4px;
-  min-height: auto; /* إزالة الارتفاع الثابت */
+  min-height: auto;
 }
 .header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px; /* تقليل المسافة بين العناصر */
+  gap: 3px;
 }
 .ministry-title {
-  font-size: 13pt; /* تصغير من 16pt */
+  font-size: 13pt;
   font-weight: bold;
 }
 .ministry-subtitle {
-  font-size: 8pt; /* تصغير من 10pt */
+  font-size: 8pt;
 }
 .school-info div {
   font-weight: bold;
-  font-size: 9pt; /* تصغير خط إدارة التعليم */
+  font-size: 9pt;
 }
 .top-info.two-lines {
   display: flex;
@@ -141,34 +142,40 @@ button#printBtn {
   border: 1px solid #0a3b40;
   padding: 2px;
   text-align: center;
-  font-size: 5.5pt; /* تصغير من 6.5pt */
-  min-height: 22px; /* تصغير الارتفاع */
+  font-size: 5.5pt;
+  min-height: 22px;
   border-radius: 2px;
   background: #f8f9fa;
 }
 .box strong {
   display: block;
-  font-size: 5.5pt; /* تصغير من 6.5pt */
+  font-size: 5.5pt;
   color: #0a3b40;
 }
 .goal-section {
   background: #e8f5e9;
   border-right: 2px solid #2e7d32;
   border-radius: 5px;
-  padding: 6px; /* تقليل الحشوة */
+  padding: 6px;
   margin-bottom: 8px;
   text-align: center;
-  min-height: auto; /* إزالة الارتفاع الثابت */
+  min-height: auto;
 }
 .goal-section strong {
-  font-size: 10px; /* تصغير خط عنوان الهدف */
+  font-size: 10px;
   margin-bottom: 2px;
 }
 .goal-section div {
-  font-size: 10px; /* تصغير محتوى الهدف */
+  font-size: 10px;
   line-height: 1.3;
 }
 .grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.grid4 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
@@ -178,31 +185,84 @@ button#printBtn {
   border: 1px solid #0a3b40;
   padding: 5px;
   border-radius: 5px;
-  font-size: 10px; /* تصغير محتوى جميع المربعات */
+  font-size: 10px;
 }
 .section strong {
-  font-size: 10px; /* تصغير عناوين جميع المربعات */
+  font-size: 10px;
   margin-bottom: 2px;
   display: block;
 }
 .section div {
-  font-size: 10px; /* تصغير محتوى جميع المربعات */
+  font-size: 10px;
   line-height: 1.3;
 }
-.section.optional {
-  border: 1px dashed #e6b800;
-  background: #fff8cc;
-  min-height: 50px; /* تصغير أكثر من 60px */
+/* مربعات التحديات والمحفزات - باللون الأحمر */
+.section.challenges {
+  border: 1px solid #c62828;
+  background: #ffebee;
+  min-height: 50px;
   height: auto;
   padding: 3px;
-  font-size: 9px; /* تصغير محتوى التحديات والقوة */
+  font-size: 9px;
 }
-.section.optional strong {
-  font-size: 9.5px; /* تصغير عناوين التحديات والقوة */
+.section.challenges strong {
+  font-size: 9.5px;
+  margin-bottom: 1px;
+  color: #c62828;
+}
+.section.challenges div {
+  font-size: 9px;
+  line-height: 1.2;
+}
+.section.motivators {
+  border: 1px dashed #e6b800;
+  background: #fff8cc;
+  min-height: 50px;
+  height: auto;
+  padding: 3px;
+  font-size: 9px;
+}
+.section.motivators strong {
+  font-size: 9.5px;
   margin-bottom: 1px;
 }
-.section.optional div {
-  font-size: 9px; /* تصغير محتوى التحديات والقوة */
+.section.motivators div {
+  font-size: 9px;
+  line-height: 1.2;
+}
+/* مربعات نقاط القوة ومواطن القصور */
+.section.strengths {
+  border: 1px solid #2e7d32;
+  background: #e8f5e9;
+  min-height: 50px;
+  height: auto;
+  padding: 3px;
+  font-size: 9px;
+}
+.section.strengths strong {
+  font-size: 9.5px;
+  margin-bottom: 1px;
+  color: #2e7d32;
+}
+.section.strengths div {
+  font-size: 9px;
+  line-height: 1.2;
+}
+.section.weaknesses {
+  border: 1px solid #c62828;
+  background: #ffebee;
+  min-height: 50px;
+  height: auto;
+  padding: 3px;
+  font-size: 9px;
+}
+.section.weaknesses strong {
+  font-size: 9.5px;
+  margin-bottom: 1px;
+  color: #c62828;
+}
+.section.weaknesses div {
+  font-size: 9px;
   line-height: 1.2;
 }
 .images {
@@ -223,7 +283,7 @@ button#printBtn {
   border-top: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
-  font-size: 8pt; /* تصغير من 9pt */
+  font-size: 8pt;
 }
 .teacher-signature, .principal-signature {
   text-align: center;
@@ -231,7 +291,7 @@ button#printBtn {
 }
 .teacher-signature input, .principal-signature input {
   width: 80%;
-  font-size: 8pt; /* تصغير من 9pt */
+  font-size: 8pt;
   padding: 3px;
   margin-top: 3px;
   border: none;
@@ -242,7 +302,7 @@ button#printBtn {
   font-weight: bold;
   color: #0a3b40;
   margin-bottom: 3px;
-  font-size: 9px; /* تصغير عناوين التواقيع */
+  font-size: 9px;
 }
 </style>
 </head>
@@ -295,11 +355,29 @@ button#printBtn {
 <label>التوصيات</label>
 <textarea id="desc4Input" oninput="sync('desc4',this.value)"></textarea>
 
-<label>التحديات</label>
-<textarea id="challengesInput" oninput="sync('challenges',this.value)"></textarea>
+<!-- الصف الأول: المحفزات ونقاط القوة -->
+<div class="grid2">
+  <div>
+    <label>المحفزات</label>
+    <textarea id="motivatorsInput" oninput="sync('motivators',this.value)"></textarea>
+  </div>
+  <div>
+    <label>نقاط القوة</label>
+    <textarea id="strengthsInput" oninput="sync('strengths',this.value)"></textarea>
+  </div>
+</div>
 
-<label>نقاط القوة</label>
-<textarea id="strengthsInput" oninput="sync('strengths',this.value)"></textarea>
+<!-- الصف الثاني: التحديات ومواطن القصور -->
+<div class="grid2">
+  <div>
+    <label>التحديات</label>
+    <textarea id="challengesInput" oninput="sync('challenges',this.value)"></textarea>
+  </div>
+  <div>
+    <label>مواطن القصور</label>
+    <textarea id="weaknessesInput" oninput="sync('weaknesses',this.value)"></textarea>
+  </div>
+</div>
 
 <label>إرفاق الصور (اختياري)</label>
 <input type="file" multiple accept="image/*" onchange="loadImages(this)">
@@ -360,9 +438,16 @@ button#printBtn {
   <div class="section"><strong>التوصيات</strong><div id="desc4"></div></div>
 </div>
 
-<div class="grid2">
-  <div class="section optional"><strong>التحديات</strong><div id="challenges"></div></div>
-  <div class="section optional"><strong>نقاط القوة</strong><div id="strengths"></div></div>
+<!-- الصف الأول في التقرير: المحفزات ونقاط القوة -->
+<div class="grid4">
+  <div class="section motivators"><strong>المحفزات</strong><div id="motivators"></div></div>
+  <div class="section strengths"><strong>نقاط القوة</strong><div id="strengths"></div></div>
+</div>
+
+<!-- الصف الثاني في التقرير: التحديات ومواطن القصور -->
+<div class="grid4">
+  <div class="section challenges"><strong>التحديات</strong><div id="challenges"></div></div>
+  <div class="section weaknesses"><strong>مواطن القصور</strong><div id="weaknesses"></div></div>
 </div>
 
 <div class="images" id="imagesBox"></div>
@@ -388,8 +473,10 @@ const reportTexts = {
     desc2: "عرض المفهوم الجديد، مناقشة أمثلة توضيحية، أنشطة تطبيقية جماعية، حل تمارين فردية، تلخيص النقاط الرئيسية",
     desc3: "استيعاب غالبية الطلاب للمفهوم، مشاركة فعالة في الأنشطة، إنجاز التمارين بنجاح",
     desc4: "تكرار استخدام الأنشطة التفاعلية، تخصيص وقت للمراجعة، استخدام وسائل بصرية إضافية",
-    challenges: "تفاوت سرعة الاستيعاب بين الطلاب، وقت الحصة المحدود",
-    strengths: "تفاعل الطلاب الإيجابي، وضوح الشرح، تنوع الأنشطة"
+    motivators: "تفاعل الطلاب الإيجابي، حافز التنافس بين المجموعات، استخدام الوسائل التعليمية الجذابة",
+    strengths: "وضوح الشرح، تنوع الأنشطة، إدارة الوقت الفعالة، مراعاة الفروق الفردية",
+    challenges: "تفاوت سرعة الاستيعاب بين الطلاب، وقت الحصة المحدود، صعوبة بعض المفاهيم",
+    weaknesses: "نقص بعض الوسائل التعليمية، محدودية المساحة، ضعف مشاركة بعض الطلاب الخجولين"
   }
 };
 
@@ -409,16 +496,20 @@ function autoFillReport(reportType) {
   document.getElementById('desc2Input').value = texts.desc2;
   document.getElementById('desc3Input').value = texts.desc3;
   document.getElementById('desc4Input').value = texts.desc4;
-  document.getElementById('challengesInput').value = texts.challenges;
+  document.getElementById('motivatorsInput').value = texts.motivators;
   document.getElementById('strengthsInput').value = texts.strengths;
+  document.getElementById('challengesInput').value = texts.challenges;
+  document.getElementById('weaknessesInput').value = texts.weaknesses;
 
   sync('goal', texts.goal);
   sync('desc1', texts.desc1);
   sync('desc2', texts.desc2);
   sync('desc3', texts.desc3);
   sync('desc4', texts.desc4);
-  sync('challenges', texts.challenges);
+  sync('motivators', texts.motivators);
   sync('strengths', texts.strengths);
+  sync('challenges', texts.challenges);
+  sync('weaknesses', texts.weaknesses);
 
   document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
   document.querySelector('input[placeholder="العدد"]').value = "25";
@@ -431,8 +522,8 @@ function autoFillReport(reportType) {
 function clearAllFields() {
   const fieldsToClear = [
     'goalInput', 'desc1Input', 'desc2Input', 'desc3Input', 'desc4Input',
-    'challengesInput', 'strengthsInput', 'teacherInput', 'principalInput',
-    'schoolInput'
+    'motivatorsInput', 'strengthsInput', 'challengesInput', 'weaknessesInput',
+    'teacherInput', 'principalInput', 'schoolInput'
   ];
   
   const placeholders = [
@@ -448,7 +539,7 @@ function clearAllFields() {
     if (element) {
       element.value = '';
       const syncId = id.replace('Input', '');
-      if (syncId !== 'teacher' && syncId !== 'principal' && syncId !== 'school') {
+      if (!['teacher', 'principal', 'school'].includes(syncId)) {
         sync(syncId, '');
       }
     }
