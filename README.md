@@ -60,6 +60,9 @@ textarea {
   padding: 4px 3px;
   height: 32px;
 }
+.report-category {
+  grid-column: span 2;
+}
 .auto-row {
   display: flex;
   gap: 6px;
@@ -97,33 +100,6 @@ textarea {
 }
 .auto-btn.remedial:hover {
   background: #f57c00;
-  color: white;
-}
-.auto-btn.strategy {
-  background: #e3f2fd;
-  border-color: #1565c0;
-  color: #1565c0;
-}
-.auto-btn.strategy:hover {
-  background: #1565c0;
-  color: white;
-}
-.auto-btn.lesson {
-  background: #f3e5f5;
-  border-color: #7b1fa2;
-  color: #7b1fa2;
-}
-.auto-btn.lesson:hover {
-  background: #7b1fa2;
-  color: white;
-}
-.auto-btn.technology {
-  background: #e8eaf6;
-  border-color: #3949ab;
-  color: #3949ab;
-}
-.auto-btn.technology:hover {
-  background: #3949ab;
   color: white;
 }
 .clear-btn {
@@ -439,74 +415,12 @@ textarea {
   margin-bottom: 3px;
   font-size: 9px;
 }
-.category-selector {
-  margin: 12px 0;
-}
-.category-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 8px;
-}
-.category-tab {
-  padding: 6px 12px;
-  background: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 11px;
-  transition: all 0.3s ease;
-}
-.category-tab:hover {
-  background: #e0e0e0;
-}
-.category-tab.active {
-  background: #0a3b40;
-  color: white;
-  border-color: #0a3b40;
-}
-.report-category {
-  display: none;
-}
-.report-category.active {
-  display: block;
-}
-.category-title {
-  font-size: 12px;
-  color: #0a3b40;
-  margin-bottom: 8px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #0a3b40;
-}
-.report-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-  margin-bottom: 12px;
-}
-.report-option {
-  padding: 8px;
-  background: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 10px;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-.report-option:hover {
-  background: #e3f2fd;
-  border-color: #0d47a1;
-  transform: translateY(-2px);
-}
-.report-option.selected {
-  background: #0a3b40;
-  color: white;
-  border-color: #0a3b40;
-}
 @media (max-width: 768px) {
   .small-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .report-category {
+    grid-column: span 4;
   }
   .auto-row {
     flex-wrap: wrap;
@@ -517,16 +431,6 @@ textarea {
   .buttons-container {
     flex-direction: column;
   }
-  .report-options {
-    grid-template-columns: 1fr;
-  }
-  .category-tabs {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-  }
-  .category-tab {
-    white-space: nowrap;
-  }
 }
 </style>
 </head>
@@ -535,175 +439,6 @@ textarea {
 <div class="tool">
 <h2>أداة إعداد التقارير التعليمية (نموذج تجريبي)</h2>
 
-<label>تصنيف التقرير</label>
-<div class="category-selector">
-  <div class="category-tabs">
-    <div class="category-tab active" onclick="showCategory('strategies')">استراتيجيات التدريس</div>
-    <div class="category-tab" onclick="showCategory('lessons')">تنفيذ الدروس</div>
-    <div class="category-tab" onclick="showCategory('technology')">التقنيات التعليمية</div>
-    <div class="category-tab" onclick="showCategory('activities')">الأنشطة التعليمية</div>
-    <div class="category-tab" onclick="showCategory('remedial')">الخطط العلاجية</div>
-    <div class="category-tab" onclick="showCategory('evaluation')">التقويم والرصد</div>
-    <div class="category-tab" onclick="showCategory('tests')">الاختبارات والأسئلة</div>
-    <div class="category-tab" onclick="showCategory('supervision')">المتابعة والإشراف</div>
-    <div class="category-tab" onclick="showCategory('duty')">المناوبة والانتظار</div>
-    <div class="category-tab" onclick="showCategory('professional')">التقارير المهنية</div>
-  </div>
-  
-  <!-- تصنيف استراتيجيات التدريس والتعلم -->
-  <div class="report-category active" id="strategies">
-    <div class="category-title">استراتيجيات التدريس والتعلم</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('التعلم النشط')">التعلم النشط</div>
-      <div class="report-option" onclick="selectReport('التعلم التعاوني')">التعلم التعاوني</div>
-      <div class="report-option" onclick="selectReport('حل المشكلات')">حل المشكلات</div>
-      <div class="report-option" onclick="selectReport('العصف الذهني')">العصف الذهني</div>
-      <div class="report-option" onclick="selectReport('التفكير الناقد')">التفكير الناقد</div>
-      <div class="report-option" onclick="selectReport('التفكير الإبداعي')">التفكير الإبداعي</div>
-      <div class="report-option" onclick="selectReport('التعلم بالمشروع')">التعلم بالمشروع</div>
-      <div class="report-option" onclick="selectReport('التعلم بالاستقصاء')">التعلم بالاستقصاء</div>
-      <div class="report-option" onclick="selectReport('الفصول المقلوبة')">الفصول المقلوبة</div>
-      <div class="report-option" onclick="selectReport('التعلم باللعب')">التعلم باللعب</div>
-      <div class="report-option" onclick="selectReport('التعلم الذاتي')">التعلم الذاتي</div>
-      <div class="report-option" onclick="selectReport('القبعات الست')">القبعات الست</div>
-      <div class="report-option" onclick="selectReport('الخرائط الذهنية')">الخرائط الذهنية</div>
-      <div class="report-option" onclick="selectReport('التعليم المتمايز')">التعليم المتمايز</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف تنفيذ الدروس والشرح -->
-  <div class="report-category" id="lessons">
-    <div class="category-title">تنفيذ الدروس والشرح</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('درس تم تنفيذه')">درس تم تنفيذه</div>
-      <div class="report-option" onclick="selectReport('درس تطبيقي')">درس تطبيقي</div>
-      <div class="report-option" onclick="selectReport('توزيع وقت الحصة')">توزيع وقت الحصة</div>
-      <div class="report-option" onclick="selectReport('تطوير البيئة الصفية')">تطوير البيئة الصفية</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف الوسائل والتقنيات التعليمية -->
-  <div class="report-category" id="technology">
-    <div class="category-title">الوسائل والتقنيات التعليمية</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('الوسائل التعليمية')">الوسائل التعليمية</div>
-      <div class="report-option" onclick="selectReport('وسائل تعليمية مبتكرة')">وسائل تعليمية مبتكرة</div>
-      <div class="report-option" onclick="selectReport('الوسائل الرقمية')">الوسائل الرقمية</div>
-      <div class="report-option" onclick="selectReport('العروض التقديمية')">العروض التقديمية</div>
-      <div class="report-option" onclick="selectReport('السبورة التفاعلية')">السبورة التفاعلية</div>
-      <div class="report-option" onclick="selectReport('الفيديو التعليمي')">الفيديو التعليمي</div>
-      <div class="report-option" onclick="selectReport('التطبيقات التعليمية')">التطبيقات التعليمية</div>
-      <div class="report-option" onclick="selectReport('المنصات التعليمية')">المنصات التعليمية</div>
-      <div class="report-option" onclick="selectReport('أوراق عمل تفاعلية')">أوراق عمل تفاعلية</div>
-      <div class="report-option" onclick="selectReport('الذكاء الاصطناعي')">الذكاء الاصطناعي</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف الأنشطة الصفية واللاصفية -->
-  <div class="report-category" id="activities">
-    <div class="category-title">الأنشطة الصفية واللاصفية</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('أنشطة صفية')">أنشطة صفية</div>
-      <div class="report-option" onclick="selectReport('أنشطة إثرائية')">أنشطة إثرائية</div>
-      <div class="report-option" onclick="selectReport('أنشطة علاجية')">أنشطة علاجية</div>
-      <div class="report-option" onclick="selectReport('أنشطة لاصفية')">أنشطة لاصفية</div>
-      <div class="report-option" onclick="selectReport('حصص النشاط')">حصص النشاط</div>
-      <div class="report-option" onclick="selectReport('المبادرات الطلابية')">المبادرات الطلابية</div>
-      <div class="report-option" onclick="selectReport('المسابقات الطلابية')">المسابقات الطلابية</div>
-      <div class="report-option" onclick="selectReport('المشاركات الطلابية')">المشاركات الطلابية</div>
-      <div class="report-option" onclick="selectReport('الإذاعة المدرسية')">الإذاعة المدرسية</div>
-      <div class="report-option" onclick="selectReport('المعلم الصغير')">المعلم الصغير</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف الخطط العلاجية والدعم التعليمي -->
-  <div class="report-category" id="remedial">
-    <div class="category-title">الخطط العلاجية والدعم التعليمي</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('خطة علاجية')">خطة علاجية</div>
-      <div class="report-option" onclick="selectReport('نتائج الخطة العلاجية')">نتائج الخطة العلاجية</div>
-      <div class="report-option" onclick="selectReport('علاج ضعف القراءة')">علاج ضعف القراءة</div>
-      <div class="report-option" onclick="selectReport('علاج ضعف الكتابة')">علاج ضعف الكتابة</div>
-      <div class="report-option" onclick="selectReport('علاج ضعف الحساب')">علاج ضعف الحساب</div>
-      <div class="report-option" onclick="selectReport('دعم المتأخرين دراسياً')">دعم المتأخرين دراسياً</div>
-      <div class="report-option" onclick="selectReport('التدخل العلاجي المبكر')">التدخل العلاجي المبكر</div>
-      <div class="report-option" onclick="selectReport('الإثراء للمتفوقين')">الإثراء للمتفوقين</div>
-      <div class="report-option" onclick="selectReport('دراسة حالة طالب')">دراسة حالة طالب</div>
-      <div class="report-option" onclick="selectReport('حل مشكلة تربوية')">حل مشكلة تربوية</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف التقويم والرصد والتحليل -->
-  <div class="report-category" id="evaluation">
-    <div class="category-title">التقويم والرصد والتحليل</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('أدوات التقويم')">أدوات التقويم</div>
-      <div class="report-option" onclick="selectReport('التقويم التشخيصي')">التقويم التشخيصي</div>
-      <div class="report-option" onclick="selectReport('التقويم البنائي')">التقويم البنائي</div>
-      <div class="report-option" onclick="selectReport('التقويم الختامي')">التقويم الختامي</div>
-      <div class="report-option" onclick="selectReport('تحليل نتائج الاختبارات')">تحليل نتائج الاختبارات</div>
-      <div class="report-option" onclick="selectReport('متابعة مستوى التحصيل')">متابعة مستوى التحصيل</div>
-      <div class="report-option" onclick="selectReport('مقارنة نتائج الفترات')">مقارنة نتائج الفترات</div>
-      <div class="report-option" onclick="selectReport('قياس نواتج التعلم')">قياس نواتج التعلم</div>
-      <div class="report-option" onclick="selectReport('رصد وتصحيح الدرجات')">رصد وتصحيح الدرجات</div>
-      <div class="report-option" onclick="selectReport('التغذية الراجعة')">التغذية الراجعة</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف إعداد الأسئلة والاختبارات -->
-  <div class="report-category" id="tests">
-    <div class="category-title">إعداد الأسئلة والاختبارات</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('بنك أسئلة')">بنك أسئلة</div>
-      <div class="report-option" onclick="selectReport('تنويع مستويات الأسئلة')">تنويع مستويات الأسئلة</div>
-      <div class="report-option" onclick="selectReport('مواءمة الأسئلة مع الأهداف')">مواءمة الأسئلة مع الأهداف</div>
-      <div class="report-option" onclick="selectReport('تحليل الأسئلة')">تحليل الأسئلة</div>
-      <div class="report-option" onclick="selectReport('الاختبارات الإلكترونية')">الاختبارات الإلكترونية</div>
-      <div class="report-option" onclick="selectReport('الاختبارات الذكية')">الاختبارات الذكية</div>
-      <div class="report-option" onclick="selectReport('اختبار تحسن')">اختبار تحسن</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف المتابعة والإشراف والسلوك -->
-  <div class="report-category" id="supervision">
-    <div class="category-title">المتابعة والإشراف والسلوك</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('كشف المتابعة')">كشف المتابعة</div>
-      <div class="report-option" onclick="selectReport('سجل الدرجات الإلكتروني')">سجل الدرجات الإلكتروني</div>
-      <div class="report-option" onclick="selectReport('التغذية الراجعة من الطلاب')">التغذية الراجعة من الطلاب</div>
-      <div class="report-option" onclick="selectReport('متابعة الانضباط والسلوك')">متابعة الانضباط والسلوك</div>
-      <div class="report-option" onclick="selectReport('متابعة الغياب والتأخر')">متابعة الغياب والتأخر</div>
-      <div class="report-option" onclick="selectReport('ضبط الصف')">ضبط الصف</div>
-      <div class="report-option" onclick="selectReport('تعزيز السلوك الإيجابي')">تعزيز السلوك الإيجابي</div>
-      <div class="report-option" onclick="selectReport('تحفيز الطلاب')">تحفيز الطلاب</div>
-      <div class="report-option" onclick="selectReport('معرفة الميول والاتجاهات')">معرفة الميول والاتجاهات</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف المناوبة وحصص الانتظار -->
-  <div class="report-category" id="duty">
-    <div class="category-title">المناوبة وحصص الانتظار</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('المناوبة المدرسية')">المناوبة المدرسية</div>
-      <div class="report-option" onclick="selectReport('الإشراف اليومي')">الإشراف اليومي</div>
-      <div class="report-option" onclick="selectReport('الإشراف على الفسحة')">الإشراف على الفسحة</div>
-      <div class="report-option" onclick="selectReport('حصص الانتظار')">حصص الانتظار</div>
-    </div>
-  </div>
-  
-  <!-- تصنيف التقارير المهنية للمعلم -->
-  <div class="report-category" id="professional">
-    <div class="category-title">التقارير المهنية للمعلم</div>
-    <div class="report-options">
-      <div class="report-option" onclick="selectReport('التدريب على الاختبارات المعيارية')">التدريب على الاختبارات المعيارية</div>
-      <div class="report-option" onclick="selectReport('حضور دورات وورش تدريبية')">حضور دورات وورش تدريبية</div>
-      <div class="report-option" onclick="selectReport('نقل أثر التدريب')">نقل أثر التدريب</div>
-      <div class="report-option" onclick="selectReport('الورش التدريبية المقدمة')">الورش التدريبية المقدمة</div>
-      <div class="report-option" onclick="selectReport('البحث الإجرائي')">البحث الإجرائي</div>
-    </div>
-  </div>
-</div>
-
 <label>إدارة التعليم</label>
 <select id="eduSelect" onchange="updateEduInfo(this.value)">
   <option value="">اختر إدارة التعليم</option>
@@ -711,12 +446,41 @@ textarea {
   <option value="الإدارة العامة للتعليم بمنطقة مكة المكرمة">الإدارة العامة للتعليم بمنطقة مكة المكرمة</option>
   <option value="الإدارة العامة للتعليم بمنطقة المدينة المنورة">الإدارة العامة للتعليم بمنطقة المدينة المنورة</option>
   <option value="الإدارة العامة للتعليم بالمنطقة الشرقية">الإدارة العامة للتعليم بالمنطقة الشرقية</option>
+  <option value="الإدارة العامة للتعليم بمنطقة القصيم">الإدارة العامة للتعليم بمنطقة القصيم</option>
+  <option value="الإدارة العامة للتعليم بمنطقة عسير">الإدارة العامة للتعليم بمنطقة عسير</option>
+  <option value="الإدارة العامة للتعليم بمنطقة تبوك">الإدارة العامة للتعليم بمنطقة تبوك</option>
+  <option value="الإدارة العامة للتعليم بمنطقة حائل">الإدارة العامة للتعليم بمنطقة حائل</option>
+  <option value="الإدارة العامة للتعليم بمنطقة الحدود الشمالية">الإدارة العامة للتعليم بمنطقة الحدود الشمالية</option>
+  <option value="الإدارة العامة للتعليم بمنطقة جازان">الإدارة العامة للتعليم بمنطقة جازان</option>
+  <option value="الإدارة العامة للتعليم بمنطقة نجران">الإدارة العامة للتعليم بمنطقة نجران</option>
+  <option value="الإدارة العامة للتعليم بمنطقة الباحة">الإدارة العامة للتعليم بمنطقة الباحة</option>
+  <option value="الإدارة العامة للتعليم بمنطقة الجوف">الإدارة العامة للتعليم بمنطقة الجوف</option>
+  <option value="الإدارة العامة للتعليم بمحافظة الأحساء">الإدارة العامة للتعليم بمحافظة الأحساء</option>
+  <option value="الإدارة العامة للتعليم بمحافظة الطائف">الإدارة العامة للتعليم بمحافظة الطائف</option>
+  <option value="الإدارة العامة للتعليم بمحافظة جدة">الإدارة العامة للتعليم بمحافظة جدة</option>
 </select>
 
 <label>اسم المدرسة</label>
 <input id="schoolInput" placeholder="أدخل اسم المدرسة هنا" oninput="sync('school',this.value)">
 
 <div class="small-grid">
+  <select onchange="sync('reportTitle',this.value)" id="reportSelect">
+    <option value="">اختر نوع التقرير</option>
+    <!-- سيتم ملء هذه القائمة ديناميكياً -->
+  </select>
+  <select id="categorySelect" onchange="updateReportsByCategory()" class="report-category">
+    <option value="">اختر تصنيف التقرير</option>
+    <option value="strategies">استراتيجيات التدريس والتعلم</option>
+    <option value="lessons">تنفيذ الدروس والشرح</option>
+    <option value="technologies">الوسائل والتقنيات التعليمية</option>
+    <option value="activities">الأنشطة الصفية واللاصفية</option>
+    <option value="remedial">الخطط العلاجية والدعم التعليمي</option>
+    <option value="evaluation">التقويم والرصد والتحليل</option>
+    <option value="questions">إعداد الأسئلة والاختبارات</option>
+    <option value="supervision">المتابعة والإشراف والسلوك</option>
+    <option value="duty">المناوبة وحصص الانتظار</option>
+    <option value="professional">التقارير المهنية للمعلم</option>
+  </select>
   <input placeholder="المستهدفون" oninput="sync('target',this.value)" maxlength="30" title="الحد الأقصى 30 حرف">
   <input placeholder="العدد" oninput="sync('count',this.value)" maxlength="10" title="الحد الأقصى 10 أرقام">
   <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)" maxlength="40" title="الحد الأقصى 40 حرف">
@@ -727,26 +491,19 @@ textarea {
   </select>
   <input placeholder="الصف" oninput="sync('grade',this.value)" maxlength="20" title="الحد الأقصى 20 حرف">
   <input placeholder="المادة" oninput="sync('subject',this.value)" maxlength="25" title="الحد الأقصى 25 حرف">
-  <select id="reportTypeSelect" oninput="sync('reportTitle',this.value)">
-    <option value="">اختر نوع التقرير</option>
-  </select>
 </div>
 
-<!-- اختيار النص التلقائي - 5 نصوص لكل فئة -->
+<!-- اختيار النص التلقائي -->
 <div class="auto-row">
-  <button class="auto-btn strategy" onclick="loadSmartText('strategy', 1)">استراتيجية 1<br><small>التعلم النشط</small></button>
-  <button class="auto-btn strategy" onclick="loadSmartText('strategy', 2)">استراتيجية 2<br><small>التعلم التعاوني</small></button>
-  <button class="auto-btn strategy" onclick="loadSmartText('strategy', 3)">استراتيجية 3<br><small>حل المشكلات</small></button>
-  <button class="auto-btn strategy" onclick="loadSmartText('strategy', 4)">استراتيجية 4<br><small>العصف الذهني</small></button>
-  <button class="auto-btn strategy" onclick="loadSmartText('strategy', 5)">استراتيجية 5<br><small>التفكير الناقد</small></button>
-</div>
-
-<div class="auto-row">
-  <button class="auto-btn lesson" onclick="loadSmartText('lesson', 1)">درس 1<br><small>تنفيذ درس</small></button>
-  <button class="auto-btn technology" onclick="loadSmartText('technology', 1)">تقنية 1<br><small>وسائل تعليمية</small></button>
-  <button class="auto-btn enrichment" onclick="loadSmartText('activity', 1)">نشاط 1<br><small>أنشطة صفية</small></button>
-  <button class="auto-btn remedial" onclick="loadSmartText('remedial', 1)">علاجي 1<br><small>خطة علاجية</small></button>
+  <button class="auto-btn enrichment" onclick="loadSmartText(1)">نشاط إثرائي 1<br><small>البحث العلمي</small></button>
+  <button class="auto-btn enrichment" onclick="loadSmartText(2)">نشاط إثرائي 2<br><small>الابتكار التقني</small></button>
+  <button class="auto-btn enrichment" onclick="loadSmartText(3)">نشاط إثرائي 3<br><small>المهارات القيادية</small></button>
   <button class="auto-btn clear-btn" onclick="clearAllFields()">مسح الحقول</button>
+</div>
+<div class="auto-row">
+  <button class="auto-btn remedial" onclick="loadSmartText(4)">خطة علاجية 1<br><small>القراءة والكتابة</small></button>
+  <button class="auto-btn remedial" onclick="loadSmartText(5)">خطة علاجية 2<br><small>المهارات الحسابية</small></button>
+  <button class="auto-btn enrichment" onclick="loadSmartText(6)">نشاط إثرائي 4<br><small>الإبداع الفني</small></button>
 </div>
 
 <label>الهدف التربوي (الحد الأقصى: 150 حرف)</label>
@@ -878,171 +635,188 @@ textarea {
 </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-// قاعدة البيانات للنصوص الذكية - 5 نصوص لكل تصنيف
+// قاعدة البيانات الرئيسية لجميع التقارير
+const allReports = [
+  // 1-14: استراتيجيات التدريس والتعلم
+  { id: 1, category: "strategies", title: "تقرير تطبيق التعلم النشط" },
+  { id: 2, category: "strategies", title: "تقرير استراتيجية التعلم التعاوني" },
+  { id: 3, category: "strategies", title: "تقرير استراتيجية حل المشكلات" },
+  { id: 4, category: "strategies", title: "تقرير استراتيجية العصف الذهني" },
+  { id: 5, category: "strategies", title: "تقرير استراتيجية التفكير الناقد" },
+  { id: 6, category: "strategies", title: "تقرير استراتيجية التفكير الإبداعي" },
+  { id: 7, category: "strategies", title: "تقرير استراتيجية التعلم القائم على المشروع" },
+  { id: 8, category: "strategies", title: "تقرير استراتيجية التعلم القائم على الاستقصاء" },
+  { id: 9, category: "strategies", title: "تقرير استراتيجية الفصول المقلوبة" },
+  { id: 10, category: "strategies", title: "تقرير استراتيجية التعلم باللعب" },
+  { id: 11, category: "strategies", title: "تقرير استراتيجية التعلم الذاتي" },
+  { id: 12, category: "strategies", title: "تقرير استراتيجية القبعات الست" },
+  { id: 13, category: "strategies", title: "تقرير استراتيجية الخرائط الذهنية" },
+  { id: 14, category: "strategies", title: "تقرير استراتيجية التعليم المتمايز" },
+
+  // 15-18: تنفيذ الدروس والشرح
+  { id: 15, category: "lessons", title: "تقرير درس تم تنفيذه" },
+  { id: 16, category: "lessons", title: "تقرير تنفيذ درس تطبيقي" },
+  { id: 17, category: "lessons", title: "تقرير توزيع وقت الحصة" },
+  { id: 18, category: "lessons", title: "تقرير تطوير البيئة الصفية" },
+
+  // 19-28: الوسائل والتقنيات التعليمية
+  { id: 19, category: "technologies", title: "تقرير استخدام الوسائل التعليمية" },
+  { id: 20, category: "technologies", title: "تقرير إنتاج وسائل تعليمية مبتكرة" },
+  { id: 21, category: "technologies", title: "تقرير توظيف الوسائل الرقمية" },
+  { id: 22, category: "technologies", title: "تقرير استخدام العروض التقديمية" },
+  { id: 23, category: "technologies", title: "تقرير استخدام السبورة التفاعلية" },
+  { id: 24, category: "technologies", title: "تقرير توظيف الفيديو التعليمي" },
+  { id: 25, category: "technologies", title: "تقرير استخدام التطبيقات التعليمية" },
+  { id: 26, category: "technologies", title: "تقرير استخدام المنصات التعليمية" },
+  { id: 27, category: "technologies", title: "تقرير تصميم أوراق عمل تفاعلية" },
+  { id: 28, category: "technologies", title: "تقرير توظيف الذكاء الاصطناعي في التعليم" },
+
+  // 29-38: الأنشطة الصفية واللاصفية
+  { id: 29, category: "activities", title: "تقرير تنفيذ أنشطة صفية" },
+  { id: 30, category: "activities", title: "تقرير أنشطة إثرائية" },
+  { id: 31, category: "activities", title: "تقرير أنشطة علاجية صفية" },
+  { id: 32, category: "activities", title: "تقرير الأنشطة اللاصفية" },
+  { id: 33, category: "activities", title: "تقرير حصص النشاط" },
+  { id: 34, category: "activities", title: "تقرير المبادرات الطلابية" },
+  { id: 35, category: "activities", title: "تقرير المسابقات والمشاركات الطلابية" },
+  { id: 36, category: "activities", title: "تقرير المشاركات بين الطلاب" },
+  { id: 37, category: "activities", title: "تقرير تنفيذ إذاعة مدرسية" },
+  { id: 38, category: "activities", title: "تقرير المعلم الصغير" },
+
+  // 39-48: الخطط العلاجية والدعم التعليمي
+  { id: 39, category: "remedial", title: "تقرير إعداد وتنفيذ خطة علاجية" },
+  { id: 40, category: "remedial", title: "تقرير متابعة ونتائج الخطة العلاجية" },
+  { id: 41, category: "remedial", title: "تقرير علاج ضعف القراءة" },
+  { id: 42, category: "remedial", title: "تقرير علاج ضعف الكتابة" },
+  { id: 43, category: "remedial", title: "تقرير علاج ضعف الحساب" },
+  { id: 44, category: "remedial", title: "تقرير دعم الطلاب المتأخرين دراسيًا" },
+  { id: 45, category: "remedial", title: "تقرير التدخل العلاجي المبكر" },
+  { id: 46, category: "remedial", title: "تقرير الإثراء للطلاب المتفوقين" },
+  { id: 47, category: "remedial", title: "تقرير دراسة حالة طالب" },
+  { id: 48, category: "remedial", title: "تقرير حل مشكلة تربوية" },
+
+  // 49-58: التقويم والرصد والتحليل
+  { id: 49, category: "evaluation", title: "تقرير إعداد أدوات التقويم" },
+  { id: 50, category: "evaluation", title: "تقرير التقويم التشخيصي" },
+  { id: 51, category: "evaluation", title: "تقرير التقويم البنائي" },
+  { id: 52, category: "evaluation", title: "تقرير التقويم الختامي" },
+  { id: 53, category: "evaluation", title: "تقرير تحليل نتائج الاختبارات" },
+  { id: 54, category: "evaluation", title: "تقرير متابعة مستوى التحصيل" },
+  { id: 55, category: "evaluation", title: "تقرير مقارنة نتائج الفترات" },
+  { id: 56, category: "evaluation", title: "تقرير قياس نواتج التعلم" },
+  { id: 57, category: "evaluation", title: "تقرير رصد وتصحيح الدرجات" },
+  { id: 58, category: "evaluation", title: "تقرير التغذية الراجعة للطلاب" },
+
+  // 59-65: إعداد الأسئلة والاختبارات
+  { id: 59, category: "questions", title: "تقرير إعداد بنك أسئلة" },
+  { id: 60, category: "questions", title: "تقرير تنويع مستويات الأسئلة" },
+  { id: 61, category: "questions", title: "تقرير مواءمة الأسئلة مع الأهداف" },
+  { id: 62, category: "questions", title: "تقرير تحليل الأسئلة (الصعوبة والتمييز)" },
+  { id: 63, category: "questions", title: "تقرير الاختبارات الإلكترونية" },
+  { id: 64, category: "questions", title: "تقرير الاختبارات الذكية" },
+  { id: 65, category: "questions", title: "تقرير تنفيذ اختبار تحسن" },
+
+  // 66-74: المتابعة والإشراف والسلوك
+  { id: 66, category: "supervision", title: "تقرير كشف المتابعة" },
+  { id: 67, category: "supervision", title: "تقرير سجل الدرجات الإلكتروني" },
+  { id: 68, category: "supervision", title: "تقرير سجل التغذية الراجعة من الطلاب" },
+  { id: 69, category: "supervision", title: "تقرير متابعة الانضباط والسلوك" },
+  { id: 70, category: "supervision", title: "تقرير متابعة الغياب والتأخر" },
+  { id: 71, category: "supervision", title: "تقرير ضبط الصف" },
+  { id: 72, category: "supervision", title: "تقرير تعزيز السلوك الإيجابي" },
+  { id: 73, category: "supervision", title: "تقرير تحفيز الطلاب" },
+  { id: 74, category: "supervision", title: "تقرير معرفة الميول والاتجاهات" },
+
+  // 75-78: المناوبة وحصص الانتظار
+  { id: 75, category: "duty", title: "تقرير المناوبة المدرسية" },
+  { id: 76, category: "duty", title: "تقرير الإشراف اليومي والأسبوعي" },
+  { id: 77, category: "duty", title: "تقرير الإشراف على الفسحة" },
+  { id: 78, category: "duty", title: "تقرير حصص الانتظار التعليمية" },
+
+  // 79-83: التقارير المهنية للمعلم
+  { id: 79, category: "professional", title: "تقرير التدريب على الاختبارات المعيارية" },
+  { id: 80, category: "professional", title: "تقرير حضور دورات وورش تدريبية" },
+  { id: 81, category: "professional", title: "تقرير نقل أثر التدريب" },
+  { id: 82, category: "professional", title: "تقرير الورش التدريبية التي قدمتها" },
+  { id: 83, category: "professional", title: "تقرير البحث الإجرائي" }
+];
+
+// قاعدة البيانات للنصوص الذكية والمتنوعة (6 نصوص مختلفة)
 const smartTextsDatabase = {
-  // استراتيجيات التدريس (5 نصوص)
-  strategy: {
-    1: {
-      reportType: "تقرير تطبيق استراتيجية التعلم النشط",
-      goal: "تنمية التفاعل الإيجابي والمشاركة الفعالة لدى الطلاب في العملية التعليمية من خلال تفعيل استراتيجية التعلم النشط",
-      desc1: "تطبيق استراتيجية التعلم النشط التي تعتمد على إشراك الطلاب بشكل فعّال في بناء المعرفة وتطوير المهارات من خلال أنشطة تفاعلية وممارسات عملية",
-      desc2: "تقسيم الطلاب إلى مجموعات عمل، استخدام الوسائل التعليمية التفاعلية، تنظيم مناقشات جماعية، تطبيق تمارين عملية، ربط المحتوى بالحياة اليومية، تقديم تغذية راجعة فورية",
-      desc3: "زيادة مشاركة الطلاب بنسبة 75%، تحسن مستوى الفهم والاستيعاب، تنمية مهارات العمل الجماعي، رفع مستوى التفاعل الصفي، تحسن الأداء في التقييمات التكوينية",
-      desc4: "الاستمرار في تطبيق استراتيجية التعلم النشط في جميع الدروس، تدريب المعلمين على أساليب التعلم النشط، تطوير مواد تعليمية تفاعلية، تعميم التجربة على جميع الصفوف",
-      motivators: "أنشطة تعليمية ممتعة، جوائز للمشاركة الفعالة، نشر إنجازات الطلاب، تفعيل التقنية في التعليم، رحلات تعليمية مرتبطة بالمنهج",
-      strengths: "تفاعل إيجابي من الطلاب، بيئة صفية محفزة، تنوع الأنشطة التعليمية، استخدام التقنية بشكل فاعل، دعم إداري مستمر",
-      challenges: "ضيق وقت الحصة، اختلاف مستويات الطلاب، الحاجة إلى تحضير مسبق مكثف، صعوبة تقييم بعض الأنشطة التفاعلية",
-      weaknesses: "نقص بعض الوسائل التعليمية التفاعلية، حاجة بعض الطلاب للتكيف مع النظام الجديد، محدودية المساحة الصفية لبعض الأنشطة"
-    },
-    2: {
-      reportType: "تقرير تطبيق استراتيجية التعلم التعاوني",
-      goal: "تنمية مهارات العمل الجماعي والتعاون بين الطلاب وتعزيز القيم الاجتماعية من خلال تطبيق استراتيجية التعلم التعاوني",
-      desc1: "تفعيل استراتيجية التعلم التعاوني التي تركز على بناء فرق عمل تعليمية لتحقيق أهداف مشتركة وتنمية المسؤولية الفردية والجماعية",
-      desc2: "تشكيل فرق تعاونية متجانسة، تحديد الأدوار والمهام، تصميم أنشطة جماعية، توفير مصادر تعلم مشتركة، متابعة أداء الفرق، تقييم التعاون والمشاركة",
-      desc3: "تطوير 8 مشاريع جماعية ناجحة، تحسن مهارات التواصل بنسبة 68%، تعزيز روح الفريق، تنمية المسؤولية الذاتية، نجاح في حل المشكلات بشكل جماعي",
-      desc4: "توسيع نطاق التعلم التعاوني ليشمل جميع المواد، تدريب الطلاب على مهارات العمل الجماعي، إنشاء نادي للتعلم التعاوني، توثيق التجارب الناجحة",
-      motivators: "جوائز لأفضل الفرق، نشر إنجازات المجموعات، فرص لقيادة الفرق، شهادات تقدير جماعية، أنشطة تنافسية بين الفرق",
-      strengths: "تنوع المهارات في الفرق، دعم وتعاون بين الطلاب، بيئة تعليمية إيجابية، تنمية القيادة الطلابية، مشاركة فاعلة",
-      challenges: "اختلاف شخصيات الطلاب، صعوبة تقييم المساهمة الفردية، الحاجة إلى توجيه مستمر، اختلاف وتيرة العمل بين الفرق",
-      weaknesses: "تفاوت مستوى الالتزام بين أعضاء الفريق، محدودية الوقت للعمل الجماعي، صعوبة تكوين فرق متجانسة"
-    },
-    3: {
-      reportType: "تقرير تطبيق استراتيجية حل المشكلات",
-      goal: "تنمية مهارات التفكير التحليلي وحل المشكلات لدى الطلاب من خلال تطبيق استراتيجية حل المشكلات في المواقف التعليمية",
-      desc1: "تفعيل استراتيجية حل المشكلات التي تعزز التفكير النقدي والإبداعي من خلال مواجهة الطلاب لتحديات واقعية والعمل على إيجاد حلول عملية لها",
-      desc2: "عرض مشكلات تعليمية واقعية، تحليل المشكلات وتحديد جوانبها، جمع المعلومات والبيانات، اقتراح حلول بديلة، تقييم الحلول، اختيار الحل الأمثل، تطبيق ومتابعة",
-      desc3: "حل 12 مشكلة تعليمية متنوعة، تحسن مهارات التحليل بنسبة 72%، تنمية التفكير الإبداعي، تطبيق المعرفة في مواقف حياتية، زيادة الثقة في اتخاذ القرارات",
-      desc4: "دمج استراتيجية حل المشكلات في المنهج الدراسي، إنشاء بنك للمشكلات التعليمية، تدريب المعلمين على تصميم المشكلات، تنظيم مسابقات لحل المشكلات",
-      motivators: "تحديات تعليمية شيقة، جوائز لأفضل الحلول، نشر الحلول المبتكرة، فرص لتطبيق الحلول عملياً، اعتراف بالإنجازات",
-      strengths: "مواقف تعليمية واقعية، تنمية التفكير العالي، ارتباط التعلم بالحياة، مشاركة فاعلة، نتائج قابلة للقياس",
-      challenges: "صعوبة بعض المشكلات، اختلاف القدرات على التحليل، الحاجة إلى وقت كافٍ، صعوبة تقييم الحلول الإبداعية",
-      weaknesses: "نقص الخبرة في التعامل مع المشكلات المعقدة، محدودية الموارد لحل بعض المشكلات، تفاوت مهارات التفكير التحليلي"
-    },
-    4: {
-      reportType: "تقرير تطبيق استراتيجية العصف الذهني",
-      goal: "تنمية التفكير الإبداعي وتوليد الأفكار المبتكرة لدى الطلاب من خلال تطبيق استراتيجية العصف الذهني في العملية التعليمية",
-      desc1: "تفعيل استراتيجية العصف الذهني التي تشجع على توليد أكبر عدد ممكن من الأفكار بحرية ودون نقد لتحفيز التفكير الإبداعي والابتكار",
-      desc2: "تحديد موضوع العصف الذهني، شرح القواعد والأسس، توليد الأفكار بحرية، تسجيل جميع الأفكار، تصنيف وتنظيم الأفكار، تقييم واختيار الأفكار المناسبة",
-      desc3: "توليد أكثر من 100 فكرة إبداعية في 5 جلسات، تنمية التفكير الإبداعي بنسبة 65%، اكتشاف مواهب إبداعية، تطوير 8 مشاريع من الأفكار المولدة، زيادة الثقة في التعبير عن الأفكار",
-      desc4: "عقد جلسات عصف ذهني دورية، تدريب الطلاب على تقنيات التفكير الإبداعي، إنشاء سجل للأفكار المبتكرة، تنفيذ أفضل الأفكار عملياً",
-      motivators: "جوائز لأكثر الأفكار إبداعية، نشر الأفكار المبتكرة، فرص لتطبيق الأفكار، شهادات إبداعية، مسابقات للأفكار الجديدة",
-      strengths: "بيئة حرة للإبداع، مشاركة جميع الطلاب، توليد أفكار متنوعة، تنمية الثقة بالنفس، جو تعاوني إيجابي",
-      challenges: "صعوبة ضبط الوقت، اختلاف القدرات الإبداعية، الحاجة إلى توجيه لطيف، صعوبة تقييم الأفكار الإبداعية",
-      weaknesses: "بعض الأفكار غير قابلة للتطبيق، تفاوت مشاركة الطلاب، حاجة لمزيد من التدريب على التقنيات الإبداعية"
-    },
-    5: {
-      reportType: "تقرير تطبيق استراتيجية التفكير الناقد",
-      goal: "تنمية مهارات التفكير الناقد والتحليل المنطقي لدى الطلاب من خلال تطبيق استراتيجية التفكير الناقد في التحليل والتقييم",
-      desc1: "تفعيل استراتيجية التفكير الناقد التي تركز على تطوير قدرة الطلاب على التحليل والتقييم واتخاذ القرارات بناءً على الأدلة والمنطق",
-      desc2: "عرض قضايا ومناقشات، تدريب على طرح الأسئلة الناقدة، تحليل الأدلة والمعلومات، تقييم الحجج والبراهين، اتخاذ قرارات مستنيرة، تقديم مبررات منطقية",
-      desc3: "تحسن مهارات التحليل النقدي بنسبة 70%، تنمية القدرة على تقييم المعلومات، تحسن مهارات اتخاذ القرار، زيادة الوعي بالتحيزات الفكرية، نجاح في حل المشكلات المعقدة",
-      desc4: "دمج التفكير الناقد في جميع المواد، تدريب المعلمين على استراتيجيات التفكير الناقد، إنشاء نادي للتفكير الناقد، تنظيم مناظرات طلابية",
-      motivators: "مناقشات شيقة، جوائز لأفضل التحليلات، نشر الأبحاث النقدية، فرص للمناظرات، اعتراف بالتفكير المنطقي",
-      strengths: "تنمية التفكير العالي، تعزيز التحليل المنطقي، بيئة محفزة للتفكير، مشاركة فاعلة، نتائج إيجابية قابلة للقياس",
-      challenges: "صعوبة بعض القضايا النقدية، اختلاف القدرات التحليلية، الحاجة إلى معلومات دقيقة، صعوبة تقييم التفكير الناقد",
-      weaknesses: "نقص الخبرة في التحليل النقدي، محدودية المصادر للمناقشات، تفاوت مهارات التفكير المنطقي"
-    }
+  1: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تنمية مهارات البحث العلمي والتفكير النقدي لدى الطلاب المتميزين من خلال مشاريع بحثية مبتكرة",
+    desc1: "برنامج متكامل للبحث العلمي يهدف إلى تطوير قدرات الطلاب في مجال البحث والاستقصاء العلمي، مع التركيز على المنهجية العلمية الصحيحة",
+    desc2: "تشكيل فريق بحثي، تدريب على منهجية البحث، اختيار موضوعات بحثية، إشراف أسبوعي، كتابة التقارير البحثية، عروض تقديمية، تقييم النتائج",
+    desc3: "إنتاج 10 أبحاث علمية في مجالات متنوعة، تحسن ملحوظ في مهارات التحليل العلمي، زيادة الثقة بالنفس لدى الطلاب، فوز في مسابقة البحث العلمي على مستوى المنطقة",
+    desc4: "توسيع نطاق البرنامج ليشمل صفوفاً دراسية أخرى، تدريب معلمين متخصصين في البحث العلمي، إنشاء مكتبة بحثية، تنظيم معرض سنوي للأبحاث الطلابية",
+    motivators: "نشر الأبحاث في مجلة المدرسة، رحلات علمية لمراكز الأبحاث، شهادات تميز، مشاركة في المؤتمرات الطلابية، جوائز لأفضل الأبحاث",
+    strengths: "كفاءة عالية للمعلمين المشرفين، توفر مصادر بحثية مناسبة، دعم إداري كامل، مشاركة فاعلة من الطلاب، بيئة محفزة للإبداع",
+    challenges: "صعوبة الوصول للمراجع المتخصصة، محدودية الوقت المخصص للبحث، صعوبة بعض المفاهيم العلمية للطلاب، نقص بعض الأجهزة البحثية",
+    weaknesses: "تفاوت مستوى الطلاب في مهارات البحث، ضعف الخلفية البحثية لبعض الطلاب، حاجة لمزيد من التمويل، محدودية الأماكن المخصصة للبحث"
   },
-  
-  // تنفيذ الدروس (5 نصوص)
-  lesson: {
-    1: {
-      reportType: "تقرير درس تم تنفيذه",
-      goal: "تحقيق الأهداف التعليمية المحددة للدرس وتنمية المهارات المعرفية والمهنية لدى الطلاب من خلال تنفيذ فعال وممنهج",
-      desc1: "تنفيذ درس تعليمي متكامل يركز على تحقيق الأهداف السلوكية والمعرفية والمهارية من خلال أنشطة متنوعة وتفاعلية",
-      desc2: "التخطيط المسبق للدرس، تحديد الأهداف التعليمية، إعداد الوسائل التعليمية، تنفيذ الأنشطة التعليمية، التقويم التكويني، تقديم التغذية الراجعة، متابعة التقدم",
-      desc3: "تحقيق 85% من الأهداف التعليمية، تفاعل إيجابي من 90% من الطلاب، تحسن في مستوى الفهم، تنفيذ جميع الأنشطة المخطط لها، تقديم تغذية راجعة فورية",
-      desc4: "تطوير خطط الدروس المستقبلية، تحسين الوسائل التعليمية، تدريب على استراتيجيات التدريس الفعال، توثيق الدروس الناجحة، تبادل الخبرات مع الزملاء",
-      motivators: "تحديات تعليمية شيقة، جوائز للمشاركة الفعالة، نشر الإنجازات، اعتراف بالأداء المتميز، أنشطة تنافسية تعليمية",
-      strengths: "تحضير مسبق ممتاز، وسائل تعليمية مناسبة، تفاعل إيجابي، بيئة صفية محفزة، تحقيق الأهداف التعليمية",
-      challenges: "ضيق وقت الحصة، اختلاف مستويات الطلاب، الحاجة إلى تعديل الخطط، صعوبة بعض المفاهيم التعليمية",
-      weaknesses: "نقص بعض الوسائل التعليمية، حاجة لمزيد من الوقت للأنشطة، تفاوت سرعة التعلم بين الطلاب"
-    },
-    2: {
-      reportType: "تقرير درس تطبيقي",
-      goal: "تطبيق المعارف والمهارات النظرية في مواقف عملية وحياتية لتعزيز الفهم والاستيعاب لدى الطلاب",
-      desc1: "تنفيذ درس تطبيقي يركز على ربط المحتوى النظري بالتطبيق العملي من خلال أنشطة وتجارب عملية واقعية",
-      desc2: "ربط المحتوى النظري بالتطبيق، تصميم أنشطة عملية، تنفيذ التجارب والتطبيقات، مناقشة النتائج، تحليل التطبيقات، تقييم المهارات التطبيقية",
-      desc3: "نجاح في تطبيق 8 مفاهيم نظرية عملياً، تحسن مهارات التطبيق بنسبة 75%، زيادة الفهم العميق للمفاهيم، ربط التعلم بالحياة الواقعية، تنمية المهارات العملية",
-      desc4: "زيادة الدروس التطبيقية، تطوير المختبرات والتجهيزات، تدريب على المهارات العملية، إنشاء مشاريع تطبيقية، ربط المنهج بسوق العمل",
-      motivators: "أنشطة عملية ممتعة، تطبيقات واقعية، جوائز للإبداع التطبيقي، نشر المشاريع الناجحة، رحلات ميدانية تطبيقية",
-      strengths: "ربط النظرية بالتطبيق، أنشطة عملية محفزة، بيئة تعلم تفاعلية، نتائج ملموسة، تنمية المهارات الحياتية",
-      challenges: "نقص التجهيزات العملية، صعوبة بعض التطبيقات، الحاجة إلى وقت إضافي، صعوبة تقييم المهارات العملية",
-      weaknesses: "محدودية الموارد للتطبيقات، تفاوت المهارات العملية، حاجة لمزيد من الإشراف"
-    },
-    3: {
-      reportType: "تقرير توزيع وقت الحصة",
-      goal: "تحسين استغلال وقت الحصة التعليمية وتوزيعه بشكل فعال لتحقيق أقصى استفادة تعليمية للطلاب",
-      desc1: "تحليل وتخطيط توزيع وقت الحصة التعليمية لتحقيق التوازن بين المكونات التعليمية المختلفة وضمان الاستفادة القصوى من الوقت المتاح",
-      desc2: "تقسيم الحصة إلى فترات زمنية محددة، تخصيص وقت لكل نشاط، مراقبة استخدام الوقت، تقييم فعالية التوزيع، تعديل التخطيط حسب النتائج، تدريب الطلاب على إدارة الوقت",
-      desc3: "تحسن في استغلال وقت الحصة بنسبة 80%، زيادة الوقت الفعلي للتعلم، تقليل الوقت الضائع، تحسن إنجاز الأنشطة، تنظيم أفضل للعمل الصفي",
-      desc4: "تطوير نماذج لتوزيع وقت الحصص، تدريب المعلمين على إدارة الوقت الصفي، مراقبة وتقييم استخدام الوقت، تحسين الجدول الدراسي، تعميم النماذج الناجحة",
-      motivators: "تحديات زمنية شيقة، جوائز للإدارة الزمنية الجيدة، نشر النماذج الناجحة، اعتراف بكفاءة إدارة الوقت، منافسات في إنجاز المهام",
-      strengths: "تنظيم محكم للوقت، استغلال أمثل للزمن، بيئة تعليمية منظمة، إنجاز أفضل للمهام، تقليل الفوضى الصفية",
-      challenges: "ضيق الوقت الإجمالي، اختلاف وتيرة العمل بين الطلاب، الحاجة إلى مرونة في التخطيط، صعوبة الالتزام بالجدول الزمني",
-      weaknesses: "صعوبة التنبؤ بالوقت المطلوب للأنشطة، تفاوت سرعة التعلم، حاجة لمهارات إدارة وقت متقدمة"
-    },
-    4: {
-      reportType: "تقرير تطوير البيئة الصفية",
-      goal: "تحسين البيئة الصفية وتجهيزها لتكون محفزة للتعلم ومناسبة للأنشطة التعليمية المختلفة",
-      desc1: "تطوير وتجهيز البيئة الصفية لتصبح بيئة تعليمية جاذبة ومحفزة للتعلم تدعم الأنشطة التعليمية المختلفة وتلبي احتياجات الطلاب",
-      desc2: "تقييم البيئة الصفية الحالية، تحديد الاحتياجات التطويرية، تصميم خطة التطوير، تجهيز الوسائل والأدوات، تنظيم الفصل، إضافة عناصر تحفيزية، تقييم النتائج",
-      desc3: "تحسن البيئة الصفية بنسبة 85%، زيادة رضا الطلاب عن الفصل، تحسين التفاعل الصفي، تنظيم أفضل للمساحات، إضافة 15 وسيلة تعليمية جديدة",
-      desc4: "استمرارية تطوير البيئة الصفية، تدريب المعلمين على تصميم الفصول، تبادل الخبرات بين المعلمين، تعميم النماذج الناجحة، توفير الدعم المادي",
-      motivators: "مسابقات لأجمل فصل، نشر الصور النهائية، جوائز للإبداع في التصميم، اعتراف بالجهود، زيارات تبادلية بين الفصول",
-      strengths: "بيئة تعليمية محفزة، تنظيم ممتاز للمساحات، وسائل تعليمية متنوعة، تفاعل إيجابي، نتائج مرئية وملموسة",
-      challenges: "محدودية الميزانية، صعوبة التغييرات الكبيرة، اختلاف وجهات النظر، الحاجة إلى وقت للتجهيز",
-      weaknesses: "نقص بعض الوسائل التعليمية، حاجة لمزيد من الدعم المادي، تفاوت الإمكانيات بين الفصول"
-    }
+  2: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تنمية المهارات التقنية والابتكارية لدى الطلاب الموهوبين في مجال التكنولوجيا والبرمجة",
+    desc1: "برنامج تقني متقدم يركز على تطوير مهارات البرمجة والتفكير الحاسوبي والابتكار التكنولوجي من خلال مشاريع عملية وتطبيقات حقيقية",
+    desc2: "تقييم المهارات التقنية، ورش عمل في البرمجة، تصميم تطبيقات تعليمية، مسابقات برمجية، مشاريع تقنية جماعية، عروض تقديمية، تقييم المنتجات النهائية",
+    desc3: "تصميم 15 تطبيقاً تعليمياً متكاملاً، فوز في مسابقات برمجية محلية، إنشاء نادٍ للتقنية والابتكار، اكتشاف 5 مواهب تقنية متميزة، تحسن مهارات البرمجة بنسبة 70%",
+    desc4: "تطوير منهج تقني متكامل، تأهيل معلمين في مجال التقنية، إنشاء معمل تقني متطور، شراكات مع شركات تقنية، استمرارية النادي التقني طوال العام",
+    motivators: "جوائز لأفضل التطبيقات، تدريبات في شركات تقنية، شهادات احترافية، رحلات لمعارض التقنية، نشر التطبيقات على متجر المدرسة",
+    strengths: "معامل حاسب آلي مجهزة، معلمون متخصصون، مواد تعليمية متطورة، دعم تقني مستمر، بيئة محفزة للابتكار",
+    challenges: "سرعة التطور التقني، صعوبة متابعة التحديثات، نقص الكوادر المتخصصة، ارتفاع تكلفة الأجهزة الحديثة، صعوبة البرامج للمبتدئين",
+    weaknesses: "تفاوت المهارات التقنية للطلاب، محدودية الأجهزة المتطورة، نقص البرامج التعليمية المتخصصة، حاجة لمزيد من الوقت التدريبي"
   },
-  
-  // التقنيات التعليمية (5 نصوص)
-  technology: {
-    1: {
-      reportType: "تقرير استخدام الوسائل التعليمية",
-      goal: "توظيف الوسائل التعليمية المناسبة لتحسين عملية التعليم والتعلم وتسهيل فهم المفاهيم المعقدة",
-      desc1: "استخدام وتوظيف وسائل تعليمية متنوعة لتعزيز عملية التعليم وجعلها أكثر فاعلية وجاذبية للطلاب",
-      desc2: "اختيار الوسائل المناسبة للموضوع، إعداد وتجهيز الوسائل، توظيفها في الشرح، تفعيل مشاركة الطلاب، تقييم فاعلية الوسائل، تعديل وتحسين الاستخدام",
-      desc3: "استخدام 12 وسيلة تعليمية مختلفة، تحسن الفهم بنسبة 70%، زيادة التفاعل الصفي، تسهيل شرح المفاهيم المجردة، تنمية مهارات التعلم البصري",
-      desc4: "توسيع استخدام الوسائل التعليمية، تدريب المعلمين على إنتاج الوسائل، إنشاء بنك للوسائل التعليمية، تبادل الخبرات بين المعلمين، تحديث الوسائل باستمرار",
-      motivators: "وسائل تعليمية مبتكرة، جوائز لأفضل وسيلة، نشر الأعمال الإبداعية، اعتراف بالجهود، مسابقات إنتاج الوسائل",
-      strengths: "تنوع الوسائل التعليمية، جاذبية التعلم، تسهيل الفهم، تفعيل الحواس المختلفة، نتائج إيجابية",
-      challenges: "نقص بعض المواد الخام، حاجة لوقت للإعداد، صعوبة بعض التجهيزات، تفاوت جودة الوسائل",
-      weaknesses: "محدودية الميزانية، حاجة لمهارات فنية، صعوبة حفظ وصيانة الوسائل"
-    }
+  3: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تنمية المهارات القيادية والعمل الجماعي والاتصال الفعال لدى الطلاب المتميزين من خلال أنشطة قيادية عملية",
+    desc1: "برنامج قيادي متكامل يهدف إلى صقل المهارات القيادية وتعزيز روح العمل الجماعي والاتصال الفعال لدى النخبة الطلابية الواعدة",
+    desc2: "اختيار الطلاب القياديين، تدريبات قيادية مكثفة، مشاريع جماعية، ورش عمل في الاتصال، تمارين قيادية عملية، زيارات لمؤسسات قيادية، تقييم الأداء القيادي",
+    desc3: "تطوير 8 مشاريع قيادية ناجحة، تحسن مهارات الاتصال بنسبة 65%، زيادة الثقة بالنفس لدى المشاركين، اكتشاف 12 قائداً طلابياً، نجاح في تنظيم فعاليات مدرسية",
+    desc4: "إنشاء مجلس قيادي طلابي، استمرارية البرنامج التدريبي، توسيع قاعدة المستفيدين، تدريب مدربين طلابيين، توثيق التجارب القيادية الناجحة",
+    motivators: "شهادات قيادية معتمدة، رحلات لمراكز قيادية، فرص تمثيل المدرسة، جوائز للإنجازات القيادية، نشر قصص النجاح القيادي",
+    strengths: "مدربون متخصصون في التنمية البشرية، بيئة داعمة للتطوير، دعم إداري كامل، مشاركة فاعلة، برنامج تدريبي متكامل",
+    challenges: "اختلاف الشخصيات القيادية، صعوبة بعض المفاهيم القيادية، محدودية الوقت، حاجة لمتابعة مستمرة، تقييم المهارات القيادية",
+    weaknesses: "نقص الخبرة العملية لبعض الطلاب، تفاوت الاستعداد القيادي، محدودية الموارد التدريبية، حاجة لمزيد من التمويل"
   },
-  
-  // الأنشطة التعليمية (5 نصوص)
-  activity: {
-    1: {
-      reportType: "تقرير أنشطة صفية",
-      goal: "تنفيذ أنشطة صفية متنوعة لتعزيز التعلم النشط وتنمية المهارات المختلفة لدى الطلاب",
-      desc1: "تنفيذ مجموعة من الأنشطة الصفية التعليمية المصممة لتحقيق أهداف تعليمية محددة وتعزيز المشاركة الفعالة للطلاب",
-      desc2: "تصميم الأنشطة المناسبة، توفير المواد والأدوات، شرح وتنظيم النشاط، متابعة التنفيذ، تقييم الأداء، تقديم التغذية الراجعة، تحليل النتائج",
-      desc3: "تنفيذ 10 أنشطة صفية متنوعة، مشاركة 95% من الطلاب، تحسن المهارات المستهدفة، تفاعل إيجابي، تحقيق الأهداف التعليمية",
-      desc4: "تطوير بنك للأنشطة الصفية، تدريب المعلمين على تصميم الأنشطة، تبادل الخبرات، تعميم الأنشطة الناجحة، تحديث الأنشطة باستمرار",
-      motivators: "أنشطة تعليمية ممتعة، جوائز للمشاركة، نشر الإنجازات، اعتراف بالأداء، مسابقات بين المجموعات",
-      strengths: "تنوع الأنشطة، مشاركة فاعلة، بيئة تعليمية محفزة، تحقيق الأهداف، نتائج إيجابية",
-      challenges: "ضيق وقت الحصة، اختلاف مستويات الطلاب، الحاجة إلى تحضير مسبق، صعوبة تقييم بعض الأنشطة",
-      weaknesses: "نقص بعض المواد، حاجة لمزيد من الوقت، تفاوت المشاركة"
-    }
+  4: {
+    reportType: "تقرير خطة علاجية",
+    goal: "معالجة الصعوبات القرائية والكتابية لدى الطلاب المتأخرين دراسياً وتحسين مستواهم في اللغة العربية",
+    desc1: "برنامج علاجي مكثف وممنهج لمعالجة الضعف في مهارات القراءة والكتابة لدى الطلاب من خلال أنشطة علاجية فردية وجماعية",
+    desc2: "تشخيص فردي للصعوبات، جلسات علاجية مكثفة، استخدام وسائل تعليمية مساعدة، أنشطة قرائية يومية، متابعة أسرية، تقييم أسبوعي، تعديل الخطة حسب التقدم",
+    desc3: "تحسن مهارات القراءة بنسبة 75%، تحسن مهارات الكتابة بنسبة 68%، زيادة الحصيلة اللغوية، تحسن الثقة بالنفس، تفاعل إيجابي مع الأنشطة اللغوية",
+    desc4: "تطوير بنك أنشطة علاجية، تدريب معلمين متخصصين، إنشاء غرفة مصادر متكاملة، تعزيز الشراكة مع أولياء الأمور، متابعة مستمرة للطلاب",
+    motivators: "برامج تحفيزية أسبوعية، شهادات تحسن، نشر قصص نجاح، جوائز للتقدم الملحوظ، رحلات تعليمية، أنشطة ترفيهية مرتبطة بالتعلم",
+    strengths: "معلمون متخصصون في صعوبات التعلم، وسائل تعليمية متنوعة، دعم إداري كامل، منهجية علاجية مثبتة، تعاون أولياء الأمور",
+    challenges: "تفاوت مستويات الصعوبات، مقاومة بعض الطلاب للتعلم، ضعف المتابعة الأسرية، صعوبة التشخيص الدقيق، محدودية الوقت",
+    weaknesses: "نقص الكوادر المتخصصة، محدودية الوقت العلاجي، صعوبة التشخيص الدقيق، تفاوت الاستجابة للعلاج"
   },
-  
-  // الخطط العلاجية (5 نصوص)
-  remedial: {
-    1: {
-      reportType: "تقرير خطة علاجية",
-      goal: "معالجة الضعف التعليمي لدى الطلاب المتأخرين دراسياً وتحسين مستواهم الأكاديمي من خلال برنامج علاجي ممنهج",
-      desc1: "تنفيذ خطة علاجية شاملة ومتدرجة لمعالجة الصعوبات التعليمية لدى الطلاب وتحسين أدائهم الأكاديمي",
-      desc2: "تشخيص الصعوبات التعليمية، تصميم البرنامج العلاجي، تنفيذ الجلسات العلاجية، استخدام وسائل مساعدة، متابعة التقدم، تقييم النتائج، تعديل الخطة",
-      desc3: "تحسن مستوى 8 طلاب علاجياً، تحسن المهارات المستهدفة بنسبة 65%، زيادة الثقة بالنفس، تفاعل إيجابي مع العلاج، تحسن في الدرجات",
-      desc4: "تطوير برامج علاجية متخصصة، تدريب معلمين على الأساليب العلاجية، إنشاء غرفة مصادر، تعزيز الشراكة مع الأسر، متابعة مستمرة",
-      motivators: "برامج تحفيزية، شهادات تحسن، نشر قصص النجاح، جوائز للتقدم، أنشطة ترفيهية مرتبطة",
-      strengths: "معلمون متخصصون، وسائل تعليمية مناسبة، دعم إداري، منهجية علاجية مثبتة، نتائج إيجابية",
-      challenges: "تفاوت الصعوبات، مقاومة بعض الطلاب، ضعف المتابعة الأسرية، صعوبة التشخيص الدقيق",
-      weaknesses: "نقص الكوادر المتخصصة، محدودية الوقت، تفاوت الاستجابة للعلاج"
-    }
+  5: {
+    reportType: "تقرير خطة علاجية",
+    goal: "تحسين المهارات الحسابية الأساسية ومعالجة الضعف الرياضي لدى الطلاب المتأخرين دراسياً في مادة الرياضيات",
+    desc1: "برنامج علاجي متدرج يركز على تعزيز المهارات الحسابية الأساسية وفهم المفاهيم الرياضية من خلال أنشطة عملية وتطبيقات حياتية",
+    desc2: "تقييم المهارات الحسابية، جلسات علاجية فردية، استخدام الوسائل التعليمية البصرية، أنشطة تطبيقية عملية، تمارين يومية، متابعة أسرية، تقييم شهري، تعديل الخطة حسب التقدم",
+    desc3: "تحسن العمليات الحسابية بنسبة 80%، فهم المفاهيم الرياضية الأساسية، زيادة الثقة بالنفس، تحسن المشاركة في الحصص، تطبيق الرياضيات في الحياة اليومية",
+    desc4: "إنشاء بنك الأنشطة العلاجية، تدريب معلمي الرياضيات على الأساليب العلاجية، تطوير مواد تعليمية مساعدة، تعزيز التعلم التطبيقي، متابعة مستمرة",
+    motivators: "مسابقات حسابية أسبوعية، شهادات تقدم، نشر الإنجازات، رحلات تعليمية، ألعاب تعليمية، جوائز للتقدم المستمر",
+    strengths: "وسائل تعليمية مبتكرة، معلمون متمرسون، بيئة تعلم محفزة، دعم نفسي مستمر، منهجية علاجية متدرجة",
+    challenges: "صعوبة بعض المفاهيم الرياضية المجردة، تفاوت القدرات الاستيعابية، محدودية الوقت، خوف بعض الطلاب من الرياضيات، ضعف الخلفية الرياضية",
+    weaknesses: "نقص الوسائل التعليمية المتخصصة، ضعف الخلفية الرياضية لدى بعض الطلاب، صعوبة الربط بالتطبيق العملي، محدودية الوقت العلاجي"
+  },
+  6: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تنمية المهارات الإبداعية والفنية لدى الطلاب الموهوبين وتعزيز التعبير الفني والجمالي من خلال أنشطة فنية متخصصة",
+    desc1: "برنامج فني متكامل يهدف إلى اكتشاف وصقل المواهب الفنية لدى الطلاب وتنمية الإبداع والتعبير الجمالي من خلال مختلف الفنون التشكيلية",
+    desc2: "اكتشاف المواهب الفنية، ورش عمل متخصصة (الرسم، النحت، الخط العربي، التصميم)، زيارات للمعارض الفنية، مشاريع فنية جماعية، معارض طلابية، تقييم الأعمال الفنية",
+    desc3: "إنتاج 30 عملاً فنياً متميزاً، تنظيم معرض فني ناجح، اكتشاف 8 مواهب فنية متميزة، تحسن مهارات التعبير الفني، مشاركة في مسابقات فنية محلية، زيادة الوعي الجمالي",
+    desc4: "تأسيس نادي فني دائم، استمرارية الورش الفنية، تدريب معلمين في التربية الفنية، إنشاء مرسم مدرسي، شراكات مع مؤسسات فنية، توثيق الأعمال الفنية",
+    motivators: "معارض لأفضل الأعمال، نشر الأعمال في مجلة المدرسة، رحلات للمتاحف الفنية، شهادات تقدير، مشاركة في المسابقات الفنية، جوائز للإبداع الفني",
+    strengths: "معلمون متخصصون في الفنون، مواد فنية متنوعة، دعم إداري كامل، بيئة محفزة للإبداع، مساحة مناسبة للفنون",
+    challenges: "تكاليف المواد الفنية، محدودية المساحات الفنية، صعوبة تقييم الأعمال الفنية، تنوع المواهب الفنية، الحفاظ على استمرارية البرنامج",
+    weaknesses: "نقص الخبرات المتخصصة، محدودية الميزانية الفنية، صعوبة قياس التطور الفني، حاجة لمعدات فنية متطورة"
   }
 };
 
@@ -1080,52 +854,6 @@ async function getHijriDate() {
   }
 }
 
-// دالة لعرض تصنيف معين
-function showCategory(categoryId) {
-  // إخفاء جميع التصنيفات
-  const allCategories = document.querySelectorAll('.report-category');
-  allCategories.forEach(category => {
-    category.classList.remove('active');
-  });
-  
-  // إزالة النشاط من جميع الألسنة
-  const allTabs = document.querySelectorAll('.category-tab');
-  allTabs.forEach(tab => {
-    tab.classList.remove('active');
-  });
-  
-  // إظهار التصنيف المطلوب
-  const targetCategory = document.getElementById(categoryId);
-  if (targetCategory) {
-    targetCategory.classList.add('active');
-  }
-  
-  // تنشيط اللسان المناسب
-  const activeTab = document.querySelector(`.category-tab[onclick="showCategory('${categoryId}')"]`);
-  if (activeTab) {
-    activeTab.classList.add('active');
-  }
-}
-
-// دالة لاختيار تقرير معين
-function selectReport(reportName) {
-  // تحديث اسم التقرير
-  document.getElementById('reportTitle').textContent = reportName;
-  
-  // تحديث القائمة المنسدلة
-  const reportTypeSelect = document.getElementById('reportTypeSelect');
-  reportTypeSelect.value = reportName;
-  
-  // إزالة التحديد السابق
-  const allOptions = document.querySelectorAll('.report-option');
-  allOptions.forEach(option => {
-    option.classList.remove('selected');
-  });
-  
-  // تحديد الخيار الجديد
-  event.target.classList.add('selected');
-}
-
 // دالة لتحديث معلومات إدارة التعليم في الهيدر
 function updateEduInfo(value) {
   if (!value) return;
@@ -1161,21 +889,63 @@ function sync(id, value) {
   }
 }
 
-// دالة رئيسية لتحميل النص الذكي
-function loadSmartText(category, textNumber) {
+// دالة لملء قائمة التقارير حسب التصنيف
+function updateReportsByCategory() {
+  const categorySelect = document.getElementById('categorySelect');
+  const reportSelect = document.getElementById('reportSelect');
+  const selectedCategory = categorySelect.value;
+  
+  // حفظ التقرير المحدد حالياً
+  const currentReport = reportSelect.value;
+  
+  // مسح القائمة الحالية
+  reportSelect.innerHTML = '<option value="">اختر نوع التقرير</option>';
+  
+  // تصفية التقارير حسب التصنيف
+  let filteredReports = allReports;
+  if (selectedCategory) {
+    filteredReports = allReports.filter(report => report.category === selectedCategory);
+  }
+  
+  // إضافة التقارير المصفاة
+  filteredReports.forEach(report => {
+    const option = document.createElement('option');
+    option.value = report.title;
+    option.textContent = report.title;
+    reportSelect.appendChild(option);
+  });
+  
+  // محاولة إعادة اختيار التقرير السابق إذا كان متاحاً
+  if (currentReport) {
+    reportSelect.value = currentReport;
+    if (!reportSelect.value && filteredReports.length > 0) {
+      reportSelect.selectedIndex = 0;
+    }
+  }
+}
+
+// دالة رئيسية لتحميل النص الذكي - محسنة
+function loadSmartText(textNumber) {
   // الحصول على النص من قاعدة البيانات
-  const textData = smartTextsDatabase[category]?.[textNumber];
+  const textData = smartTextsDatabase[textNumber];
   if (!textData) {
     alert("النص غير متوفر، الرجاء المحاولة مرة أخرى");
     return;
   }
   
-  // تحديث نوع التقرير
-  document.getElementById('reportTitle').textContent = textData.reportType;
+  // تحديث نوع التقرير في القائمة المنسدلة
+  const reportSelect = document.getElementById('reportSelect');
+  reportSelect.value = textData.reportType;
+  sync('reportTitle', textData.reportType);
   
-  // تحديث القائمة المنسدلة
-  const reportTypeSelect = document.getElementById('reportTypeSelect');
-  reportTypeSelect.value = textData.reportType;
+  // تحديث التصنيف المناسب
+  const categorySelect = document.getElementById('categorySelect');
+  if (textData.reportType.includes('إثرائي')) {
+    categorySelect.value = 'activities';
+  } else if (textData.reportType.includes('علاجية')) {
+    categorySelect.value = 'remedial';
+  }
+  updateReportsByCategory();
   
   // تعبئة الحقول مع النصوص
   document.getElementById('goalInput').value = textData.goal;
@@ -1200,35 +970,68 @@ function loadSmartText(category, textNumber) {
   sync('weaknesses', textData.weaknesses);
   
   // تعبئة تلقائية للحقول الأخرى بناءً على نوع التقرير
-  if (category === 'strategy') {
-    document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
-    document.querySelector('input[placeholder="العدد"]').value = "25";
-    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "الفصل الدراسي";
-  } else if (category === 'lesson') {
-    document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
-    document.querySelector('input[placeholder="العدد"]').value = "30";
-    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "قاعة الدرس";
-  } else if (category === 'technology') {
-    document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
-    document.querySelector('input[placeholder="العدد"]').value = "20";
-    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "معمل الوسائل";
-  } else if (category === 'activity') {
-    document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
-    document.querySelector('input[placeholder="العدد"]').value = "15";
-    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "قاعة الأنشطة";
-  } else if (category === 'remedial') {
-    document.querySelector('input[placeholder="المستهدفون"]').value = "الطلاب المتأخرون";
-    document.querySelector('input[placeholder="العدد"]').value = "8";
-    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "غرفة المصادر";
+  if (textData.reportType === "تقرير نشاط إثرائي") {
+    let targetText, countText, locationText;
+    
+    switch(textNumber) {
+      case 1: // البحث العلمي
+        targetText = "الطلاب المتميزون في البحث العلمي";
+        countText = "15";
+        locationText = "مختبر البحث العلمي";
+        break;
+      case 2: // الابتكار التقني
+        targetText = "الطلاب الموهوبون في التقنية";
+        countText = "12";
+        locationText = "معمل الحاسب الآلي المتقدم";
+        break;
+      case 3: // المهارات القيادية
+        targetText = "الطلاب ذوو الميول القيادية";
+        countText = "10";
+        locationText = "قاعة الأنشطة القيادية";
+        break;
+      case 6: // الإبداع الفني
+        targetText = "الطلاب الموهوبون في الفنون";
+        countText = "8";
+        locationText = "المرسم المدرسي";
+        break;
+      default:
+        targetText = "الطلاب المتميزين أكاديمياً";
+        countText = "18";
+        locationText = "المختبر العلمي المتقدم";
+    }
+    
+    document.querySelector('input[placeholder="المستهدفون"]').value = targetText;
+    document.querySelector('input[placeholder="العدد"]').value = countText;
+    document.querySelector('input[placeholder="مكان التنفيذ"]').value = locationText;
+    
+    sync('target', targetText);
+    sync('count', countText);
+    sync('location', locationText);
+    
+  } else if (textData.reportType === "تقرير خطة علاجية") {
+    let targetText, countText, locationText;
+    
+    if (textNumber === 4) { // القراءة والكتابة
+      targetText = "الطلاب المتأخرون في القراءة والكتابة";
+      countText = "8";
+      locationText = "غرفة مصادر التعلم";
+    } else { // المهارات الحسابية
+      targetText = "الطلاب المتأخرون في الرياضيات";
+      countText = "10";
+      locationText = "معمل الرياضيات العلاجي";
+    }
+    
+    document.querySelector('input[placeholder="المستهدفون"]').value = targetText;
+    document.querySelector('input[placeholder="العدد"]').value = countText;
+    document.querySelector('input[placeholder="مكان التنفيذ"]').value = locationText;
+    
+    sync('target', targetText);
+    sync('count', countText);
+    sync('location', locationText);
   }
   
-  // مزامنة الحقول
-  sync('target', document.querySelector('input[placeholder="المستهدفون"]').value);
-  sync('count', document.querySelector('input[placeholder="العدد"]').value);
-  sync('location', document.querySelector('input[placeholder="مكان التنفيذ"]').value);
-  
   // إشعار للمستخدم
-  alert(`تم تحميل النص ${textNumber} من فئة ${category} بنجاح!`);
+  alert(`تم تحميل ${textData.reportType} - النص ${textNumber} بنجاح!`);
 }
 
 function clearAllFields() {
@@ -1273,16 +1076,15 @@ function clearAllFields() {
   document.getElementById('semesterSelect').selectedIndex = 0;
   sync('semester', '');
   
-  document.getElementById('reportTypeSelect').selectedIndex = 0;
-  sync('reportTitle', '');
-  
   document.getElementById('imagesBox').innerHTML = '';
   
-  // إزالة التحديد من خيارات التقرير
-  const allOptions = document.querySelectorAll('.report-option');
-  allOptions.forEach(option => {
-    option.classList.remove('selected');
-  });
+  // إعادة تعيين نوع التقرير
+  document.getElementById('reportSelect').selectedIndex = 0;
+  sync('reportTitle', '');
+  
+  // إعادة تعيين التصنيف
+  document.getElementById('categorySelect').selectedIndex = 0;
+  updateReportsByCategory();
 }
 
 function loadImages(input) {
@@ -1309,46 +1111,15 @@ window.onload = async function() {
   sync('school', "مدرسة التجربة النموذجية");
   updateEduInfo("الإدارة العامة للتعليم بمنطقة الرياض");
   
-  // تعبئة القائمة المنسدلة بأنواع التقارير
-  const reportTypeSelect = document.getElementById('reportTypeSelect');
-  const reportOptions = [
-    "التعلم النشط", "التعلم التعاوني", "حل المشكلات", "العصف الذهني", "التفكير الناقد",
-    "التفكير الإبداعي", "التعلم بالمشروع", "التعلم بالاستقصاء", "الفصول المقلوبة",
-    "التعلم باللعب", "التعلم الذاتي", "القبعات الست", "الخرائط الذهنية", "التعليم المتمايز",
-    "درس تم تنفيذه", "درس تطبيقي", "توزيع وقت الحصة", "تطوير البيئة الصفية",
-    "الوسائل التعليمية", "وسائل تعليمية مبتكرة", "الوسائل الرقمية", "العروض التقديمية",
-    "السبورة التفاعلية", "الفيديو التعليمي", "التطبيقات التعليمية", "المنصات التعليمية",
-    "أوراق عمل تفاعلية", "الذكاء الاصطناعي", "أنشطة صفية", "أنشطة إثرائية",
-    "أنشطة علاجية", "أنشطة لاصفية", "حصص النشاط", "المبادرات الطلابية",
-    "المسابقات الطلابية", "المشاركات الطلابية", "الإذاعة المدرسية", "المعلم الصغير",
-    "خطة علاجية", "نتائج الخطة العلاجية", "علاج ضعف القراءة", "علاج ضعف الكتابة",
-    "علاج ضعف الحساب", "دعم المتأخرين دراسياً", "التدخل العلاجي المبكر",
-    "الإثراء للمتفوقين", "دراسة حالة طالب", "حل مشكلة تربوية", "أدوات التقويم",
-    "التقويم التشخيصي", "التقويم البنائي", "التقويم الختامي", "تحليل نتائج الاختبارات",
-    "متابعة مستوى التحصيل", "مقارنة نتائج الفترات", "قياس نواتج التعلم",
-    "رصد وتصحيح الدرجات", "التغذية الراجعة", "بنك أسئلة", "تنويع مستويات الأسئلة",
-    "مواءمة الأسئلة مع الأهداف", "تحليل الأسئلة", "الاختبارات الإلكترونية",
-    "الاختبارات الذكية", "اختبار تحسن", "كشف المتابعة", "سجل الدرجات الإلكتروني",
-    "التغذية الراجعة من الطلاب", "متابعة الانضباط والسلوك", "متابعة الغياب والتأخر",
-    "ضبط الصف", "تعزيز السلوك الإيجابي", "تحفيز الطلاب", "معرفة الميول والاتجاهات",
-    "المناوبة المدرسية", "الإشراف اليومي", "الإشراف على الفسحة", "حصص الانتظار",
-    "التدريب على الاختبارات المعيارية", "حضور دورات وورش تدريبية", "نقل أثر التدريب",
-    "الورش التدريبية المقدمة", "البحث الإجرائي"
-  ];
-  
-  reportOptions.forEach(option => {
-    const opt = document.createElement('option');
-    opt.value = option;
-    opt.textContent = option;
-    reportTypeSelect.appendChild(opt);
-  });
-  
   // جلب التاريخ الهجري عند تحميل الصفحة
   await getHijriDate();
   
+  // تهيئة قائمة التقارير
+  updateReportsByCategory();
+  
   // تحميل نص تجريبي عند بدء التشغيل
   setTimeout(() => {
-    loadSmartText('strategy', 1);
+    loadSmartText(1);
   }, 500);
 };
 </script>
