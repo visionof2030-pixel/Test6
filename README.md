@@ -5,6 +5,7 @@
 <title>أداة إعداد التقارير التعليمية</title>
 
 <style>
+/* ================= العرض العادي ================= */
 body {
   font-family: Tahoma, Arial, sans-serif;
   background: #eef7f5;
@@ -45,6 +46,63 @@ input, textarea, select {
   box-sizing: border-box;
 }
 
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ================= شبكة المدخلات ================= */
+.small-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin: 15px 0;
+}
+
+.small-grid input,
+.small-grid select {
+  font-size: 11px;
+  padding: 5px 4px;
+  height: 35px;
+}
+
+/* ================= أزرار ================= */
+.auto-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.auto-btn {
+  flex: 1;
+  background: #e0f2f1;
+  border: 1px solid #0a3b40;
+  color: #0a3b40;
+  font-size: 13px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.clear-btn {
+  background: #fdecea;
+  border: 1px solid #c62828;
+  color: #c62828;
+}
+
+button#printBtn {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%;
+  background: #0a3b40;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ================= التقرير ================= */
 .report { display: none; }
 
 @media print {
@@ -53,34 +111,29 @@ input, textarea, select {
   .report { display: block; }
 }
 
-/* ===== الهيدر ===== */
+/* ================= الهيدر مع الشعار ================= */
 .header {
   background: #0a3b40;
   color: white;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 8px;
   border-radius: 6px;
+  margin-bottom: 10px;
 }
 
-/* حاوية الهيدر */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* الشعارات */
 .header-logo {
   width: 70px;
-  flex-shrink: 0;
 }
 
 .header-logo img {
   width: 100%;
-  height: auto;
 }
 
-/* النص في المنتصف */
 .header-center {
   text-align: center;
   flex-grow: 1;
@@ -97,11 +150,9 @@ input, textarea, select {
 
 .school-info div {
   font-weight: bold;
-  margin-top: 2px;
 }
 
-/* ===== مربعات المعلومات ===== */
-
+/* ================= مربعات المعلومات ================= */
 .top-info.two-lines {
   display: flex;
   flex-direction: column;
@@ -123,26 +174,11 @@ input, textarea, select {
   text-align: center;
   font-size: 6.5pt;
   min-height: 26px;
-  max-height: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 3px;
   background: #f8f9fa;
+  border-radius: 3px;
 }
 
-.box strong {
-  font-size: 6.5pt;
-  color: #0a3b40;
-}
-
-.box div {
-  font-size: 6pt;
-  line-height: 1.1;
-}
-
-/* ===== باقي التنسيق ===== */
-
+/* ================= الأقسام ================= */
 .goal-section {
   background: #e8f5e9;
   border-right: 3px solid #2e7d32;
@@ -163,6 +199,7 @@ input, textarea, select {
   border-radius: 6px;
 }
 
+/* ================= الصور ================= */
 .images {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -181,62 +218,115 @@ input, textarea, select {
 
 <div class="tool">
 <h2>أداة إعداد التقارير التعليمية</h2>
-<button onclick="window.print()">تصدير PDF</button>
+
+<label>إدارة التعليم</label>
+<select id="eduSelect" onchange="sync('edu',this.value)">
+  <option value="الإدارة العامة للتعليم بمنطقة الرياض" selected>
+    الإدارة العامة للتعليم بمنطقة الرياض
+  </option>
+</select>
+
+<label>اسم المدرسة</label>
+<input id="schoolInput" value="مدرسة النموذجية الابتدائية"
+       oninput="sync('school',this.value)">
+
+<div class="small-grid">
+  <input placeholder="التقرير" oninput="sync('reportTitle',this.value)">
+  <input placeholder="المستهدفون" oninput="sync('target',this.value)">
+  <input placeholder="العدد" oninput="sync('count',this.value)">
+  <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)">
+  <input placeholder="الفصل الدراسي" oninput="sync('semester',this.value)">
+  <input placeholder="الصف" oninput="sync('grade',this.value)">
+  <input placeholder="المادة" oninput="sync('subject',this.value)">
 </div>
 
-<!-- ===== التقرير ===== -->
+<label>الهدف التربوي</label>
+<textarea oninput="sync('goal',this.value)"></textarea>
+
+<label>التحديات</label>
+<textarea oninput="sync('challenges',this.value)"></textarea>
+
+<label>نقاط القوة</label>
+<textarea oninput="sync('strengths',this.value)"></textarea>
+
+<label>إرفاق الصور (حد أقصى صورتين)</label>
+<input type="file" multiple accept="image/*" onchange="loadImages(this)">
+
+<button id="printBtn" onclick="window.print()">تصدير PDF</button>
+</div>
+
+<!-- ================= التقرير ================= -->
 <div class="report">
 
 <div class="header">
   <div class="header-inner">
-
-    <!-- شعار يمين -->
     <div class="header-logo">
-      <img src="https://i.ibb.co/G43RzNZJ/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png" alt="شعار وزارة التعليم">
+      <img src="https://i.ibb.co/G43RzNZJ/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png">
     </div>
 
-    <!-- النص -->
     <div class="header-center">
       <div class="ministry-title">وزارة التعليم</div>
       <div class="ministry-subtitle">Ministry of Education</div>
       <div class="school-info">
-        <div id="edu">الإدارة العامة للتعليم بمنطقة الرياض</div>
-        <div id="school">مدرسة النموذجية الابتدائية</div>
+        <div id="edu"></div>
+        <div id="school"></div>
       </div>
     </div>
 
-    <!-- شعار يسار -->
     <div class="header-logo">
-      <img src="https://i.ibb.co/G43RzNZJ/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png" alt="شعار وزارة التعليم">
+      <img src="https://i.ibb.co/G43RzNZJ/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png">
     </div>
-
   </div>
 </div>
 
-<!-- مربعات المعلومات -->
 <div class="top-info two-lines">
-
   <div class="top-row first">
-    <div class="box"><strong>الفصل الدراسي</strong><div id="semester">الفصل الأول</div></div>
-    <div class="box"><strong>الصف</strong><div id="grade">الصف الثالث</div></div>
-    <div class="box"><strong>المادة الدراسية</strong><div id="subject">التربية الفنية</div></div>
+    <div class="box"><strong>الفصل</strong><div id="semester"></div></div>
+    <div class="box"><strong>الصف</strong><div id="grade"></div></div>
+    <div class="box"><strong>المادة</strong><div id="subject"></div></div>
   </div>
-
   <div class="top-row second">
-    <div class="box"><strong>التقرير</strong><div id="reportTitle">تقرير نشاط إثرائي</div></div>
-    <div class="box"><strong>المستهدفون</strong><div id="target">طلاب الصف الثالث</div></div>
-    <div class="box"><strong>العدد</strong><div id="count">25 طالب</div></div>
-    <div class="box"><strong>مكان التنفيذ</strong><div id="location">قاعة الأنشطة</div></div>
+    <div class="box"><strong>التقرير</strong><div id="reportTitle"></div></div>
+    <div class="box"><strong>المستهدفون</strong><div id="target"></div></div>
+    <div class="box"><strong>العدد</strong><div id="count"></div></div>
+    <div class="box"><strong>المكان</strong><div id="location"></div></div>
   </div>
-
 </div>
 
 <div class="goal-section">
 <strong>الهدف التربوي</strong>
-<div id="goal">تنمية المواهب والقدرات الإبداعية لدى الطلاب</div>
+<div id="goal"></div>
 </div>
 
+<div class="grid2">
+  <div class="section"><strong>التحديات</strong><div id="challenges"></div></div>
+  <div class="section"><strong>نقاط القوة</strong><div id="strengths"></div></div>
 </div>
+
+<div class="images" id="imagesBox"></div>
+
+</div>
+
+<script>
+function sync(id,value){
+  const el=document.getElementById(id);
+  if(el) el.textContent=value;
+}
+
+function loadImages(input){
+  const box=document.getElementById("imagesBox");
+  box.innerHTML="";
+  [...input.files].slice(0,2).forEach(f=>{
+    const r=new FileReader();
+    r.onload=e=>{
+      const img=document.createElement("img");
+      img.src=e.target.result;
+      box.appendChild(img);
+    };
+    r.readAsDataURL(f);
+  });
+}
+</script>
 
 </body>
 </html>
