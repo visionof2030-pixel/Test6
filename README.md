@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -212,10 +212,10 @@ button#printBtn {
   font-size: 10px;
   line-height: 1.3;
 }
-/* المحفزات - باللون البنفسجي الفاتح */
+/* المحفزات - باللون الأخضر الليموني */
 .section.motivators {
-  border: 1px solid #8e24aa; /* بنفسجي غامق */
-  background: #f3e5f5; /* بنفسجي فاتح */
+  border: 1px solid #9ccc65; /* أخضر ليموني غامق */
+  background: #f1f8e9; /* أخضر ليموني فاتح */
   min-height: 50px;
   height: auto;
   padding: 3px;
@@ -224,7 +224,7 @@ button#printBtn {
 .section.motivators strong {
   font-size: 9.5px;
   margin-bottom: 1px;
-  color: #8e24aa; /* بنفسجي غامق */
+  color: #689f38; /* أخضر ليموني غامق */
 }
 .section.motivators div {
   font-size: 9px;
@@ -250,8 +250,8 @@ button#printBtn {
 }
 /* التحديات - باللون الأصفر */
 .section.challenges {
-  border: 1px solid #f57f17; /* أصفر غامق/برتقالي */
-  background: #fffde7; /* أصفر فاتح */
+  border: 1px solid #f57f17;
+  background: #fffde7;
   min-height: 50px;
   height: auto;
   padding: 3px;
@@ -260,7 +260,7 @@ button#printBtn {
 .section.challenges strong {
   font-size: 9.5px;
   margin-bottom: 1px;
-  color: #f57f17; /* أصفر غامق/برتقالي */
+  color: #f57f17;
 }
 .section.challenges div {
   font-size: 9px;
