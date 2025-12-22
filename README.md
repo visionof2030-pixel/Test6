@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أداة إعداد التقارير التعليمية (نموذج تجريبي)</title>
+<!-- مكتبة html2canvas لالتقاط لقطات للتحويل إلى PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- مكتبة jsPDF لإنشاء ملفات PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 body {
   font-family: Tahoma, Arial, sans-serif;
@@ -82,26 +85,33 @@ textarea {
 }
 .whatsapp-btn {
   background: #25D366;
-  border: 1px solid #1da851;
   color: white;
-  margin-top: 12px;
-  padding: 10px;
-  width: 100%;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: bold;
+  border: none;
 }
-button#printBtn {
-  margin-top: 12px;
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.action-buttons button {
+  flex: 1;
   padding: 10px;
-  width: 100%;
-  background: #0a3b40;
-  color: white;
   border: none;
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+#printBtn {
+  background: #0a3b40;
+  color: white;
+}
+#whatsappBtn {
+  background: #25D366;
+  color: white;
 }
 .report {
   display: none;
@@ -111,76 +121,71 @@ button#printBtn {
   .tool { display: none; }
   .report { display: block; max-width: 210mm; margin: 0 auto; }
 }
+/* تحديث الهيدر مع الشعار */
 .header {
   background: #0a3b40;
   color: white;
-  padding: 12px;
+  padding: 10px 5px;
   margin-bottom: 8px;
   border-radius: 4px;
-  min-height: 120px;
+  min-height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  position: relative;
 }
-.header-content {
+.header-logos {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  position: relative;
 }
-.logo-side {
-  flex: 0 0 120px;
+.header-logo {
+  width: 85px;
+  height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.logo-placeholder {
-  width: 100px;
-  height: 100px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #0a3b40;
-  font-size: 10px;
-  text-align: center;
-  padding: 5px;
-  border: 2px solid white;
+.header-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
-.school-info {
-  flex: 1;
+.header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  flex: 1;
   padding: 0 15px;
 }
 .ministry-title {
-  font-size: 16pt;
+  font-size: 13pt;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 .ministry-subtitle {
-  font-size: 9pt;
-  margin-bottom: 8px;
-  color: #e0f7fa;
+  font-size: 8pt;
+  margin-bottom: 5px;
+}
+.school-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
 }
 .edu-info {
   font-weight: bold;
-  font-size: 10pt;
-  margin-bottom: 5px;
+  font-size: 9pt;
 }
 .school-name {
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 9pt;
 }
 .hijri-date {
-  font-size: 9pt;
-  margin-top: 8px;
+  font-size: 8pt;
+  margin-top: 3px;
   color: #e0f7fa;
 }
 .top-info.two-lines {
@@ -447,7 +452,7 @@ button#printBtn {
   <input placeholder="المادة" oninput="sync('subject',this.value)" maxlength="25" title="الحد الأقصى 25 حرف">
 </div>
 
-<!-- اختيار النص التلقائي - تم إصلاح الأزرار -->
+<!-- اختيار النص التلقائي -->
 <div class="auto-row">
   <button class="auto-btn" onclick="loadSmartText(1)">النص الإثرائي 1</button>
   <button class="auto-btn" onclick="loadSmartText(2)">النص الإثرائي 2</button>
@@ -512,37 +517,40 @@ button#printBtn {
   </div>
 </div>
 
-<!-- زر إرسال التقرير بالواتساب الجديد -->
-<button class="whatsapp-btn" onclick="sendViaWhatsApp()">📤 إرسال التقرير بالواتساب</button>
-
-<button id="printBtn" onclick="window.print()">معاينة وطباعة التقرير</button>
+<!-- أزرار المعاينة والطباعة والواتساب -->
+<div class="action-buttons">
+  <button id="printBtn" onclick="window.print()">
+    <span>🖨️</span> معاينة وطباعة التقرير
+  </button>
+  <button id="whatsappBtn" onclick="sendViaWhatsApp()">
+    <span>📱</span> إرسال التقرير عبر واتساب
+  </button>
+</div>
 </div>
 
 <!-- قسم التقرير للطباعة -->
 <div class="report">
 <div class="header">
-  <div class="header-content">
+  <div class="header-logos">
     <!-- شعار الوزارة على اليسار -->
-    <div class="logo-side">
-      <div class="logo-placeholder">
-        شعار وزارة التعليم
-      </div>
+    <div class="header-logo left-logo">
+      <img id="ministryLogoLeft" src="https://i.ibb.co/Z6zxXXD0/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png" alt="شعار وزارة التعليم">
     </div>
     
-    <!-- معلومات المدرسة في الوسط -->
-    <div class="school-info">
+    <!-- محتوى الهيدر الرئيسي -->
+    <div class="header-content">
       <div class="ministry-title">وزارة التعليم</div>
       <div class="ministry-subtitle">Ministry of Education</div>
-      <div class="edu-info" id="eduHeader">الإدارة العامة للتعليم بمنطقة الرياض</div>
-      <div class="school-name" id="school"></div>
+      <div class="school-info">
+        <div class="edu-info" id="eduHeader">الإدارة العامة للتعليم بمنطقة الرياض</div>
+        <div class="school-name" id="school">مدرسة التجربة النموذجية</div>
+      </div>
       <div class="hijri-date" id="hijriDate">جاري تحميل التاريخ الهجري...</div>
     </div>
     
     <!-- شعار الوزارة على اليمين -->
-    <div class="logo-side">
-      <div class="logo-placeholder">
-        شعار وزارة التعليم
-      </div>
+    <div class="header-logo right-logo">
+      <img id="ministryLogoRight" src="https://i.ibb.co/Z6zxXXD0/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png" alt="شعار وزارة التعليم">
     </div>
   </div>
 </div>
@@ -603,6 +611,9 @@ button#printBtn {
 </div>
 
 <script>
+// تهيئة jsPDF
+const { jsPDF } = window.jspdf;
+
 // قاعدة البيانات للنصوص الذكية والمتنوعة (5 نصوص مختلفة)
 const smartTextsDatabase = {
   // النصوص الإثرائية (1-3)
@@ -735,7 +746,7 @@ function sync(id, value) {
   }
 }
 
-// دالة رئيسية لتحميل النص الذكي - تم إصلاحها
+// دالة رئيسية لتحميل النص الذكي
 function loadSmartText(textNumber) {
   // الحصول على النص من قاعدة البيانات
   const textData = smartTextsDatabase[textNumber];
@@ -861,79 +872,135 @@ function loadImages(input) {
   });
 }
 
-// دالة جديدة: إرسال التقرير عبر الواتساب
-function sendViaWhatsApp() {
-  // جمع بيانات التقرير
-  const reportData = {
-    school: document.getElementById('schoolInput').value || 'غير محدد',
-    eduManagement: document.getElementById('eduSelect').value || 'غير محدد',
-    reportTitle: document.getElementById('reportSelect').value || 'غير محدد',
-    target: document.querySelector('input[placeholder="المستهدفون"]').value || 'غير محدد',
-    count: document.querySelector('input[placeholder="العدد"]').value || 'غير محدد',
-    location: document.querySelector('input[placeholder="مكان التنفيذ"]').value || 'غير محدد',
-    semester: document.getElementById('semesterSelect').value || 'غير محدد',
-    grade: document.querySelector('input[placeholder="الصف"]').value || 'غير محدد',
-    subject: document.querySelector('input[placeholder="المادة"]').value || 'غير محدد',
-    goal: document.getElementById('goalInput').value || 'غير محدد',
-    desc1: document.getElementById('desc1Input').value || 'غير محدد',
-    desc2: document.getElementById('desc2Input').value || 'غير محدد',
-    desc3: document.getElementById('desc3Input').value || 'غير محدد',
-    desc4: document.getElementById('desc4Input').value || 'غير محدد',
-    motivators: document.getElementById('motivatorsInput').value || 'غير محدد',
-    strengths: document.getElementById('strengthsInput').value || 'غير محدد',
-    challenges: document.getElementById('challengesInput').value || 'غير محدد',
-    weaknesses: document.getElementById('weaknessesInput').value || 'غير محدد',
-    teacher: document.getElementById('teacherInput').value || 'غير محدد',
-    principal: document.getElementById('principalInput').value || 'غير محدد'
-  };
-  
-  // تنسيق النص للرسالة
-  const message = `📋 *تقرير تعليمي* 📋
+// دالة لإنشاء وإرسال التقرير عبر الواتساب كملف PDF
+async function sendViaWhatsApp() {
+  try {
+    // إظهار رسالة تلبية
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const originalText = whatsappBtn.innerHTML;
+    whatsappBtn.innerHTML = '<span>⏳</span> جاري إنشاء التقرير...';
+    whatsappBtn.disabled = true;
+    
+    // عرض التقرير مؤقتاً لالتقاط الصورة
+    const reportElement = document.querySelector('.report');
+    const originalDisplay = reportElement.style.display;
+    reportElement.style.display = 'block';
+    
+    // التأكد من تحميل الشعارات
+    await preloadLogos();
+    
+    // استخدام html2canvas لالتقاط صورة للتقرير
+    const canvas = await html2canvas(reportElement, {
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff'
+    });
+    
+    // إنشاء ملف PDF
+    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    
+    // حساب أبعاد الصورة لتناسب الصفحة
+    const imgWidth = canvas.width;
+    const imgHeight = canvas.height;
+    const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight) * 0.95;
+    const imgX = (pdfWidth - imgWidth * ratio) / 2;
+    const imgY = (pdfHeight - imgHeight * ratio) / 2;
+    
+    pdf.addImage(imgData, 'JPEG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+    
+    // حفظ PDF كبيانات Base64
+    const pdfOutput = pdf.output('datauristring');
+    
+    // إعادة العرض الأصلي
+    reportElement.style.display = originalDisplay;
+    
+    // إنشاء رابط لتنزيل وإرسال الملف
+    const fileName = `تقرير_تعليمي_${Date.now()}.pdf`;
+    
+    // إنشاء كائن Blob من البيانات Base64
+    const base64Data = pdfOutput.split(',')[1];
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: 'application/pdf' });
+    
+    // إنشاء رابط URL
+    const fileUrl = URL.createObjectURL(blob);
+    
+    // إعداد رابط الواتساب
+    const schoolName = document.getElementById('schoolInput').value || 'المدرسة';
+    const reportTitle = document.getElementById('reportSelect').value || 'تقرير';
+    const message = `*تقرير تعليمي*\n\n*المدرسة:* ${schoolName}\n*نوع التقرير:* ${reportTitle}\n\nيرجى الاطلاع على الملف المرفق.`;
+    
+    // إنشاء رابط الواتساب مع رسالة وملف
+    // ملاحظة: الواتساب لا يدعم إرفاق الملفات مباشرة عبر الرابط
+    // لذلك سنقوم بعرض خيارات للمستخدم
+    whatsappBtn.innerHTML = originalText;
+    whatsappBtn.disabled = false;
+    
+    // عرض خيارات للمستخدم
+    const userChoice = confirm(`تم إنشاء ملف PDF للتقرير بنجاح!\n\nاختر:\n• "موافق" لتنزيل الملف وإرساله يدوياً عبر الواتساب\n• "إلغاء" للعودة`);
+    
+    if (userChoice) {
+      // تنزيل الملف تلقائياً
+      const downloadLink = document.createElement('a');
+      downloadLink.href = fileUrl;
+      downloadLink.download = fileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      
+      // فتح رابط الواتساب مع الرسالة
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      alert(`تم تنزيل ملف PDF: ${fileName}\n\nيرجى إرفاق الملف يدوياً عند إرسال الرسالة عبر الواتساب.`);
+    }
+    
+    // تحرير الذاكرة
+    setTimeout(() => {
+      URL.revokeObjectURL(fileUrl);
+    }, 1000);
+    
+  } catch (error) {
+    console.error('خطأ في إنشاء وإرسال التقرير:', error);
+    alert('حدث خطأ أثناء إنشاء التقرير. الرجاء المحاولة مرة أخرى.');
+    
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    whatsappBtn.innerHTML = '<span>📱</span> إرسال التقرير عبر واتساب';
+    whatsappBtn.disabled = false;
+    
+    // إعادة العرض الأصلي في حالة الخطأ
+    const reportElement = document.querySelector('.report');
+    reportElement.style.display = 'none';
+  }
+}
 
-🏫 *المدرسة:* ${reportData.school}
-🏢 *إدارة التعليم:* ${reportData.eduManagement}
-
-📄 *نوع التقرير:* ${reportData.reportTitle}
-👥 *المستهدفون:* ${reportData.target}
-🔢 *العدد:* ${reportData.count}
-📍 *مكان التنفيذ:* ${reportData.location}
-📚 *الفصل الدراسي:* ${reportData.semester}
-📖 *الصف:* ${reportData.grade}
-📝 *المادة:* ${reportData.subject}
-
-🎯 *الهدف التربوي:*
-${reportData.goal}
-
-📝 *وصف مختصر:*
-${reportData.desc1}
-
-⚙️ *إجراءات التنفيذ:*
-${reportData.desc2}
-
-📊 *النتائج:*
-${reportData.desc3}
-
-💡 *التوصيات:*
-${reportData.desc4}
-
-✅ *المحفزات:* ${reportData.motivators}
-✅ *نقاط القوة:* ${reportData.strengths}
-⚠️ *التحديات:* ${reportData.challenges}
-⚠️ *مواطن القصور:* ${reportData.weaknesses}
-
-👨‍🏫 *المعلم:* ${reportData.teacher}
-👨‍💼 *مدير المدرسة:* ${reportData.principal}
-
-📅 *تم إنشاء التقرير في:* ${new Date().toLocaleDateString('ar-SA')}`;
-  
-  // ترميز الرسالة لرابط الواتساب
-  const encodedMessage = encodeURIComponent(message);
-  
-  // إنشاء رابط الواتساب
-  const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
-  
-  // فتح الرابط في نافذة جديدة
-  window.open(whatsappURL, '_blank');
+// دالة لتحميل الشعارات مسبقاً
+function preloadLogos() {
+  return new Promise((resolve) => {
+    const logoUrl = 'https://i.ibb.co/Z6zxXXD0/E44-D2-E03-CF67-4-B72-B8-F2-9-DCAC583-CF31.png';
+    const leftLogo = document.getElementById('ministryLogoLeft');
+    const rightLogo = document.getElementById('ministryLogoRight');
+    
+    // تحديث الشعارات إذا لم تكن محملة
+    if (leftLogo.src !== logoUrl) {
+      leftLogo.src = logoUrl;
+    }
+    if (rightLogo.src !== logoUrl) {
+      rightLogo.src = logoUrl;
+    }
+    
+    // إعطاء وقت لتحميل الصور
+    setTimeout(resolve, 500);
+  });
 }
 
 // تعبئة أولية للمساعدة في التجربة
@@ -941,6 +1008,9 @@ window.onload = async function() {
   document.getElementById('schoolInput').value = "مدرسة التجربة النموذجية";
   sync('school', "مدرسة التجربة النموذجية");
   updateEduInfo("الإدارة العامة للتعليم بمنطقة الرياض");
+  
+  // تحميل الشعارات
+  await preloadLogos();
   
   // جلب التاريخ الهجري عند تحميل الصفحة
   await getHijriDate();
