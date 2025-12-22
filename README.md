@@ -8,65 +8,67 @@ body {
   background: #eef7f5;
   margin: 0;
   padding: 20px;
-  font-size: 14px;
+  font-size: 12px; /* تصغير الخط العام */
 }
 .tool {
   max-width: 900px;
   margin: auto;
   background: white;
-  padding: 22px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 .tool h2 {
   text-align: center;
   color: #0a3b40;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  font-size: 18px; /* تصغير حجم العنوان */
 }
 label {
   font-weight: 700;
-  margin-top: 15px;
+  margin-top: 12px;
   display: block;
   color: #0a3b40;
+  font-size: 11px; /* تصغير حجم العناوين */
 }
 input, textarea, select {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 8px;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 14px;
+  font-size: 12px; /* تصغير حجم النصوص */
   box-sizing: border-box;
 }
 textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 70px;
 }
 .small-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin: 15px 0;
+  gap: 5px;
+  margin: 12px 0;
 }
 .small-grid input,
 .small-grid select {
-  font-size: 11px;
-  padding: 5px 4px;
-  height: 35px;
+  font-size: 10px; /* تصغير أكثر */
+  padding: 4px 3px;
+  height: 32px;
 }
 .auto-row {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 6px;
 }
 .auto-btn {
   flex: 1;
   background: #e0f2f1;
   border: 1px solid #0a3b40;
   color: #0a3b40;
-  font-size: 13px;
-  padding: 8px;
-  border-radius: 6px;
+  font-size: 11px;
+  padding: 7px;
+  border-radius: 5px;
   cursor: pointer;
 }
 .clear-btn {
@@ -75,14 +77,14 @@ textarea {
   color: #c62828;
 }
 button#printBtn {
-  margin-top: 20px;
-  padding: 12px;
+  margin-top: 18px;
+  padding: 10px;
   width: 100%;
   background: #0a3b40;
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 14px;
   cursor: pointer;
 }
 .report {
@@ -97,34 +99,37 @@ button#printBtn {
   background: #0a3b40;
   color: white;
   text-align: center;
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  padding: 5px; /* تصغير الارتفاع */
+  margin-bottom: 8px;
+  border-radius: 4px;
+  min-height: auto; /* إزالة الارتفاع الثابت */
 }
 .header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 3px; /* تقليل المسافة بين العناصر */
 }
 .ministry-title {
-  font-size: 16pt;
+  font-size: 13pt; /* تصغير من 16pt */
   font-weight: bold;
 }
 .ministry-subtitle {
-  font-size: 10pt;
+  font-size: 8pt; /* تصغير من 10pt */
 }
 .school-info div {
   font-weight: bold;
+  font-size: 9pt; /* تصغير خط إدارة التعليم */
 }
 .top-info.two-lines {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 10px;
+  gap: 3px;
+  margin-bottom: 8px;
 }
 .top-row {
   display: grid;
-  gap: 3px;
+  gap: 2px;
 }
 .top-row.first {
   grid-template-columns: repeat(3, 1fr);
@@ -136,70 +141,89 @@ button#printBtn {
   border: 1px solid #0a3b40;
   padding: 2px;
   text-align: center;
-  font-size: 6.5pt;
-  min-height: 26px;
-  border-radius: 3px;
+  font-size: 5.5pt; /* تصغير من 6.5pt */
+  min-height: 22px; /* تصغير الارتفاع */
+  border-radius: 2px;
   background: #f8f9fa;
 }
 .box strong {
   display: block;
-  font-size: 6.5pt;
+  font-size: 5.5pt; /* تصغير من 6.5pt */
   color: #0a3b40;
 }
 .goal-section {
   background: #e8f5e9;
-  border-right: 3px solid #2e7d32;
-  border-radius: 6px;
-  padding: 8px;
-  margin-bottom: 10px;
+  border-right: 2px solid #2e7d32;
+  border-radius: 5px;
+  padding: 6px; /* تقليل الحشوة */
+  margin-bottom: 8px;
   text-align: center;
+  min-height: auto; /* إزالة الارتفاع الثابت */
+}
+.goal-section strong {
+  font-size: 10px; /* تصغير خط عنوان الهدف */
+  margin-bottom: 2px;
+}
+.goal-section div {
+  font-size: 10px; /* تصغير محتوى الهدف */
+  line-height: 1.3;
 }
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 .section {
   border: 1px solid #0a3b40;
-  padding: 6px;
-  border-radius: 6px;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 10px; /* تصغير محتوى جميع المربعات */
+}
+.section strong {
+  font-size: 10px; /* تصغير عناوين جميع المربعات */
+  margin-bottom: 2px;
+  display: block;
+}
+.section div {
+  font-size: 10px; /* تصغير محتوى جميع المربعات */
+  line-height: 1.3;
 }
 .section.optional {
   border: 1px dashed #e6b800;
   background: #fff8cc;
-  min-height: 60px;
+  min-height: 50px; /* تصغير أكثر من 60px */
   height: auto;
-  padding: 4px;
-  font-size: 7.5pt;
+  padding: 3px;
+  font-size: 9px; /* تصغير محتوى التحديات والقوة */
 }
 .section.optional strong {
-  font-size: 8pt;
-  margin-bottom: 2px;
+  font-size: 9.5px; /* تصغير عناوين التحديات والقوة */
+  margin-bottom: 1px;
 }
 .section.optional div {
-  font-size: 7.5pt;
+  font-size: 9px; /* تصغير محتوى التحديات والقوة */
   line-height: 1.2;
 }
 .images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 12px 0;
+  gap: 10px;
+  margin: 10px 0;
 }
 .images img {
   width: 100%;
-  max-height: 144px;
+  max-height: 120px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 .signatures {
-  margin-top: 20px;
-  padding-top: 10px;
+  margin-top: 15px;
+  padding-top: 8px;
   border-top: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
-  font-size: 9pt;
+  font-size: 8pt; /* تصغير من 9pt */
 }
 .teacher-signature, .principal-signature {
   text-align: center;
@@ -207,9 +231,9 @@ button#printBtn {
 }
 .teacher-signature input, .principal-signature input {
   width: 80%;
-  font-size: 9pt;
-  padding: 4px;
-  margin-top: 5px;
+  font-size: 8pt; /* تصغير من 9pt */
+  padding: 3px;
+  margin-top: 3px;
   border: none;
   border-bottom: 1px solid #ccc;
   text-align: center;
@@ -217,7 +241,8 @@ button#printBtn {
 .signature-label {
   font-weight: bold;
   color: #0a3b40;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  font-size: 9px; /* تصغير عناوين التواقيع */
 }
 </style>
 </head>
@@ -238,16 +263,16 @@ button#printBtn {
   <select onchange="sync('reportTitle',this.value); autoFillReport(this.value);" id="reportSelect">
     <option value="تقرير درس تم تنفيذه" selected>تقرير درس تم تنفيذه</option>
   </select>
-  <input placeholder="المستهدفون (مثل: طلاب الصف الرابع)" oninput="sync('target',this.value)">
+  <input placeholder="المستهدفون" oninput="sync('target',this.value)">
   <input placeholder="العدد" oninput="sync('count',this.value)">
-  <input placeholder="مكان التنفيذ (مثل: الفصل الدراسي)" oninput="sync('location',this.value)">
+  <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)">
   <select id="semesterSelect" onchange="sync('semester',this.value)">
     <option value="">اختر الفصل الدراسي</option>
     <option value="الفصل الدراسي الأول">الفصل الدراسي الأول</option>
     <option value="الفصل الدراسي الثاني">الفصل الدراسي الثاني</option>
   </select>
-  <input placeholder="الصف (مثل: الرابع ابتدائي)" oninput="sync('grade',this.value)">
-  <input placeholder="المادة (مثل: الرياضيات)" oninput="sync('subject',this.value)">
+  <input placeholder="الصف" oninput="sync('grade',this.value)">
+  <input placeholder="المادة" oninput="sync('subject',this.value)">
 </div>
 
 <div class="auto-row">
@@ -395,9 +420,9 @@ function autoFillReport(reportType) {
   sync('challenges', texts.challenges);
   sync('strengths', texts.strengths);
 
-  document.querySelector('input[placeholder="المستهدفون (مثل: طلاب الصف الرابع)"]').value = "طلاب الصف";
+  document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
   document.querySelector('input[placeholder="العدد"]').value = "25";
-  document.querySelector('input[placeholder="مكان التنفيذ (مثل: الفصل الدراسي)"]').value = "الفصل الدراسي";
+  document.querySelector('input[placeholder="مكان التنفيذ"]').value = "الفصل الدراسي";
   sync('target', "طلاب الصف");
   sync('count', "25");
   sync('location', "الفصل الدراسي");
@@ -411,11 +436,11 @@ function clearAllFields() {
   ];
   
   const placeholders = [
-    'المستهدفون (مثل: طلاب الصف الرابع)',
+    'المستهدفون',
     'العدد',
-    'مكان التنفيذ (مثل: الفصل الدراسي)',
-    'الصف (مثل: الرابع ابتدائي)',
-    'المادة (مثل: الرياضيات)'
+    'مكان التنفيذ',
+    'الصف',
+    'المادة'
   ];
   
   fieldsToClear.forEach(id => {
