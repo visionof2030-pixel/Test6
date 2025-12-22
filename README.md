@@ -1,7 +1,7 @@
-
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أداة إعداد التقارير التعليمية (نموذج تجريبي)</title>
 <style>
 body {
@@ -95,6 +95,7 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  transition: all 0.3s ease;
 }
 #printBtn {
   background: #0a3b40;
@@ -103,6 +104,10 @@ textarea {
 #whatsappBtn {
   background: #25D366;
   color: white;
+}
+.buttons-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 .report {
   display: none;
@@ -113,16 +118,17 @@ textarea {
   .report { display: block; max-width: 210mm; margin: 0 auto; }
 }
 .header {
-  background: linear-gradient(rgba(10, 59, 64, 0.85), rgba(10, 59, 64, 0.95)), 
+  background: linear-gradient(rgba(10, 59, 64, 0.9), rgba(10, 59, 64, 0.95)), 
               url('https://i.ibb.co/PsvxS5Q6/9-C92-E57-B-23-FA-479-D-A024-1-D5-F871-B4-F8-D.png');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   color: white;
   text-align: center;
-  padding: 15px 10px;
+  padding: 8px 6px;
   margin-bottom: 8px;
   border-radius: 4px;
-  min-height: 110px;
+  min-height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,35 +138,38 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
   z-index: 2;
+  width: 100%;
 }
 .ministry-title {
-  font-size: 16pt;
+  font-size: 13pt;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 .ministry-subtitle {
-  font-size: 9pt;
-  margin-bottom: 10px;
+  font-size: 8pt;
+  margin-bottom: 4px;
 }
 .school-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 1px;
 }
 .edu-info {
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 9pt;
+  line-height: 1.2;
 }
 .school-name {
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 9pt;
+  line-height: 1.2;
 }
 .hijri-date {
-  font-size: 9pt;
-  margin-top: 5px;
+  font-size: 7.5pt;
+  margin-top: 2px;
   color: #e0f7fa;
 }
 .top-info.two-lines {
@@ -381,12 +390,51 @@ textarea {
 .whatsapp-icon {
   font-size: 16px;
 }
-.loading {
+.loading-overlay {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.loading-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
   text-align: center;
-  padding: 10px;
-  color: #0a3b40;
-  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #25D366;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media (max-width: 768px) {
+  .small-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .auto-row {
+    flex-wrap: wrap;
+  }
+  .auto-btn {
+    min-width: 120px;
+  }
+  .buttons-container {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
@@ -502,8 +550,6 @@ textarea {
   </div>
 </div>
 
-<div class="loading" id="loadingMessage">جاري تحويل التقرير إلى PDF...</div>
-
 <div class="buttons-container">
   <button id="printBtn" onclick="window.print()">
     <span>🖨️</span> معاينة وطباعة التقرير
@@ -583,9 +629,23 @@ textarea {
 </div>
 </div>
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<!-- نافذة التحميل -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-content">
+    <div class="spinner"></div>
+    <h3>جاري تحويل التقرير إلى PDF...</h3>
+    <p>يرجى الانتظار، قد تستغرق العملية بضع ثوانٍ</p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+// إضافة مكتبة html2pdf
+const html2pdfScript = document.createElement('script');
+html2pdfScript.src = 'https://rawcdn.githack.com/eKoopmans/html2pdf/3c48b8f3e4/dist/html2pdf.bundle.min.js';
+document.head.appendChild(html2pdfScript);
+
 // قاعدة البيانات للنصوص الذكية والمتنوعة (5 نصوص مختلفة)
 const smartTextsDatabase = {
   // النصوص الإثرائية (1-3)
@@ -679,7 +739,10 @@ async function getHijriDate() {
     }
   } catch (error) {
     console.error('خطأ في الحصول على التاريخ الهجري:', error);
-    document.getElementById('hijriDate').textContent = "التاريخ الهجري: ١ رمضان ١٤٤٥ هـ";
+    // تاريخ افتراضي في حالة الفشل
+    const today = new Date();
+    const hijriDate = today.toLocaleDateString('ar-SA', { calendar: 'islamic' });
+    document.getElementById('hijriDate').textContent = `التاريخ الهجري: ${hijriDate}`;
   }
 }
 
@@ -698,7 +761,7 @@ function sync(id, value) {
     let maxLength;
     switch(id) {
       case 'goal': maxLength = 150; break;
-      case 'desc1': maxLength = 200; break;
+      case 'desc1': maxLength =
       case 'desc2': maxLength = 300; break;
       case 'desc3': maxLength = 250; break;
       case 'desc4': maxLength = 250; break;
@@ -844,97 +907,188 @@ function loadImages(input) {
   });
 }
 
-// دالة لتحويل التقرير إلى PDF وإرساله عبر الواتساب
+// دالة لتحويل التقرير إلى PDF باستخدام html2pdf.js
+function generatePDF() {
+  return new Promise((resolve, reject) => {
+    try {
+      // التحقق من توفر مكتبة html2pdf
+      if (typeof html2pdf === 'undefined') {
+        throw new Error('مكتبة html2pdf غير متوفرة');
+      }
+      
+      const element = document.getElementById('reportContent');
+      
+      // خيارات html2pdf
+      const opt = {
+        margin: [10, 10, 10, 10],
+        filename: `تقرير_تعليمي_${Date.now()}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#ffffff'
+        },
+        jsPDF: { 
+          unit: 'mm', 
+          format: 'a4', 
+          orientation: 'portrait',
+          compress: true
+        }
+      };
+      
+      // إنشاء PDF
+      html2pdf().set(opt).from(element).save().then(() => {
+        resolve();
+      }).catch(err => {
+        reject(err);
+      });
+      
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+// دالة بديلة باستخدام jsPDF + html2canvas
+function generatePDFWithCanvas() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { jsPDF } = window.jspdf;
+      const element = document.getElementById('reportContent');
+      
+      // عرض التقرير مؤقتاً للالتقاط
+      const originalDisplay = element.style.display;
+      element.style.display = 'block';
+      
+      // استخدام html2canvas لالتقاط الصورة
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff'
+      });
+      
+      // إعادة عرض التقرير إلى حالته الأصلية
+      element.style.display = originalDisplay;
+      
+      const imgData = canvas.toDataURL('image/jpeg', 0.9);
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      
+      const imgWidth = pdfWidth - 20;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      let heightLeft = imgHeight;
+      let position = 0;
+      
+      // إضافة الصفحة الأولى
+      pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+      
+      // إضافة صفحات إضافية إذا كان المحتوى طويلاً
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
+        heightLeft -= pdfHeight;
+      }
+      
+      // حفظ PDF
+      pdf.save(`تقرير_تعليمي_${Date.now()}.pdf`);
+      resolve();
+      
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+// دالة لإرسال التقرير بالواتساب
 async function sendToWhatsApp() {
-  const loading = document.getElementById('loadingMessage');
-  loading.style.display = 'block';
+  const loadingOverlay = document.getElementById('loadingOverlay');
   
   try {
-    // التحقق من أن التقرير يحتوي على بيانات أساسية
+    // التحقق من البيانات الأساسية
     const schoolName = document.getElementById('school').textContent;
     const reportTitle = document.getElementById('reportTitle').textContent;
     
-    if (!schoolName || !reportTitle) {
+    if (!schoolName || schoolName === '' || !reportTitle || reportTitle === '') {
       alert("الرجاء تعبئة البيانات الأساسية للمدرسة ونوع التقرير قبل الإرسال");
-      loading.style.display = 'none';
       return;
     }
     
-    // استخدام html2canvas لالتقاط صورة للتقرير
-    const reportElement = document.getElementById('reportContent');
-    
-    // عرض التقرير قبل التقاط الصورة
-    reportElement.style.display = 'block';
-    
-    const canvas = await html2canvas(reportElement, {
-      scale: 2, // لتحسين جودة الصورة
-      useCORS: true,
-      logging: false,
-      backgroundColor: '#ffffff'
-    });
-    
-    // إخفاء التقرير مرة أخرى
-    reportElement.style.display = 'none';
-    
-    // تحويل Canvas إلى صورة
-    const imgData = canvas.toDataURL('image/jpeg', 0.9);
-    
-    // تحميل مكتبة jsPDF
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    
-    // إضافة صورة التقرير إلى PDF
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    
-    const imgWidth = pdfWidth - 20; // هوامش
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
-    let position = 10;
-    
-    // إضافة الصفحة الأولى
-    pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
-    
-    // حفظ PDF كبيانات Base64
-    const pdfOutput = pdf.output('datauristring');
+    // عرض نافذة التحميل
+    loadingOverlay.style.display = 'flex';
     
     // إنشاء نص للرسالة
-    const messageText = `تقرير تعليمي - ${reportTitle}
-المدرسة: ${schoolName}
-التاريخ: ${document.getElementById('hijriDate').textContent}
+    const messageText = `📋 *تقرير تعليمي*
     
-تم إنشاء التقرير باستخدام أداة إعداد التقارير التعليمية.
+🔹 *نوع التقرير:* ${reportTitle}
+🔹 *المدرسة:* ${schoolName}
+🔹 *التاريخ:* ${document.getElementById('hijriDate').textContent}
+🔹 *المادة:* ${document.getElementById('subject').textContent || 'غير محدد'}
+🔹 *الصف:* ${document.getElementById('grade').textContent || 'غير محدد'}
     
-مع تحيات وزارة التعليم`;
+📊 *الهدف التربوي:*
+${document.getElementById('goal').textContent || 'غير محدد'}
     
-    // تشفير النص للواتساب
-    const encodedMessage = encodeURIComponent(messageText);
+✅ *النتائج:*
+${document.getElementById('desc3').textContent || 'غير محدد'}
     
-    // إخفاء رسالة التحميل
-    loading.style.display = 'none';
+📝 تم إنشاء التقرير باستخدام أداة إعداد التقارير التعليمية.
     
-    // عرض خيارات للمستخدم
-    const userChoice = confirm("سيتم فتح تطبيق الواتساب لإرسال التقرير. تأكد من حفظ التقرير كملف PDF على جهازك أولاً.\n\nهل تريد المتابعة؟");
+مع تحيات وزارة التعليم 🇸🇦`;
     
-    if (userChoice) {
-      // تنزيل الملف PDF أولاً
-      pdf.save(`تقرير_تعليمي_${Date.now()}.pdf`);
-      
-      // بعد تحميل الملف، فتح رابط الواتساب مع نص الرسالة
-      setTimeout(() => {
-        const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-        window.open(whatsappUrl, '_blank');
-        
-        alert("تم حفظ التقرير كملف PDF على جهازك.\n\nالرجاء الآن:\n1. افتح تطبيق الواتساب\n2. اختر الشخص أو المجموعة المراد الإرسال لها\n3. أرفق ملف PDF الذي تم تحميله");
-      }, 1000);
-    } else {
-      loading.style.display = 'none';
+    // محاولة استخدام html2pdf أولاً
+    try {
+      await generatePDF();
+    } catch (error) {
+      console.log('استخدام الطريقة البديلة...');
+      await generatePDFWithCanvas();
     }
     
+    // إخفاء نافذة التحميل
+    loadingOverlay.style.display = 'none';
+    
+    // تأخير بسيط لضمان حفظ الملف
+    setTimeout(() => {
+      // تشفير النص للواتساب
+      const encodedMessage = encodeURIComponent(messageText);
+      
+      // إنشاء رابط الواتساب
+      const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+      
+      // عرض تعليمات للمستخدم
+      const userConfirmed = confirm(`تم حفظ التقرير كملف PDF على جهازك بنجاح!
+
+الآن، لإرساله عبر الواتساب:
+1. سيتم فتح صفحة الواتساب
+2. اختر الشخص أو المجموعة المراد الإرسال لها
+3. أرفق ملف PDF الذي تم حفظه للتو
+
+هل تريد المتابعة إلى الواتساب؟`);
+      
+      if (userConfirmed) {
+        // فتح الواتساب في نافذة جديدة
+        window.open(whatsappUrl, '_blank');
+        
+        // تذكير إضافي
+        setTimeout(() => {
+          alert("تذكر: بعد فتح الواتساب، قم بإرفاق ملف PDF الذي تم حفظه للتو من جهازك.");
+        }, 500);
+      }
+    }, 1000);
+    
   } catch (error) {
-    console.error('خطأ في إنشاء PDF:', error);
-    loading.style.display = 'none';
-    alert("حدث خطأ أثناء إنشاء التقرير. الرجاء المحاولة مرة أخرى.");
+    console.error('خطأ في إنشاء أو إرسال التقرير:', error);
+    loadingOverlay.style.display = 'none';
+    
+    alert(`حدث خطأ أثناء إنشاء التقرير: ${error.message}
+    
+يرجى المحاولة مرة أخرى أو استخدام زر الطباعة ثم حفظ كـ PDF يدوياً.`);
   }
 }
 
