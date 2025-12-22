@@ -246,7 +246,7 @@ button#printBtn {
 <input id="schoolInput" value="مدرسة النموذجية الابتدائية" oninput="sync('school',this.value)">
 
 <div class="small-grid">
-  <select onchange="sync('reportTitle',this.value)" id="reportSelect">
+  <select onchange="sync('reportTitle',this.value); autoFillReport(this.value);" id="reportSelect">
     <option value="">اختر نوع التقرير</option>
     <option value="تقرير نشاط إثرائي">تقرير نشاط إثرائي</option>
     <option value="تقرير خطة علاجية">تقرير خطة علاجية</option>
@@ -305,35 +305,74 @@ button#printBtn {
     <option value="تقارير الجرد (للمختبرات وغرف المصادر)">تقارير الجرد (للمختبرات وغرف المصادر)</option>
     <option value="تقرير تفعيل المنصات التعليمية">تقرير تفعيل المنصات التعليمية</option>
     <option value="تقرير المحتوى الرقمي المنتج">تقرير المحتوى الرقمي المنتج</option>
+    <option value="تقرير التعلم التعاوني">تقرير التعلم التعاوني</option>
+    <option value="تقرير التعلم القائم على المشروعات">تقرير التعلم القائم على المشروعات</option>
+    <option value="تقرير التعلم القائم على حل المشكلات">تقرير التعلم القائم على حل المشكلات</option>
+    <option value="تقرير التعلم بالاكتشاف">تقرير التعلم بالاكتشاف</option>
+    <option value="تقرير العصف الذهني">تقرير العصف الذهني</option>
+    <option value="تقرير التعلم باللعب">تقرير التعلم باللعب</option>
+    <option value="تقرير التعلم الذاتي">تقرير التعلم الذاتي</option>
+    <option value="تقرير التعلم القائم على الاستقصاء">تقرير التعلم القائم على الاستقصاء</option>
+    <option value="تقرير التعلم المتمركز حول الطالب">تقرير التعلم المتمركز حول الطالب</option>
+    <option value="تقرير التدريس المتمايز">تقرير التدريس المتمايز</option>
+    <option value="تقرير التدريس المباشر">تقرير التدريس المباشر</option>
+    <option value="تقرير التدريس العلاجي">تقرير التدريس العلاجي</option>
+    <option value="تقرير التدريس الإثرائي">تقرير التدريس الإثرائي</option>
+    <option value="تقرير التدريس القائم على الكفايات">تقرير التدريس القائم على الكفايات</option>
+    <option value="تقرير التدريس باستخدام النمذجة">تقرير التدريس باستخدام النمذجة</option>
+    <option value="تقرير التدريس باستخدام الأسئلة السابرة">تقرير التدريس باستخدام الأسئلة السابرة</option>
+    <option value="تقرير التدريس بالحوار والمناقشة">تقرير التدريس بالحوار والمناقشة</option>
+    <option value="تقرير التقويم التشخيصي">تقرير التقويم التشخيصي</option>
+    <option value="تقرير التقويم البنائي">تقرير التقويم البنائي</option>
+    <option value="تقرير التقويم الختامي">تقرير التقويم الختامي</option>
+    <option value="تقرير التقويم بالأداء">تقرير التقويم بالأداء</option>
+    <option value="تقرير التقويم الذاتي للطلاب">تقرير التقويم الذاتي للطلاب</option>
+    <option value="تقرير التقويم بالأقران">تقرير التقويم بالأقران</option>
+    <option value="تقرير التقويم الإلكتروني">تقرير التقويم الإلكتروني</option>
+    <option value="تقرير تحليل أدوات التقويم">تقرير تحليل أدوات التقويم</option>
+    <option value="تقرير استخدام المنصات التعليمية">تقرير استخدام المنصات التعليمية</option>
+    <option value="تقرير توظيف التقنيات التعليمية">تقرير توظيف التقنيات التعليمية</option>
+    <option value="تقرير استخدام التطبيقات التعليمية">تقرير استخدام التطبيقات التعليمية</option>
+    <option value="تقرير توظيف السبورة التفاعلية">تقرير توظيف السبورة التفاعلية</option>
+    <option value="تقرير إنتاج محتوى تعليمي رقمي">تقرير إنتاج محتوى تعليمي رقمي</option>
   </select>
   <input placeholder="المستهدفون" oninput="sync('target',this.value)">
   <input placeholder="العدد" oninput="sync('count',this.value)">
   <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)">
-  <input placeholder="الفصل الدراسي" oninput="sync('semester',this.value)">
+  <select id="semesterSelect" onchange="sync('semester',this.value)">
+    <option value="">اختر الفصل الدراسي</option>
+    <option value="الفصل الدراسي الأول">الفصل الدراسي الأول</option>
+    <option value="الفصل الدراسي الثاني">الفصل الدراسي الثاني</option>
+  </select>
   <input placeholder="الصف" oninput="sync('grade',this.value)">
   <input placeholder="المادة" oninput="sync('subject',this.value)">
 </div>
 
+<div class="auto-row">
+  <button class="auto-btn" onclick="autoFillReport(document.getElementById('reportSelect').value)">تعبئة تلقائية للتقرير</button>
+  <button class="auto-btn clear-btn" onclick="clearAllFields()">مسح جميع الحقول</button>
+</div>
+
 <label>الهدف التربوي</label>
-<textarea oninput="sync('goal',this.value)"></textarea>
+<textarea id="goalInput" oninput="sync('goal',this.value)"></textarea>
 
 <label>وصف مختصر</label>
-<textarea oninput="sync('desc1',this.value)"></textarea>
+<textarea id="desc1Input" oninput="sync('desc1',this.value)"></textarea>
 
 <label>إجراءات التنفيذ</label>
-<textarea oninput="sync('desc2',this.value)"></textarea>
+<textarea id="desc2Input" oninput="sync('desc2',this.value)"></textarea>
 
 <label>النتائج</label>
-<textarea oninput="sync('desc3',this.value)"></textarea>
+<textarea id="desc3Input" oninput="sync('desc3',this.value)"></textarea>
 
 <label>التوصيات</label>
-<textarea oninput="sync('desc4',this.value)"></textarea>
+<textarea id="desc4Input" oninput="sync('desc4',this.value)"></textarea>
 
 <label>التحديات</label>
-<textarea oninput="sync('challenges',this.value)"></textarea>
+<textarea id="challengesInput" oninput="sync('challenges',this.value)"></textarea>
 
 <label>نقاط القوة</label>
-<textarea oninput="sync('strengths',this.value)"></textarea>
+<textarea id="strengthsInput" oninput="sync('strengths',this.value)"></textarea>
 
 <label>إرفاق الصور</label>
 <input type="file" multiple accept="image/*" onchange="loadImages(this)">
@@ -393,9 +432,145 @@ button#printBtn {
 </div>
 
 <script>
+// قائمة النصوص التلقائية لكل تقرير
+const reportTexts = {
+  "تقرير نشاط إثرائي": {
+    goal: "تعزيز المهارات المعرفية وتنمية قدرات الطلاب المتميزين وتقديم أنشطة تثري خبراتهم التعليمية",
+    desc1: "نشاط إثرائي تم تنفيذه لتعزيز مهارات التفكير العليا والبحث العلمي لدى الطلاب المتميزين",
+    desc2: "تحديد الطلاب المتميزين، تصميم أنشطة إثرائية متنوعة، توفير الموارد التعليمية، تخصيص وقت للحصص الإثرائية",
+    desc3: "تحسن ملحوظ في أداء الطلاب المتميزين، زيادة دافعيتهم للتعلم، تنمية مهارات التفكير النقدي والإبداعي",
+    desc4: "الاستمرار في تقديم أنشطة إثرائية، توفير تدريبات متخصصة، إشراك الطلاب في مسابقات علمية",
+    challenges: "نقص الموارد التعليمية المتخصصة، ضيق الوقت المخصص للنشاطات الإثرائية",
+    strengths: "وجود طلاب متميزين، حماس الطلاب للمشاركة، دعم الإدارة المدرسية"
+  },
+  "تقرير خطة علاجية": {
+    goal: "معالجة صعوبات التعلم لدى الطلاب المتأخرين دراسياً وتحسين مستواهم التحصيلي",
+    desc1: "خطة علاجية شاملة لمعالجة ضعف الطلاب في المهارات الأساسية ورفع مستوى تحصيلهم الدراسي",
+    desc2: "تشخيص الصعوبات، وضع خطة علاجية فردية، استخدام أساليب تدريس متنوعة، متابعة التقدم أسبوعياً",
+    desc3: "تحسن في مستوى 80% من الطلاب، زيادة ثقة الطلاب بأنفسهم، تحسن في المشاركة الصفية",
+    desc4: "الاستمرار في المتابعة، تطوير أدوات التقويم، تعزيز الشراكة مع أولياء الأمور",
+    challenges: "تفاوت مستويات الصعوبات، ضعف متابعة بعض أولياء الأمور، كثافة المنهج الدراسي",
+    strengths: "تعاون الطلاب، وجود معلمين متخصصين، دعم برامج التدخل المبكر"
+  },
+  "تقرير تعليم تعاوني بين الطلاب": {
+    goal: "تنمية مهارات العمل الجماعي والتعاون بين الطلاب وتعزيز التعلم النشط",
+    desc1: "تنفيذ أنشطة تعليمية تعاونية تعزز التفاعل الإيجابي بين الطلاب وتنمي مهارات التواصل",
+    desc2: "تقسيم الطلاب لمجموعات، تحديد المهام، توفير أدوات العمل الجماعي، تقييم الأداء الجماعي",
+    desc3: "تحسن مهارات التواصل، زيادة التفاعل بين الطلاب، تنمية روح الفريق، تحسن التحصيل الدراسي",
+    desc4: "توسيع نطاق العمل التعاوني، تدريب الطلاب على مهارات القيادة، دمج التقنية في الأنشطة التعاونية",
+    challenges: "تفاوت قدرات الطلاب، صعوبة إدارة المجموعات الكبيرة، اختلاف أساليب التعلم",
+    strengths: "حماس الطلاب، تنوع المهارات داخل المجموعات، بيئة صفية محفزة"
+  },
+  "تقرير الفصول المقلوبة": {
+    goal: "تحويل نمط التعليم التقليدي إلى تعلم تفاعلي خارج الصف وتمكين الطلاب من التحكم في عملية التعلم",
+    desc1: "تطبيق استراتيجية الفصول المقلوبة حيث يتم تقديم المحتوى خارج الصف واستخدام وقت الحصة للأنشطة التطبيقية",
+    desc2: "إعداد محتوى رقمي، توجيه الطلاب للتعلم الذاتي، تصميم أنشطة صفية تفاعلية، استخدام منصات التعلم",
+    desc3: "زيادة وقت التفاعل في الصف، تحسن فهم الطلاب، تنمية مهارات التعلم الذاتي، تفريد التعلم",
+    desc4: "تطوير المحتوى الرقمي، تدريب الطلاب على التعلم الذاتي، توسيع نطاق التطبيق",
+    challenges: "صعوبة الوصول للإنترنت لدى بعض الطلاب، مقاومة التغيير، زيادة العبء التحضيري",
+    strengths: "توفر التقنية، استجابة الطلاب، دعم أولياء الأمور، مرونة المنهج"
+  },
+  "تقرير استخدام المنصات التعليمية": {
+    goal: "توظيف المنصات التعليمية الرقمية لتحسين جودة التعليم وتفريد التعلم",
+    desc1: "استخدام المنصات التعليمية الإلكترونية لدعم العملية التعليمية وتوفير مصادر تعلم متنوعة",
+    desc2: "اختيار المنصات المناسبة، تدريب الطلاب والمعلمين، تصميم أنشطة رقمية، متابعة التقدم",
+    desc3: "تحسن في التفاعل التعليمي، توفر مصادر تعلم متنوعة، سهولة المتابعة والتقييم، زيادة دافعية الطلاب",
+    desc4: "التوسع في استخدام المنصات، تطوير المحتوى الرقمي، تدريب مستمر للمعلمين والطلاب",
+    challenges: "صعوبة الوصول للإنترنت، نقص المهارات التقنية لدى بعض الطلاب، تكاليف الاشتراكات",
+    strengths: "توفر البنية التحتية، دعم الوزارة، تقبل الطلاب للتكنولوجيا، تنوع المنصات المتاحة"
+  }
+};
+
+// النصوص العامة للتقارير غير المحددة
+const defaultTexts = {
+  goal: "تحسين العملية التعليمية وتطوير الممارسات التدريسية لتحقيق نواتج التعلم المستهدفة",
+  desc1: "تقرير يصف عملية تنفيذ نشاط تعليمي يهدف لتحسين الممارسات التعليمية وتحقيق أهداف التعلم",
+  desc2: "التخطيط للنشاط، تحديد الموارد اللازمة، التنفيذ حسب الخطة، المتابعة والتقييم المستمر",
+  desc3: "تحقيق الأهداف المخطط لها بنسبة عالية، تحسن في أداء الطلاب، رضا المشاركين عن النشاط",
+  desc4: "الاستمرارية في التنفيذ، التوسع في النشاط، تطوير الآليات المستخدمة، تعميم النتائج الإيجابية",
+  challenges: "ضيق الوقت، نقص الموارد، صعوبة التنسيق بين الأطراف المعنية",
+  strengths: "التزام الفريق، دعم الإدارة، حماس المشاركين، وضوح الأهداف"
+};
+
 function sync(id,value){
   const el=document.getElementById(id);
   if(el){el.textContent=value;}
+}
+
+function autoFillReport(reportType) {
+  if (!reportType) {
+    alert("يرجى اختيار نوع التقرير أولاً");
+    return;
+  }
+  
+  const texts = reportTexts[reportType] || defaultTexts;
+  
+  // تعبئة الحقول
+  document.getElementById('goalInput').value = texts.goal;
+  document.getElementById('desc1Input').value = texts.desc1;
+  document.getElementById('desc2Input').value = texts.desc2;
+  document.getElementById('desc3Input').value = texts.desc3;
+  document.getElementById('desc4Input').value = texts.desc4;
+  document.getElementById('challengesInput').value = texts.challenges;
+  document.getElementById('strengthsInput').value = texts.strengths;
+  
+  // مزامنة مع العرض
+  sync('goal', texts.goal);
+  sync('desc1', texts.desc1);
+  sync('desc2', texts.desc2);
+  sync('desc3', texts.desc3);
+  sync('desc4', texts.desc4);
+  sync('challenges', texts.challenges);
+  sync('strengths', texts.strengths);
+  
+  // تعبئة تلقائية للحقول الأخرى بناءً على نوع التقرير
+  const reportFields = {
+    "تقرير نشاط إثرائي": { target: "الطلاب المتميزين", count: "15", location: "المختبر العلمي" },
+    "تقرير خطة علاجية": { target: "الطلاب المتأخرين دراسياً", count: "10", location: "غرفة المصادر" },
+    "تقرير تعليم تعاوني بين الطلاب": { target: "جميع طلاب الصف", count: "25", location: "الفصل الدراسي" },
+    "تقرير الفصول المقلوبة": { target: "طلاب الصف السادس", count: "30", location: "الفصل الدراسي + المنصة الإلكترونية" },
+    "تقرير استخدام المنصات التعليمية": { target: "طلاب الصفوف العليا", count: "40", location: "معمل الحاسب + المنصات الإلكترونية" }
+  };
+  
+  if (reportFields[reportType]) {
+    const fields = reportFields[reportType];
+    document.querySelector('input[placeholder="المستهدفون"]').value = fields.target;
+    document.querySelector('input[placeholder="العدد"]').value = fields.count;
+    document.querySelector('input[placeholder="مكان التنفيذ"]').value = fields.location;
+    
+    sync('target', fields.target);
+    sync('count', fields.count);
+    sync('location', fields.location);
+  }
+}
+
+function clearAllFields() {
+  // مسح جميع حقول النصوص
+  const textAreas = ['goalInput', 'desc1Input', 'desc2Input', 'desc3Input', 'desc4Input', 'challengesInput', 'strengthsInput'];
+  textAreas.forEach(id => {
+    document.getElementById(id).value = '';
+    sync(id.replace('Input', ''), '');
+  });
+  
+  // مسح حقول الإدخال الأخرى
+  document.querySelector('input[placeholder="المستهدفون"]').value = '';
+  document.querySelector('input[placeholder="العدد"]').value = '';
+  document.querySelector('input[placeholder="مكان التنفيذ"]').value = '';
+  document.querySelector('input[placeholder="الصف"]').value = '';
+  document.querySelector('input[placeholder="المادة"]').value = '';
+  
+  sync('target', '');
+  sync('count', '');
+  sync('location', '');
+  sync('grade', '');
+  sync('subject', '');
+  
+  // إعادة تعيين القوائم المنسدلة
+  document.getElementById('semesterSelect').selectedIndex = 0;
+  document.getElementById('reportSelect').selectedIndex = 0;
+  
+  sync('semester', '');
+  sync('reportTitle', '');
 }
 
 function loadImages(input){
