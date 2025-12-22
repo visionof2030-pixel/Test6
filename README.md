@@ -2,38 +2,54 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>أداة إعداد التقارير التعليمية</title>
+<title>تقرير نشاط</title>
 
 <style>
 body {
   font-family: Tahoma, Arial, sans-serif;
-  background: #eef7f5;
+  background: white;
   margin: 0;
-  padding: 20px;
-  font-size: 14px;
+  padding: 0;
+  font-size: 10pt;
 }
 
-.container {
-  max-width: 900px;
+/* ===== التقرير ===== */
+.report {
+  max-width: 210mm;
   margin: auto;
-  background: #fff;
-  padding: 22px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  padding: 10mm;
 }
 
-h2 {
+/* ===== الهيدر ===== */
+.header {
+  background: #0a3b40;
+  color: white;
   text-align: center;
-  color: #0a3b40;
-  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.ministry-title {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.ministry-subtitle {
+  font-size: 10pt;
+}
+
+.school-info {
+  margin-top: 5px;
+  font-weight: bold;
 }
 
 /* ===== المربعات الصغيرة ===== */
 .top-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 15px;
+  gap: 4px;
+  margin-bottom: 10px;
 }
 
 .top-row {
@@ -51,117 +67,121 @@ h2 {
 
 .box {
   border: 1px solid #0a3b40;
-  background: #f8f9fa;
   border-radius: 4px;
+  background: #f8f9fa;
   padding: 4px;
-  font-size: 7pt;
   text-align: center;
+  font-size: 7pt;
   min-height: 30px;
 }
 
 .box strong {
   display: block;
-  font-size: 7pt;
   color: #0a3b40;
-  margin-bottom: 2px;
-}
-
-.box div {
-  font-size: 6.5pt;
+  font-size: 7pt;
 }
 
 /* ===== الأقسام ===== */
 .section {
   border: 1px solid #0a3b40;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 12px;
-  background: #fff;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 8px;
 }
 
 .section strong {
   display: block;
   border-bottom: 1px solid #0a3b40;
-  margin-bottom: 6px;
-  padding-bottom: 4px;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
   color: #0a3b40;
 }
 
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-/* ===== الاختيارية ===== */
 .section.optional {
   border: 1px dashed #e6b800;
   background: #fff8cc;
+}
+
+.goal-section {
+  background: #e8f5e9;
+  border-right: 4px solid #2e7d32;
+}
+
+/* ===== شبكات ===== */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
 /* ===== الصور ===== */
 .images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 8px;
 }
 
 .images img {
   width: 100%;
-  border-radius: 6px;
-  max-height: 180px;
+  max-height: 140px;
   object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-/* ===== طباعة ===== */
-@media print {
-  body {
-    background: #fff;
-    padding: 0;
-  }
+/* ===== منع تقطيع الصفحات ===== */
+.section, .box, .images {
+  page-break-inside: avoid;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<h2>تقرير نشاط</h2>
+<div class="report">
+
+<!-- ===== الهيدر ===== -->
+<div class="header">
+  <div class="ministry-title">وزارة التعليم</div>
+  <div class="ministry-subtitle">Ministry of Education</div>
+  <div class="school-info">
+    الإدارة العامة للتعليم – مدرسة النموذجية الابتدائية
+  </div>
+</div>
 
 <!-- ===== المربعات الصغيرة ===== -->
 <div class="top-info">
 
   <div class="top-row first">
-    <div class="box"><strong>الفصل الدراسي</strong><div id="semester"></div></div>
-    <div class="box"><strong>الصف</strong><div id="grade"></div></div>
-    <div class="box"><strong>المادة</strong><div id="subject"></div></div>
+    <div class="box"><strong>الفصل الدراسي</strong>الفصل الأول</div>
+    <div class="box"><strong>الصف</strong>الصف الثالث</div>
+    <div class="box"><strong>المادة</strong>التربية الفنية</div>
   </div>
 
   <div class="top-row second">
-    <div class="box"><strong>التقرير</strong><div id="report"></div></div>
-    <div class="box"><strong>المستهدفون</strong><div id="target"></div></div>
-    <div class="box"><strong>العدد</strong><div id="count"></div></div>
-    <div class="box"><strong>مكان التنفيذ</strong><div id="location"></div></div>
+    <div class="box"><strong>التقرير</strong>تقرير نشاط إثرائي</div>
+    <div class="box"><strong>المستهدفون</strong>طلاب الصف الثالث</div>
+    <div class="box"><strong>العدد</strong>25 طالب</div>
+    <div class="box"><strong>مكان التنفيذ</strong>قاعة الأنشطة</div>
   </div>
 
 </div>
 
 <!-- ===== الهدف ===== -->
-<div class="section">
+<div class="section goal-section">
   <strong>الهدف التربوي</strong>
-  <div id="goal"></div>
+  تنمية المواهب والقدرات الإبداعية لدى الطلاب.
 </div>
 
 <!-- ===== وصف + إجراءات ===== -->
 <div class="grid2">
   <div class="section">
     <strong>وصف مختصر</strong>
-    <div id="desc1"></div>
+    نشاط إثرائي لتنمية مهارات الطلاب.
   </div>
   <div class="section">
     <strong>إجراءات التنفيذ</strong>
-    <div id="desc2"></div>
+    التخطيط – التنفيذ – التقييم.
   </div>
 </div>
 
@@ -169,50 +189,36 @@ h2 {
 <div class="grid2">
   <div class="section">
     <strong>النتائج</strong>
-    <div id="desc3"></div>
+    اكتشاف مواهب طلابية جديدة.
   </div>
   <div class="section">
     <strong>التوصيات</strong>
-    <div id="desc4"></div>
+    زيادة الأنشطة الإثرائية.
   </div>
 </div>
 
-<!-- ===== التحديات + نقاط القوة ===== -->
+<!-- ===== تحديات + نقاط قوة ===== -->
 <div class="grid2">
   <div class="section optional">
     <strong>التحديات</strong>
-    <div id="challenges"></div>
+    ضيق الوقت.
   </div>
   <div class="section optional">
     <strong>نقاط القوة</strong>
-    <div id="strengths"></div>
+    تفاعل الطلاب.
   </div>
 </div>
 
 <!-- ===== الصور ===== -->
 <div class="section">
   <strong>صور النشاط</strong>
-  <input type="file" multiple accept="image/*" onchange="loadImages(this)">
-  <div class="images" id="imagesBox"></div>
+  <div class="images">
+    <img src="https://via.placeholder.com/300x200">
+    <img src="https://via.placeholder.com/300x200">
+  </div>
 </div>
 
 </div>
-
-<script>
-function loadImages(input) {
-  const box = document.getElementById("imagesBox");
-  box.innerHTML = "";
-  [...input.files].slice(0,2).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = document.createElement("img");
-      img.src = e.target.result;
-      box.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  });
-}
-</script>
 
 </body>
 </html>
