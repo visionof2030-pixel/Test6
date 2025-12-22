@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -106,7 +106,19 @@ button#printBtn {
 @media print {
   body { background: white; padding: 0; }
   .tool { display: none; }
-  .report { display: block; max-width: 210mm; margin: 0 auto; }
+  .report { 
+    display: block; 
+    max-width: 210mm; 
+    margin: 0 auto;
+    padding: 10mm;
+  }
+  .report .section.optional {
+    width: 60%;
+    margin: 0 auto 10px auto;
+  }
+  .report .section.optional div {
+    font-size: 10pt !important;
+  }
 }
 
 .header {
@@ -198,6 +210,13 @@ button#printBtn {
 .section.optional {
   border: 1px dashed #e6b800;
   background: #fff8cc;
+  width: 60%;
+  margin: 0 auto 10px auto;
+}
+
+.section.optional div {
+  font-size: 10pt;
+  line-height: 1.4;
 }
 
 .images {
@@ -217,7 +236,7 @@ button#printBtn {
 .signatures {
   margin-top: 30px;
   padding-top: 15px;
-  border-top: 1px solid #ccc;
+  border-top: 2px solid #0a3b40;
   display: flex;
   justify-content: space-between;
   font-size: 9pt;
@@ -236,19 +255,22 @@ button#printBtn {
   border: none;
   border-bottom: 1px solid #ccc;
   text-align: center;
+  background: transparent;
 }
 
 .signature-label {
   font-weight: bold;
   color: #0a3b40;
   margin-bottom: 5px;
+  font-size: 10pt;
 }
 
-.footer-note {
-  font-size: 8pt;
-  color: #666;
-  text-align: center;
-  margin-top: 5px;
+.signature-value {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #666;
+  font-weight: bold;
+  font-size: 11pt;
 }
 </style>
 </head>
@@ -259,7 +281,7 @@ button#printBtn {
 <h2>أداة إعداد التقارير التعليمية</h2>
 
 <label>إدارة التعليم</label>
-<select id="eduSelect" onchange="sync('edu',this.value)">
+<select id="eduSelect" onchange="sync('edu',this.value); syncPrint('edu',this.value)">
   <option value="">اختر إدارة التعليم</option>
   <option value="الإدارة العامة للتعليم بمنطقة الرياض">الإدارة العامة للتعليم بمنطقة الرياض</option>
   <option value="الإدارة العامة للتعليم بمنطقة مكة المكرمة">الإدارة العامة للتعليم بمنطقة مكة المكرمة</option>
@@ -280,10 +302,10 @@ button#printBtn {
 </select>
 
 <label>اسم المدرسة</label>
-<input id="schoolInput" value="مدرسة النموذجية الابتدائية" oninput="sync('school',this.value)">
+<input id="schoolInput" value="مدرسة النموذجية الابتدائية" oninput="sync('school',this.value); syncPrint('school',this.value)">
 
 <div class="small-grid">
-  <select onchange="sync('reportTitle',this.value); autoFillReport(this.value);" id="reportSelect">
+  <select onchange="sync('reportTitle',this.value); syncPrint('reportTitle',this.value); autoFillReport(this.value)" id="reportSelect">
     <option value="">اختر نوع التقرير</option>
     <option value="تقرير نشاط إثرائي">تقرير نشاط إثرائي</option>
     <option value="تقرير خطة علاجية">تقرير خطة علاجية</option>
@@ -373,16 +395,16 @@ button#printBtn {
     <option value="تقرير توظيف السبورة التفاعلية">تقرير توظيف السبورة التفاعلية</option>
     <option value="تقرير إنتاج محتوى تعليمي رقمي">تقرير إنتاج محتوى تعليمي رقمي</option>
   </select>
-  <input placeholder="المستهدفون" oninput="sync('target',this.value)">
-  <input placeholder="العدد" oninput="sync('count',this.value)">
-  <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)">
-  <select id="semesterSelect" onchange="sync('semester',this.value)">
+  <input placeholder="المستهدفون" oninput="sync('target',this.value); syncPrint('target',this.value)">
+  <input placeholder="العدد" oninput="sync('count',this.value); syncPrint('count',this.value)">
+  <input placeholder="مكان التنفيذ" oninput="sync('location',this.value); syncPrint('location',this.value)">
+  <select id="semesterSelect" onchange="sync('semester',this.value); syncPrint('semester',this.value)">
     <option value="">اختر الفصل الدراسي</option>
     <option value="الفصل الدراسي الأول">الفصل الدراسي الأول</option>
     <option value="الفصل الدراسي الثاني">الفصل الدراسي الثاني</option>
   </select>
-  <input placeholder="الصف" oninput="sync('grade',this.value)">
-  <input placeholder="المادة" oninput="sync('subject',this.value)">
+  <input placeholder="الصف" oninput="sync('grade',this.value); syncPrint('grade',this.value)">
+  <input placeholder="المادة" oninput="sync('subject',this.value); syncPrint('subject',this.value)">
 </div>
 
 <div class="auto-row">
@@ -391,25 +413,25 @@ button#printBtn {
 </div>
 
 <label>الهدف التربوي</label>
-<textarea id="goalInput" oninput="sync('goal',this.value)"></textarea>
+<textarea id="goalInput" oninput="sync('goal',this.value); syncPrint('goal',this.value)"></textarea>
 
 <label>وصف مختصر</label>
-<textarea id="desc1Input" oninput="sync('desc1',this.value)"></textarea>
+<textarea id="desc1Input" oninput="sync('desc1',this.value); syncPrint('desc1',this.value)"></textarea>
 
 <label>إجراءات التنفيذ</label>
-<textarea id="desc2Input" oninput="sync('desc2',this.value)"></textarea>
+<textarea id="desc2Input" oninput="sync('desc2',this.value); syncPrint('desc2',this.value)"></textarea>
 
 <label>النتائج</label>
-<textarea id="desc3Input" oninput="sync('desc3',this.value)"></textarea>
+<textarea id="desc3Input" oninput="sync('desc3',this.value); syncPrint('desc3',this.value)"></textarea>
 
 <label>التوصيات</label>
-<textarea id="desc4Input" oninput="sync('desc4',this.value)"></textarea>
+<textarea id="desc4Input" oninput="sync('desc4',this.value); syncPrint('desc4',this.value)"></textarea>
 
 <label>التحديات</label>
-<textarea id="challengesInput" oninput="sync('challenges',this.value)"></textarea>
+<textarea id="challengesInput" oninput="sync('challenges',this.value); syncPrint('challenges',this.value)"></textarea>
 
 <label>نقاط القوة</label>
-<textarea id="strengthsInput" oninput="sync('strengths',this.value)"></textarea>
+<textarea id="strengthsInput" oninput="sync('strengths',this.value); syncPrint('strengths',this.value)"></textarea>
 
 <label>إرفاق الصور</label>
 <input type="file" multiple accept="image/*" onchange="loadImages(this)">
@@ -417,11 +439,11 @@ button#printBtn {
 <div class="signatures">
   <div class="teacher-signature">
     <div class="signature-label">اسم المعلم</div>
-    <input type="text" id="teacherName" placeholder="أدخل اسم المعلم" oninput="sync('teacherName',this.value)">
+    <input type="text" id="teacherNameInput" placeholder="أدخل اسم المعلم" oninput="syncPrint('teacherName',this.value)">
   </div>
   <div class="principal-signature">
     <div class="signature-label">اسم مدير المدرسة</div>
-    <input type="text" id="principalName" placeholder="أدخل اسم المدير" oninput="sync('principalName',this.value)">
+    <input type="text" id="principalNameInput" placeholder="أدخل اسم المدير" oninput="syncPrint('principalName',this.value)">
   </div>
 </div>
 
@@ -435,44 +457,49 @@ button#printBtn {
     <div class="ministry-title">وزارة التعليم</div>
     <div class="ministry-subtitle">Ministry of Education</div>
     <div class="school-info">
-      <div id="edu"></div>
-      <div id="school"></div>
+      <div id="eduPrint"></div>
+      <div id="schoolPrint"></div>
     </div>
   </div>
 </div>
 
 <div class="top-info two-lines">
   <div class="top-row first">
-    <div class="box"><strong>الفصل الدراسي</strong><div id="semester"></div></div>
-    <div class="box"><strong>الصف</strong><div id="grade"></div></div>
-    <div class="box"><strong>المادة</strong><div id="subject"></div></div>
+    <div class="box"><strong>الفصل الدراسي</strong><div id="semesterPrint"></div></div>
+    <div class="box"><strong>الصف</strong><div id="gradePrint"></div></div>
+    <div class="box"><strong>المادة</strong><div id="subjectPrint"></div></div>
   </div>
   <div class="top-row second">
-    <div class="box"><strong>التقرير</strong><div id="reportTitle"></div></div>
-    <div class="box"><strong>المستهدفون</strong><div id="target"></div></div>
-    <div class="box"><strong>العدد</strong><div id="count"></div></div>
-    <div class="box"><strong>مكان التنفيذ</strong><div id="location"></div></div>
+    <div class="box"><strong>التقرير</strong><div id="reportTitlePrint"></div></div>
+    <div class="box"><strong>المستهدفون</strong><div id="targetPrint"></div></div>
+    <div class="box"><strong>العدد</strong><div id="countPrint"></div></div>
+    <div class="box"><strong>مكان التنفيذ</strong><div id="locationPrint"></div></div>
   </div>
 </div>
 
 <div class="goal-section">
 <strong>الهدف التربوي</strong>
-<div id="goal"></div>
+<div id="goalPrint"></div>
 </div>
 
 <div class="grid2">
-  <div class="section"><strong>وصف مختصر</strong><div id="desc1"></div></div>
-  <div class="section"><strong>إجراءات التنفيذ</strong><div id="desc2"></div></div>
+  <div class="section"><strong>وصف مختصر</strong><div id="desc1Print"></div></div>
+  <div class="section"><strong>إجراءات التنفيذ</strong><div id="desc2Print"></div></div>
 </div>
 
 <div class="grid2">
-  <div class="section"><strong>النتائج</strong><div id="desc3"></div></div>
-  <div class="section"><strong>التوصيات</strong><div id="desc4"></div></div>
+  <div class="section"><strong>النتائج</strong><div id="desc3Print"></div></div>
+  <div class="section"><strong>التوصيات</strong><div id="desc4Print"></div></div>
 </div>
 
-<div class="grid2">
-  <div class="section optional"><strong>التحديات</strong><div id="challenges"></div></div>
-  <div class="section optional"><strong>نقاط القوة</strong><div id="strengths"></div></div>
+<div class="section optional">
+  <strong>التحديات</strong>
+  <div id="challengesPrint"></div>
+</div>
+
+<div class="section optional">
+  <strong>نقاط القوة</strong>
+  <div id="strengthsPrint"></div>
 </div>
 
 <div class="images" id="imagesBox"></div>
@@ -480,14 +507,13 @@ button#printBtn {
 <div class="signatures">
   <div class="teacher-signature">
     <div class="signature-label">المعلم</div>
-    <div id="teacherName"></div>
+    <div class="signature-value" id="teacherNamePrint"></div>
   </div>
   <div class="principal-signature">
     <div class="signature-label">مدير المدرسة</div>
-    <div id="principalName"></div>
+    <div class="signature-value" id="principalNamePrint"></div>
   </div>
 </div>
-<div class="footer-note">تم إعداد هذا التقرير بواسطة أداة إعداد التقارير التعليمية - وزارة التعليم</div>
 
 </div>
 
@@ -538,78 +564,6 @@ const reportTexts = {
     desc4: "التوسع في الاستخدام، تطوير محتوى رقمي، تدريب مستمر",
     challenges: "صعوبة الإنترنت، نقص المهارات التقنية، تكاليف اشتراكات",
     strengths: "بنية تحتية، دعم الوزارة، تقبل التكنولوجيا"
-  },
-  "تقرير التدريس المتمايز": {
-    goal: "تلبية احتياجات الطلاب المتنوعة حسب قدراتهم",
-    desc1: "تطبيق تدريس متمايز يراعي الفروق الفردية",
-    desc2: "تشخيص المستويات، تخطيط أنشطة متنوعة، تجميع مرن، تقديم محتوى متمايز، تقييم متنوع",
-    desc3: "تحسن جميع المستويات، رضا الطلاب، مشاركة فعالة، بيئة داعمة",
-    desc4: "استمرار التمايز، تطوير أنشطة، تدريب معلمين",
-    challenges: "وقت التخطيط، موارد متنوعة، صعوبة التقييم",
-    strengths: "مرونة المنهج، معلمون مبدعون، طلاب متفاعلون"
-  },
-  "تقرير التقويم التشخيصي": {
-    goal: "تشخيص نقاط القوة والضعف قبل بدء التعلم",
-    desc1: "تقييم تشخيصي لتحديد المستوى الأولي للطلاب",
-    desc2: "إعداد أدوات تشخيص، تطبيق الاختبارات، تحليل النتائج، تحديد الفجوات، وضع خطط",
-    desc3: "تشخيص دقيق للمستويات، تحديد احتياجات، توجيه تعليمي مناسب",
-    desc4: "تطوير أدوات تشخيص، تدريب معلمين، تكرار التشخيص",
-    challenges: "وقت التطبيق، دقة الأدوات، تحليل البيانات",
-    strengths: "معلومات دقيقة، توجيه تعليمي، تحسين مخرجات"
-  },
-  "تقرير توظيف الذكاء الاصطناعي": {
-    goal: "استخدام الذكاء الاصطناعي في تحسين التعلم",
-    desc1: "توظيف تقنيات الذكاء الاصطناعي في التعليم",
-    desc2: "اختيار أدوات ذكية، تدريب المستخدمين، تطبيق تجريبي، تحليل نتائج، توسيع نطاق",
-    desc3: "تخصيص التعلم، تحسين التفاعل، توفير وقت، نتائج أفضل",
-    desc4: "تطوير استخدام الذكاء الاصطناعي، شراكات تقنية، تدريب متخصص",
-    challenges: "تكاليف عالية، نقص الخبرات، مخاوف أمنية",
-    strengths: "تطور تقني، دعم مؤسسي، طلاب تقنيون"
-  },
-  "تقرير الأنشطة الصفية": {
-    goal: "تنفيذ أنشطة صفية تفاعلية محفزة للتعلم",
-    desc1: "أنشطة صفية متنوعة لتعزيز التفاعل والتعلم",
-    desc2: "تخطيط الأنشطة، تجهيز المواد، تنفيذ تفاعلي، مشاركة طلابية، تقييم فوري",
-    desc3: "تفاعل إيجابي، فهم أعمق، دافعية عالية، بيئة تعلم نشطة",
-    desc4: "تنويع الأنشطة، تدريب معلمين، توفير موارد",
-    challenges: "وقت محدود، صعوبة الإدارة، تفاوت المشاركة",
-    strengths: "طلاب متفاعلون، معلمون مبدعون، موارد متاحة"
-  },
-  "تقرير التواصل مع ولي الأمر": {
-    goal: "تعزيز الشراكة مع الأهالي لتحسين التحصيل",
-    desc1: "تواصل منتظم مع أولياء الأمور لمتابعة الطلاب",
-    desc2: "تحديد قنوات اتصال، إعداد تقارير، اجتماعات دورية، متابعة مستمرة، تبادل معلومات",
-    desc3: "تحسن في متابعة الطلاب، رضا الأهالي، شراكة فاعلة، تحسن التحصيل",
-    desc4: "استمرار التواصل، تطوير قنوات، تفعيل شراكة",
-    challenges: "انشغال الأهالي، صعوبة التواصل، نقص الوقت",
-    strengths: "رغبة الأهالي، قنوات متنوعة، إدارة داعمة"
-  },
-  "تقرير الاحتفال باليوم الوطني": {
-    goal: "تعزيز الانتماء الوطني والهوية السعودية",
-    desc1: "فعاليات وأنشطة للاحتفال باليوم الوطني",
-    desc2: "تخطيط الفعاليات، تشكيل فرق عمل، تنفيذ أنشطة، مشاركة مجتمعية، توثيق الفعاليات",
-    desc3: "تعزيز الانتماء، مشاركة واسعة، بيئة احتفالية، تنمية قيم وطنية",
-    desc4: "استمرار الفعاليات، توسيع المشاركة، توثيق الخبرات",
-    challenges: "تنظيم الفعاليات، توفير الدعم، تنسيق الأنشطة",
-    strengths: "حماس المشاركة، دعم مجتمعي، موارد متاحة"
-  },
-  "تقرير البحث الإجرائي": {
-    goal: "دراسة مشكلات تربوية وإيجاد حلول عملية",
-    desc1: "بحث إجرائي لحل مشكلة تعليمية محددة",
-    desc2: "تحديد المشكلة، جمع بيانات، تحليل النتائج، وضع حلول، تطبيق وتقييم",
-    desc3: "حلول عملية، تحسين ممارسات، تطوير مهني، نتائج قابلة للتطبيق",
-    desc4: "نشر النتائج، تطبيق الحلول، تدريب زملاء",
-    challenges: "وقت البحث، جمع البيانات، تحليل النتائج",
-    strengths: "مشاكل واقعية، نتائج تطبيقية، تطوير مهني"
-  },
-  "تقرير إنتاج محتوى تعليمي رقمي": {
-    goal: "إنشاء محتوى تعليمي رقمي جذاب وفعال",
-    desc1: "إنتاج مواد تعليمية رقمية لدعم التعلم",
-    desc2: "تحديد المحتوى، تصميم المواد، إنتاج رقمي، تجريب المحتوى، نشر واستخدام",
-    desc3: "مواد تعليمية جذابة، دعم التعلم الذاتي، تفاعل طلابي، تحسين تعلم",
-    desc4: "تطوير محتوى، تدريب منتجين، نشر تجارب",
-    challenges: "تكاليف الإنتاج، وقت التصميم، مهارات تقنية",
-    strengths: "تقنيات متاحة، معلمون مبدعون، طلاب تقنيون"
   }
 };
 
@@ -626,6 +580,11 @@ const defaultTexts = {
 
 function sync(id,value){
   const el=document.getElementById(id);
+  if(el){el.textContent=value;}
+}
+
+function syncPrint(id,value){
+  const el=document.getElementById(id + 'Print');
   if(el){el.textContent=value;}
 }
 
@@ -646,14 +605,14 @@ function autoFillReport(reportType) {
   document.getElementById('challengesInput').value = texts.challenges;
   document.getElementById('strengthsInput').value = texts.strengths;
   
-  // مزامنة مع العرض
-  sync('goal', texts.goal);
-  sync('desc1', texts.desc1);
-  sync('desc2', texts.desc2);
-  sync('desc3', texts.desc3);
-  sync('desc4', texts.desc4);
-  sync('challenges', texts.challenges);
-  sync('strengths', texts.strengths);
+  // مزامنة مع العرض للطباعة
+  syncPrint('goal', texts.goal);
+  syncPrint('desc1', texts.desc1);
+  syncPrint('desc2', texts.desc2);
+  syncPrint('desc3', texts.desc3);
+  syncPrint('desc4', texts.desc4);
+  syncPrint('challenges', texts.challenges);
+  syncPrint('strengths', texts.strengths);
   
   // تعبئة تلقائية للحقول الأخرى بناءً على نوع التقرير
   const reportFields = {
@@ -678,9 +637,9 @@ function autoFillReport(reportType) {
     document.querySelector('input[placeholder="العدد"]').value = fields.count;
     document.querySelector('input[placeholder="مكان التنفيذ"]').value = fields.location;
     
-    sync('target', fields.target);
-    sync('count', fields.count);
-    sync('location', fields.location);
+    syncPrint('target', fields.target);
+    syncPrint('count', fields.count);
+    syncPrint('location', fields.location);
   }
 }
 
@@ -689,7 +648,7 @@ function clearAllFields() {
   const textAreas = ['goalInput', 'desc1Input', 'desc2Input', 'desc3Input', 'desc4Input', 'challengesInput', 'strengthsInput'];
   textAreas.forEach(id => {
     document.getElementById(id).value = '';
-    sync(id.replace('Input', ''), '');
+    syncPrint(id.replace('Input', ''), '');
   });
   
   // مسح حقول الإدخال الأخرى
@@ -698,23 +657,23 @@ function clearAllFields() {
   document.querySelector('input[placeholder="مكان التنفيذ"]').value = '';
   document.querySelector('input[placeholder="الصف"]').value = '';
   document.querySelector('input[placeholder="المادة"]').value = '';
-  document.getElementById('teacherName').value = '';
-  document.getElementById('principalName').value = '';
+  document.getElementById('teacherNameInput').value = '';
+  document.getElementById('principalNameInput').value = '';
   
-  sync('target', '');
-  sync('count', '');
-  sync('location', '');
-  sync('grade', '');
-  sync('subject', '');
-  sync('teacherName', '');
-  sync('principalName', '');
+  syncPrint('target', '');
+  syncPrint('count', '');
+  syncPrint('location', '');
+  syncPrint('grade', '');
+  syncPrint('subject', '');
+  syncPrint('teacherName', '');
+  syncPrint('principalName', '');
   
   // إعادة تعيين القوائم المنسدلة
   document.getElementById('semesterSelect').selectedIndex = 0;
   document.getElementById('reportSelect').selectedIndex = 0;
   
-  sync('semester', '');
-  sync('reportTitle', '');
+  syncPrint('semester', '');
+  syncPrint('reportTitle', '');
   
   // مسح الصور
   document.getElementById('imagesBox').innerHTML = '';
@@ -733,6 +692,14 @@ function loadImages(input){
     reader.readAsDataURL(file);
   });
 }
+
+// تهيئة القيم الافتراضية
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('teacherNameInput').value = "أحمد محمد";
+  document.getElementById('principalNameInput').value = "خالد بن سعود";
+  syncPrint('teacherName', "أحمد محمد");
+  syncPrint('principalName', "خالد بن سعود");
+});
 </script>
 
 </body>
