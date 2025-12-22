@@ -133,6 +133,11 @@ button#printBtn {
   font-weight: bold;
   font-size: 9pt;
 }
+.hijri-date {
+  font-size: 8pt;
+  margin-top: 3px;
+  color: #e0f7fa;
+}
 .top-info.two-lines {
   display: flex;
   flex-direction: column;
@@ -207,27 +212,10 @@ button#printBtn {
   font-size: 10px;
   line-height: 1.3;
 }
-/* مربعات التحديات والمحفزات - باللون الأحمر */
-.section.challenges {
-  border: 1px solid #c62828;
-  background: #ffebee;
-  min-height: 50px;
-  height: auto;
-  padding: 3px;
-  font-size: 9px;
-}
-.section.challenges strong {
-  font-size: 9.5px;
-  margin-bottom: 1px;
-  color: #c62828;
-}
-.section.challenges div {
-  font-size: 9px;
-  line-height: 1.2;
-}
+/* المحفزات - باللون البنفسجي الفاتح */
 .section.motivators {
-  border: 1px dashed #e6b800;
-  background: #fff8cc;
+  border: 1px solid #8e24aa; /* بنفسجي غامق */
+  background: #f3e5f5; /* بنفسجي فاتح */
   min-height: 50px;
   height: auto;
   padding: 3px;
@@ -236,15 +224,16 @@ button#printBtn {
 .section.motivators strong {
   font-size: 9.5px;
   margin-bottom: 1px;
+  color: #8e24aa; /* بنفسجي غامق */
 }
 .section.motivators div {
   font-size: 9px;
   line-height: 1.2;
 }
-/* مربعات نقاط القوة ومواطن القصور */
+/* نقاط القوة - باللون الأزرق الغامق */
 .section.strengths {
-  border: 1px solid #0d47a1; /* أزرق غامق */
-  background: #e3f2fd; /* خلفية زرقاء فاتحة */
+  border: 1px solid #0d47a1;
+  background: #e3f2fd;
   min-height: 50px;
   height: auto;
   padding: 3px;
@@ -253,12 +242,31 @@ button#printBtn {
 .section.strengths strong {
   font-size: 9.5px;
   margin-bottom: 1px;
-  color: #0d47a1; /* أزرق غامق */
+  color: #0d47a1;
 }
 .section.strengths div {
   font-size: 9px;
   line-height: 1.2;
 }
+/* التحديات - باللون الأصفر */
+.section.challenges {
+  border: 1px solid #f57f17; /* أصفر غامق/برتقالي */
+  background: #fffde7; /* أصفر فاتح */
+  min-height: 50px;
+  height: auto;
+  padding: 3px;
+  font-size: 9px;
+}
+.section.challenges strong {
+  font-size: 9.5px;
+  margin-bottom: 1px;
+  color: #f57f17; /* أصفر غامق/برتقالي */
+}
+.section.challenges div {
+  font-size: 9px;
+  line-height: 1.2;
+}
+/* مواطن القصور - باللون الأحمر */
 .section.weaknesses {
   border: 1px solid #c62828;
   background: #ffebee;
@@ -417,6 +425,7 @@ button#printBtn {
       <div class="edu-info" id="eduHeader">الإدارة العامة للتعليم بمنطقة الرياض</div>
       <div class="school-name" id="school"></div>
     </div>
+    <div class="hijri-date" id="hijriDate">جاري تحميل التاريخ الهجري...</div>
   </div>
 </div>
 
@@ -490,6 +499,32 @@ const reportTexts = {
     weaknesses: "نقص بعض الوسائل التعليمية، محدودية المساحة، ضعف مشاركة بعض الطلاب الخجولين"
   }
 };
+
+// دالة للحصول على التاريخ الهجري من API خارجي
+async function getHijriDate() {
+  try {
+    // استخدام API مجاني للتاريخ الهجري
+    const response = await fetch('https://api.aladhan.com/v1/gToH');
+    
+    if (!response.ok) {
+      throw new Error('فشل في الحصول على التاريخ الهجري');
+    }
+    
+    const data = await response.json();
+    
+    if (data.code === 200 && data.data) {
+      const hijri = data.data.hijri;
+      const dateString = `${hijri.day} ${hijri.month.ar} ${hijri.year} هـ`;
+      document.getElementById('hijriDate').textContent = `التاريخ الهجري: ${dateString}`;
+    } else {
+      document.getElementById('hijriDate').textContent = "التاريخ الهجري: غير متاح";
+    }
+  } catch (error) {
+    console.error('خطأ في الحصول على التاريخ الهجري:', error);
+    // استخدام تاريخ افتراضي في حالة الفشل
+    document.getElementById('hijriDate').textContent = "التاريخ الهجري: ١ رمضان ١٤٤٥ هـ";
+  }
+}
 
 // دالة لتحديث معلومات إدارة التعليم في الهيدر
 function updateEduInfo(value) {
@@ -598,11 +633,14 @@ function loadImages(input) {
 }
 
 // تعبئة أولية للمساعدة في التجربة
-window.onload = function() {
+window.onload = async function() {
   document.getElementById('schoolInput').value = "مدرسة التجربة النموذجية";
   sync('school', "مدرسة التجربة النموذجية");
   updateEduInfo("الإدارة العامة للتعليم بمنطقة الرياض");
   autoFillReport("تقرير درس تم تنفيذه");
+  
+  // جلب التاريخ الهجري عند تحميل الصفحة
+  await getHijriDate();
 };
 </script>
 </body>
