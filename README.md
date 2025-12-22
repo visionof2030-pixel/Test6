@@ -1,7 +1,8 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أداة إعداد التقارير التعليمية (نموذج تجريبي)</title>
 <style>
 body {
@@ -44,6 +45,8 @@ input, textarea, select {
 textarea {
   resize: vertical;
   min-height: 70px;
+  max-height: 120px;
+  overflow-y: auto;
 }
 .small-grid {
   display: grid;
@@ -77,8 +80,20 @@ textarea {
   border: 1px solid #c62828;
   color: #c62828;
 }
+.whatsapp-btn {
+  background: #25D366;
+  border: 1px solid #1da851;
+  color: white;
+  margin-top: 12px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
 button#printBtn {
-  margin-top: 18px;
+  margin-top: 12px;
   padding: 10px;
   width: 100%;
   background: #0a3b40;
@@ -99,43 +114,73 @@ button#printBtn {
 .header {
   background: #0a3b40;
   color: white;
-  text-align: center;
-  padding: 6px;
+  padding: 12px;
   margin-bottom: 8px;
   border-radius: 4px;
-  min-height: auto;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .header-content {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 3px;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
 }
-.ministry-title {
-  font-size: 13pt;
+.logo-side {
+  flex: 0 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-placeholder {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
-}
-.ministry-subtitle {
-  font-size: 8pt;
+  color: #0a3b40;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px;
+  border: 2px solid white;
 }
 .school-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  margin-top: 2px;
+  justify-content: center;
+  text-align: center;
+  padding: 0 15px;
+}
+.ministry-title {
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.ministry-subtitle {
+  font-size: 9pt;
+  margin-bottom: 8px;
+  color: #e0f7fa;
 }
 .edu-info {
   font-weight: bold;
-  font-size: 9pt;
+  font-size: 10pt;
+  margin-bottom: 5px;
 }
 .school-name {
   font-weight: bold;
-  font-size: 9pt;
+  font-size: 10pt;
 }
 .hijri-date {
-  font-size: 8pt;
-  margin-top: 3px;
+  font-size: 9pt;
+  margin-top: 8px;
   color: #e0f7fa;
 }
 .top-info.two-lines {
@@ -160,13 +205,26 @@ button#printBtn {
   text-align: center;
   font-size: 5.5pt;
   min-height: 22px;
+  max-height: 40px;
   border-radius: 2px;
   background: #f8f9fa;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .box strong {
   display: block;
   font-size: 5.5pt;
   color: #0a3b40;
+  margin-bottom: 1px;
+}
+.box div {
+  font-size: 5.5pt;
+  line-height: 1.2;
+  max-height: 28px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .goal-section {
   background: #e8f5e9;
@@ -176,6 +234,8 @@ button#printBtn {
   margin-bottom: 8px;
   text-align: center;
   min-height: auto;
+  max-height: 80px;
+  overflow: hidden;
 }
 .goal-section strong {
   font-size: 10px;
@@ -184,6 +244,11 @@ button#printBtn {
 .goal-section div {
   font-size: 10px;
   line-height: 1.3;
+  max-height: 55px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .grid2 {
   display: grid;
@@ -202,6 +267,8 @@ button#printBtn {
   padding: 5px;
   border-radius: 5px;
   font-size: 10px;
+  max-height: 100px;
+  overflow: hidden;
 }
 .section strong {
   font-size: 10px;
@@ -211,12 +278,15 @@ button#printBtn {
 .section div {
   font-size: 10px;
   line-height: 1.3;
+  max-height: 75px;
+  overflow-y: auto;
+  padding-right: 3px;
 }
-/* المحفزات - باللون الأخضر الليموني */
 .section.motivators {
   border: 1px solid #9ccc65;
   background: #f1f8e9;
   min-height: 50px;
+  max-height: 80px;
   height: auto;
   padding: 3px;
   font-size: 9px;
@@ -229,12 +299,13 @@ button#printBtn {
 .section.motivators div {
   font-size: 9px;
   line-height: 1.2;
+  max-height: 55px;
 }
-/* نقاط القوة - باللون الأزرق الغامق */
 .section.strengths {
   border: 1px solid #0d47a1;
   background: #e3f2fd;
   min-height: 50px;
+  max-height: 80px;
   height: auto;
   padding: 3px;
   font-size: 9px;
@@ -247,12 +318,13 @@ button#printBtn {
 .section.strengths div {
   font-size: 9px;
   line-height: 1.2;
+  max-height: 55px;
 }
-/* التحديات - باللون الأصفر */
 .section.challenges {
   border: 1px solid #f57f17;
   background: #fffde7;
   min-height: 50px;
+  max-height: 80px;
   height: auto;
   padding: 3px;
   font-size: 9px;
@@ -265,12 +337,13 @@ button#printBtn {
 .section.challenges div {
   font-size: 9px;
   line-height: 1.2;
+  max-height: 55px;
 }
-/* مواطن القصور - باللون الأحمر */
 .section.weaknesses {
   border: 1px solid #c62828;
   background: #ffebee;
   min-height: 50px;
+  max-height: 80px;
   height: auto;
   padding: 3px;
   font-size: 9px;
@@ -283,19 +356,20 @@ button#printBtn {
 .section.weaknesses div {
   font-size: 9px;
   line-height: 1.2;
+  max-height: 55px;
 }
 .images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px; /* زيادة الجاب بين الصور */
-  margin: 15px 0; /* زيادة الهامش */
+  gap: 15px;
+  margin: 15px 0;
 }
 .images img {
   width: 100%;
-  max-height: 185px; /* زيادة بنسبة 30% من 120px إلى 185px */
+  max-height: 185px;
   object-fit: cover;
-  border-radius: 6px; /* زيادة نصف القطر */
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* إضافة ظل خفيف */
+  border-radius: 6px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 .signatures {
   margin-top: 15px;
@@ -333,85 +407,113 @@ button#printBtn {
 
 <label>إدارة التعليم</label>
 <select id="eduSelect" onchange="updateEduInfo(this.value)">
+  <option value="">اختر إدارة التعليم</option>
   <option value="الإدارة العامة للتعليم بمنطقة الرياض" selected>الإدارة العامة للتعليم بمنطقة الرياض</option>
+  <option value="الإدارة العامة للتعليم بمنطقة مكة المكرمة">الإدارة العامة للتعليم بمنطقة مكة المكرمة</option>
+  <option value="الإدارة العامة للتعليم بمنطقة المدينة المنورة">الإدارة العامة للتعليم بمنطقة المدينة المنورة</option>
+  <option value="الإدارة العامة للتعليم بالمنطقة الشرقية">الإدارة العامة للتعليم بالمنطقة الشرقية</option>
+  <option value="الإدارة العامة للتعليم بمنطقة القصيم">الإدارة العامة للتعليم بمنطقة القصيم</option>
+  <option value="الإدارة العامة للتعليم بمنطقة عسير">الإدارة العامة للتعليم بمنطقة عسير</option>
+  <option value="الإدارة العامة للتعليم بمنطقة تبوك">الإدارة العامة للتعليم بمنطقة تبوك</option>
+  <option value="الإدارة العامة للتعليم بمنطقة حائل">الإدارة العامة للتعليم بمنطقة حائل</option>
+  <option value="الإدارة العامة للتعليم بمنطقة الحدود الشمالية">الإدارة العامة للتعليم بمنطقة الحدود الشمالية</option>
+  <option value="الإدارة العامة للتعليم بمنطقة جازان">الإدارة العامة للتعليم بمنطقة جازان</option>
+  <option value="الإدارة العامة للتعليم بمنطقة نجران">الإدارة العامة للتعليم بمنطقة نجران</option>
+  <option value="الإدارة العامة للتعليم بمنطقة الباحة">الإدارة العامة للتعليم بمنطقة الباحة</option>
+  <option value="الإدارة العامة للتعليم بمنطقة الجوف">الإدارة العامة للتعليم بمنطقة الجوف</option>
+  <option value="الإدارة العامة للتعليم بمحافظة الأحساء">الإدارة العامة للتعليم بمحافظة الأحساء</option>
+  <option value="الإدارة العامة للتعليم بمحافظة الطائف">الإدارة العامة للتعليم بمحافظة الطائف</option>
+  <option value="الإدارة العامة للتعليم بمحافظة جدة">الإدارة العامة للتعليم بمحافظة جدة</option>
 </select>
 
 <label>اسم المدرسة</label>
 <input id="schoolInput" placeholder="أدخل اسم المدرسة هنا" oninput="sync('school',this.value)">
 
 <div class="small-grid">
-  <select onchange="sync('reportTitle',this.value); autoFillReport(this.value);" id="reportSelect">
-    <option value="تقرير درس تم تنفيذه" selected>تقرير درس تم تنفيذه</option>
+  <select onchange="sync('reportTitle',this.value)" id="reportSelect">
+    <option value="">اختر نوع التقرير</option>
+    <option value="تقرير نشاط إثرائي" selected>تقرير نشاط إثرائي</option>
+    <option value="تقرير خطة علاجية">تقرير خطة علاجية</option>
   </select>
-  <input placeholder="المستهدفون" oninput="sync('target',this.value)">
-  <input placeholder="العدد" oninput="sync('count',this.value)">
-  <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)">
+  <input placeholder="المستهدفون" oninput="sync('target',this.value)" maxlength="30" title="الحد الأقصى 30 حرف">
+  <input placeholder="العدد" oninput="sync('count',this.value)" maxlength="10" title="الحد الأقصى 10 أرقام">
+  <input placeholder="مكان التنفيذ" oninput="sync('location',this.value)" maxlength="40" title="الحد الأقصى 40 حرف">
   <select id="semesterSelect" onchange="sync('semester',this.value)">
     <option value="">اختر الفصل الدراسي</option>
     <option value="الفصل الدراسي الأول">الفصل الدراسي الأول</option>
     <option value="الفصل الدراسي الثاني">الفصل الدراسي الثاني</option>
   </select>
-  <input placeholder="الصف" oninput="sync('grade',this.value)">
-  <input placeholder="المادة" oninput="sync('subject',this.value)">
+  <input placeholder="الصف" oninput="sync('grade',this.value)" maxlength="20" title="الحد الأقصى 20 حرف">
+  <input placeholder="المادة" oninput="sync('subject',this.value)" maxlength="25" title="الحد الأقصى 25 حرف">
 </div>
 
+<!-- اختيار النص التلقائي - تم إصلاح الأزرار -->
 <div class="auto-row">
-  <button class="auto-btn" onclick="autoFillReport(document.getElementById('reportSelect').value)">تعبئة تلقائية للتقرير</button>
-  <button class="auto-btn clear-btn" onclick="clearAllFields()">مسح جميع الحقول</button>
+  <button class="auto-btn" onclick="loadSmartText(1)">النص الإثرائي 1</button>
+  <button class="auto-btn" onclick="loadSmartText(2)">النص الإثرائي 2</button>
+  <button class="auto-btn" onclick="loadSmartText(3)">النص الإثرائي 3</button>
+  <button class="auto-btn clear-btn" onclick="clearAllFields()">مسح الحقول</button>
+</div>
+<div class="auto-row">
+  <button class="auto-btn" onclick="loadSmartText(4)">النص العلاجي 1</button>
+  <button class="auto-btn" onclick="loadSmartText(5)">النص العلاجي 2</button>
 </div>
 
-<label>الهدف التربوي</label>
-<textarea id="goalInput" oninput="sync('goal',this.value)"></textarea>
+<label>الهدف التربوي (الحد الأقصى: 150 حرف)</label>
+<textarea id="goalInput" oninput="sync('goal',this.value)" maxlength="150" title="الحد الأقصى 150 حرف"></textarea>
 
-<label>وصف مختصر</label>
-<textarea id="desc1Input" oninput="sync('desc1',this.value)"></textarea>
+<label>وصف مختصر (الحد الأقصى: 200 حرف)</label>
+<textarea id="desc1Input" oninput="sync('desc1',this.value)" maxlength="200" title="الحد الأقصى 200 حرف"></textarea>
 
-<label>إجراءات التنفيذ</label>
-<textarea id="desc2Input" oninput="sync('desc2',this.value)"></textarea>
+<label>إجراءات التنفيذ (الحد الأقصى: 300 حرف)</label>
+<textarea id="desc2Input" oninput="sync('desc2',this.value)" maxlength="300" title="الحد الأقصى 300 حرف"></textarea>
 
-<label>النتائج</label>
-<textarea id="desc3Input" oninput="sync('desc3',this.value)"></textarea>
+<label>النتائج (الحد الأقصى: 250 حرف)</label>
+<textarea id="desc3Input" oninput="sync('desc3',this.value)" maxlength="250" title="الحد الأقصى 250 حرف"></textarea>
 
-<label>التوصيات</label>
-<textarea id="desc4Input" oninput="sync('desc4',this.value)"></textarea>
+<label>التوصيات (الحد الأقصى: 250 حرف)</label>
+<textarea id="desc4Input" oninput="sync('desc4',this.value)" maxlength="250" title="الحد الأقصى 250 حرف"></textarea>
 
 <!-- الصف الأول: المحفزات ونقاط القوة -->
 <div class="grid2">
   <div>
-    <label>المحفزات</label>
-    <textarea id="motivatorsInput" oninput="sync('motivators',this.value)"></textarea>
+    <label>المحفزات (الحد الأقصى: 200 حرف)</label>
+    <textarea id="motivatorsInput" oninput="sync('motivators',this.value)" maxlength="200" title="الحد الأقصى 200 حرف"></textarea>
   </div>
   <div>
-    <label>نقاط القوة</label>
-    <textarea id="strengthsInput" oninput="sync('strengths',this.value)"></textarea>
+    <label>نقاط القوة (الحد الأقصى: 200 حرف)</label>
+    <textarea id="strengthsInput" oninput="sync('strengths',this.value)" maxlength="200" title="الحد الأقصى 200 حرف"></textarea>
   </div>
 </div>
 
 <!-- الصف الثاني: التحديات ومواطن القصور -->
 <div class="grid2">
   <div>
-    <label>التحديات</label>
-    <textarea id="challengesInput" oninput="sync('challenges',this.value)"></textarea>
+    <label>التحديات (الحد الأقصى: 200 حرف)</label>
+    <textarea id="challengesInput" oninput="sync('challenges',this.value)" maxlength="200" title="الحد الأقصى 200 حرف"></textarea>
   </div>
   <div>
-    <label>مواطن القصور</label>
-    <textarea id="weaknessesInput" oninput="sync('weaknesses',this.value)"></textarea>
+    <label>مواطن القصور (الحد الأقصى: 200 حرف)</label>
+    <textarea id="weaknessesInput" oninput="sync('weaknesses',this.value)" maxlength="200" title="الحد الأقصى 200 حرف"></textarea>
   </div>
 </div>
 
-<label>إرفاق الصور (اختياري)</label>
-<input type="file" multiple accept="image/*" onchange="loadImages(this)">
+<label>إرفاق الصور (اختياري - الحد الأقصى: صورتين)</label>
+<input type="file" multiple accept="image/*" onchange="loadImages(this)" title="يمكن إرفاق صورتين كحد أقصى">
 
 <div class="signatures">
   <div class="teacher-signature">
     <div class="signature-label">اسم المعلم</div>
-    <input type="text" id="teacherInput" placeholder="أدخل اسم المعلم" oninput="sync('teacherName', this.value)">
+    <input type="text" id="teacherInput" placeholder="أدخل اسم المعلم" oninput="sync('teacherName', this.value)" maxlength="50">
   </div>
   <div class="principal-signature">
     <div class="signature-label">اسم مدير المدرسة</div>
-    <input type="text" id="principalInput" placeholder="أدخل اسم المدير" oninput="sync('principalName', this.value)">
+    <input type="text" id="principalInput" placeholder="أدخل اسم المدير" oninput="sync('principalName', this.value)" maxlength="50">
   </div>
 </div>
+
+<!-- زر إرسال التقرير بالواتساب الجديد -->
+<button class="whatsapp-btn" onclick="sendViaWhatsApp()">📤 إرسال التقرير بالواتساب</button>
 
 <button id="printBtn" onclick="window.print()">معاينة وطباعة التقرير</button>
 </div>
@@ -420,13 +522,28 @@ button#printBtn {
 <div class="report">
 <div class="header">
   <div class="header-content">
-    <div class="ministry-title">وزارة التعليم</div>
-    <div class="ministry-subtitle">Ministry of Education</div>
+    <!-- شعار الوزارة على اليسار -->
+    <div class="logo-side">
+      <div class="logo-placeholder">
+        شعار وزارة التعليم
+      </div>
+    </div>
+    
+    <!-- معلومات المدرسة في الوسط -->
     <div class="school-info">
+      <div class="ministry-title">وزارة التعليم</div>
+      <div class="ministry-subtitle">Ministry of Education</div>
       <div class="edu-info" id="eduHeader">الإدارة العامة للتعليم بمنطقة الرياض</div>
       <div class="school-name" id="school"></div>
+      <div class="hijri-date" id="hijriDate">جاري تحميل التاريخ الهجري...</div>
     </div>
-    <div class="hijri-date" id="hijriDate">جاري تحميل التاريخ الهجري...</div>
+    
+    <!-- شعار الوزارة على اليمين -->
+    <div class="logo-side">
+      <div class="logo-placeholder">
+        شعار وزارة التعليم
+      </div>
+    </div>
   </div>
 </div>
 
@@ -486,25 +603,82 @@ button#printBtn {
 </div>
 
 <script>
-// النص التلقائي للتقرير التجريبي
-const reportTexts = {
-  "تقرير درس تم تنفيذه": {
-    goal: "شرح مفهوم أساسي في المنهج وتطبيقه عبر أنشطة تفاعلية",
-    desc1: "تنفيذ درس نموذجي يركز على الفهم العميق والتطبيق العملي للمفاهيم",
-    desc2: "عرض المفهوم الجديد، مناقشة أمثلة توضيحية، أنشطة تطبيقية جماعية، حل تمارين فردية، تلخيص النقاط الرئيسية",
-    desc3: "استيعاب غالبية الطلاب للمفهوم، مشاركة فعالة في الأنشطة، إنجاز التمارين بنجاح",
-    desc4: "تكرار استخدام الأنشطة التفاعلية، تخصيص وقت للمراجعة، استخدام وسائل بصرية إضافية",
-    motivators: "تفاعل الطلاب الإيجابي، حافز التنافس بين المجموعات، استخدام الوسائل التعليمية الجذابة",
-    strengths: "وضوح الشرح، تنوع الأنشطة، إدارة الوقت الفعالة، مراعاة الفروق الفردية",
-    challenges: "تفاوت سرعة الاستيعاب بين الطلاب، وقت الحصة المحدود، صعوبة بعض المفاهيم",
-    weaknesses: "نقص بعض الوسائل التعليمية، محدودية المساحة، ضعف مشاركة بعض الطلاب الخجولين"
+// قاعدة البيانات للنصوص الذكية والمتنوعة (5 نصوص مختلفة)
+const smartTextsDatabase = {
+  // النصوص الإثرائية (1-3)
+  1: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تنمية التفكير النقدي والإبداعي لدى الطلاب المتميزين عبر أنشطة متقدمة",
+    desc1: "برنامج إثرائي متخصص لصقل مهارات التفكير العليا والبحث العلمي",
+    desc2: "اختيار الطلاب الموهوبين، ورش عمل متخصصة، مشاريع بحثية، منافسات علمية، متابعة فردية",
+    desc3: "تطوير 12 مشروعاً بحثياً مبتكراً، تحسن مهارات التحليل بنسبة 45%، فوز في مسابقات محلية",
+    desc4: "توسيع نطاق البرنامج، تدريب معلمين متخصصين، إنشاء مكتبة مصادر، توثيق التجارب الناجحة",
+    motivators: "جوائز مالية رمزية، رحلات تعليمية، نشر الأبحاث، شهادات تميز معتمدة",
+    strengths: "كوادر تدريسية متميزة، مختبرات مجهزة، منهجية علمية دقيقة، دعم إداري مستمر",
+    challenges: "تحديد الموهوبين بدقة، تكاليف البرامج المتخصصة، ضيق الوقت الدراسي",
+    weaknesses: "نقص الخبرات المتقدمة، محدودية التمويل، صعوبة القياس الكمي"
+  },
+  2: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تعزيز المهارات البحثية والعلمية لدى النخبة الطلابية الواعدة",
+    desc1: "مشروع علمي متكامل لتنمية القدرات البحثية والابتكارية",
+    desc2: "تقييم القدرات البحثية، تدريب على المنهج العلمي، إشراف أكاديمي، تقديم المشاريع، تقييم النتائج",
+    desc3: "إنتاج 8 أبحاث علمية قابلة للنشر، تنمية مهارات العرض بنسبة 60%، اكتشاف مواهب بحثية",
+    desc4: "إنشاء نادي البحث العلمي، تدريب المدربين، توفير منح دراسية، إقامة مؤتمر طلابي",
+    motivators: "منح بحثية صغيرة، مشاركة في مؤتمرات، نشر في مجلات طلابية، زيارات لمؤسسات بحثية",
+    strengths: "شراكات مع جامعات، مراكز بحثية داعمة، مكتبة رقمية شاملة، خبراء استشاريون",
+    challenges: "صعوبة النشر العلمي، محدودية الإشراف المتخصص، تكاليف المعدات البحثية",
+    weaknesses: "ضعف الخلفية البحثية، قلة الوقت للبحث، محدودية المراجع المتخصصة"
+  },
+  3: {
+    reportType: "تقرير نشاط إثرائي",
+    goal: "تطوير القدرات الابتكارية والتكنولوجية للطلاب الموهوبين",
+    desc1: "برنامج تقني متقدم لتعزيز الابتكار والتفكير الحاسوبي",
+    desc2: "تدريب على البرمجة، ورش الابتكار التقني، مشاريع تكنولوجية، مسابقات برمجية، معارض ابتكار",
+    desc3: "تصميم 15 تطبيقاً تعليمياً، فوز في 3 مسابقات برمجية، إنشاء نادٍ تقني، اكتشاف مواهب تقنية",
+    desc4: "تطوير منهج تقني متخصص، تأهيل مدربين تقنيين، توفير أجهزة متطورة، إنشاء حاضنة تقنية",
+    motivators: "جوائز لأفضل التطبيقات، تدريبات في شركات تقنية، شهادات احترافية، رحلات تقنية",
+    strengths: "معامل حاسب متطورة، مدربون متخصصون، شراكات مع شركات تقنية، بيئة محفزة للإبداع",
+    challenges: "تحديث الأجهزة باستمرار، سرعة التطور التقني، نقص الكوادر المتخصصة",
+    weaknesses: "فجوة المهارات التقنية، تكاليف الصيانة العالية، محدودية البرامج المتخصصة"
+  },
+  // النصوص العلاجية (4-5)
+  4: {
+    reportType: "تقرير خطة علاجية",
+    goal: "معالجة الصعوبات القرائية والكتابية لدى الطلاب المتأخرين دراسياً",
+    desc1: "برنامج تدخلي مكثف لتحسين المهارات الأساسية في القراءة والكتابة",
+    desc2: "تشخيص فردي للصعوبات، جلسات علاجية مكثفة، استخدام وسائل مساعدة، متابعة أسرية، تقييم دوري",
+    desc3: "تحسن مهارات القراءة بنسبة 70%، تحسن الكتابة بنسبة 65%، زيادة الثقة اللغوية، تفاعل إيجابي",
+    desc4: "تطوير أدوات التشخيص، تدريب فرق علاجية، إنشاء بنك أنشطة، تعزيز الشراكة الأسرية",
+    motivators: "برامج تحفيزية أسبوعية، شهادات تحسن، نشر قصص نجاح، جوائز للتقدم الملحوظ",
+    strengths: "معلمون متخصصون في الصعوبات، وسائل تعليمية مساندة، دعم إداري كامل، منهجية علاجية مثبتة",
+    challenges: "تفاوت مستويات الصعوبات، مقاومة بعض الطلاب، ضعف المتابعة الأسرية",
+    weaknesses: "نقص الكوادر المتخصصة، محدودية الوقت العلاجي، صعوبة التشخيص الدقيق"
+  },
+  5: {
+    reportType: "تقرير خطة علاجية",
+    goal: "تحسين المهارات الحسابية والرياضية للطلاب الضعفاء دراسياً",
+    desc1: "برنامج علاجي منهجي لمعالجة ضعف المهارات الرياضية الأساسية",
+    desc2: "تقييم المهارات الحسابية، تدريبات علاجية مكثفة، استخدام وسائل بصرية، أنشطة تطبيقية، تقييم تقدم",
+    desc3: "تحسن العمليات الحسابية بنسبة 75%، فهم المفاهيم الرياضية، زيادة الثقة بالنفس، تحسن المشاركة",
+    desc4: "تطوير مواد علاجية، تدريب معلمي رياضيات، إنشاء مختبر رياضي، تعزيز التعلم التطبيقي",
+    motivators: "مسابقات حسابية، شهادات تقدم، نشر الإنجازات، رحلات تعليمية",
+    strengths: "وسائل تعليمية مبتكرة، معلمون متمرسون، بيئة تعلم محفزة، دعم نفسي مستمر",
+    challenges: "صعوبة بعض المفاهيم، تفاوت القدرات الاستيعابية، محدودية الوقت",
+    weaknesses: "نقص الوسائل التعليمية، ضعف الخلفية الرياضية، صعوبة الربط بالتطبيق"
   }
 };
+
+// تقصير النصوص الطويلة لعرضها في المربعات
+function truncateText(text, maxLength) {
+  if (!text) return '';
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength - 3) + '...';
+}
 
 // دالة للحصول على التاريخ الهجري من API خارجي
 async function getHijriDate() {
   try {
-    // استخدام API مجاني للتاريخ الهجري
     const response = await fetch('https://api.aladhan.com/v1/gToH');
     
     if (!response.ok) {
@@ -522,56 +696,102 @@ async function getHijriDate() {
     }
   } catch (error) {
     console.error('خطأ في الحصول على التاريخ الهجري:', error);
-    // استخدام تاريخ افتراضي في حالة الفشل
     document.getElementById('hijriDate').textContent = "التاريخ الهجري: ١ رمضان ١٤٤٥ هـ";
   }
 }
 
 // دالة لتحديث معلومات إدارة التعليم في الهيدر
 function updateEduInfo(value) {
+  if (!value) return;
   const eduHeader = document.getElementById('eduHeader');
   if (eduHeader) {
-    eduHeader.textContent = value;
+    eduHeader.textContent = truncateText(value, 50);
   }
 }
 
 function sync(id, value) {
   const el = document.getElementById(id);
   if (el) {
-    el.textContent = value;
+    let maxLength;
+    switch(id) {
+      case 'goal': maxLength = 150; break;
+      case 'desc1': maxLength = 200; break;
+      case 'desc2': maxLength = 300; break;
+      case 'desc3': maxLength = 250; break;
+      case 'desc4': maxLength = 250; break;
+      case 'motivators': maxLength = 200; break;
+      case 'strengths': maxLength = 200; break;
+      case 'challenges': maxLength = 200; break;
+      case 'weaknesses': maxLength = 200; break;
+      case 'target': maxLength = 30; break;
+      case 'count': maxLength = 10; break;
+      case 'location': maxLength = 40; break;
+      case 'grade': maxLength = 20; break;
+      case 'subject': maxLength = 25; break;
+      default: maxLength = 100;
+    }
+    
+    el.textContent = truncateText(value, maxLength);
   }
 }
 
-function autoFillReport(reportType) {
-  const texts = reportTexts[reportType];
-  if (!texts) return;
-
-  document.getElementById('goalInput').value = texts.goal;
-  document.getElementById('desc1Input').value = texts.desc1;
-  document.getElementById('desc2Input').value = texts.desc2;
-  document.getElementById('desc3Input').value = texts.desc3;
-  document.getElementById('desc4Input').value = texts.desc4;
-  document.getElementById('motivatorsInput').value = texts.motivators;
-  document.getElementById('strengthsInput').value = texts.strengths;
-  document.getElementById('challengesInput').value = texts.challenges;
-  document.getElementById('weaknessesInput').value = texts.weaknesses;
-
-  sync('goal', texts.goal);
-  sync('desc1', texts.desc1);
-  sync('desc2', texts.desc2);
-  sync('desc3', texts.desc3);
-  sync('desc4', texts.desc4);
-  sync('motivators', texts.motivators);
-  sync('strengths', texts.strengths);
-  sync('challenges', texts.challenges);
-  sync('weaknesses', texts.weaknesses);
-
-  document.querySelector('input[placeholder="المستهدفون"]').value = "طلاب الصف";
-  document.querySelector('input[placeholder="العدد"]').value = "25";
-  document.querySelector('input[placeholder="مكان التنفيذ"]').value = "الفصل الدراسي";
-  sync('target', "طلاب الصف");
-  sync('count', "25");
-  sync('location', "الفصل الدراسي");
+// دالة رئيسية لتحميل النص الذكي - تم إصلاحها
+function loadSmartText(textNumber) {
+  // الحصول على النص من قاعدة البيانات
+  const textData = smartTextsDatabase[textNumber];
+  if (!textData) {
+    alert("النص غير متوفر، الرجاء المحاولة مرة أخرى");
+    return;
+  }
+  
+  // تحديث نوع التقرير في القائمة المنسدلة
+  const reportSelect = document.getElementById('reportSelect');
+  reportSelect.value = textData.reportType;
+  sync('reportTitle', textData.reportType);
+  
+  // تعبئة الحقول مع النصوص
+  document.getElementById('goalInput').value = textData.goal;
+  document.getElementById('desc1Input').value = textData.desc1;
+  document.getElementById('desc2Input').value = textData.desc2;
+  document.getElementById('desc3Input').value = textData.desc3;
+  document.getElementById('desc4Input').value = textData.desc4;
+  document.getElementById('motivatorsInput').value = textData.motivators;
+  document.getElementById('strengthsInput').value = textData.strengths;
+  document.getElementById('challengesInput').value = textData.challenges;
+  document.getElementById('weaknessesInput').value = textData.weaknesses;
+  
+  // مزامنة مع العرض
+  sync('goal', textData.goal);
+  sync('desc1', textData.desc1);
+  sync('desc2', textData.desc2);
+  sync('desc3', textData.desc3);
+  sync('desc4', textData.desc4);
+  sync('motivators', textData.motivators);
+  sync('strengths', textData.strengths);
+  sync('challenges', textData.challenges);
+  sync('weaknesses', textData.weaknesses);
+  
+  // تعبئة تلقائية للحقول الأخرى بناءً على نوع التقرير
+  if (textData.reportType === "تقرير نشاط إثرائي") {
+    document.querySelector('input[placeholder="المستهدفون"]').value = "الطلاب المتميزين أكاديمياً";
+    document.querySelector('input[placeholder="العدد"]').value = "18";
+    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "المختبر العلمي المتقدم";
+    
+    sync('target', "الطلاب المتميزين أكاديمياً");
+    sync('count', "18");
+    sync('location', "المختبر العلمي المتقدم");
+  } else if (textData.reportType === "تقرير خطة علاجية") {
+    document.querySelector('input[placeholder="المستهدفون"]').value = "الطلاب المتأخرين دراسياً";
+    document.querySelector('input[placeholder="العدد"]').value = "12";
+    document.querySelector('input[placeholder="مكان التنفيذ"]').value = "غرفة المصادر التعليمية";
+    
+    sync('target', "الطلاب المتأخرين دراسياً");
+    sync('count', "12");
+    sync('location', "غرفة المصادر التعليمية");
+  }
+  
+  // إشعار للمستخدم
+  alert(`تم تحميل ${textData.reportType} - النص ${textNumber} بنجاح!`);
 }
 
 function clearAllFields() {
@@ -617,12 +837,20 @@ function clearAllFields() {
   sync('semester', '');
   
   document.getElementById('imagesBox').innerHTML = '';
+  
+  // إعادة تعيين نوع التقرير
+  document.getElementById('reportSelect').selectedIndex = 0;
+  sync('reportTitle', '');
 }
 
 function loadImages(input) {
   const box = document.getElementById("imagesBox");
   box.innerHTML = "";
-  Array.from(input.files).slice(0, 2).forEach(file => {
+  const files = Array.from(input.files).slice(0, 2);
+  if (files.length > 2) {
+    alert("يمكنك إرفاق صورتين كحد أقصى");
+  }
+  files.forEach(file => {
     const reader = new FileReader();
     reader.onload = e => {
       const img = document.createElement("img");
@@ -633,15 +861,94 @@ function loadImages(input) {
   });
 }
 
+// دالة جديدة: إرسال التقرير عبر الواتساب
+function sendViaWhatsApp() {
+  // جمع بيانات التقرير
+  const reportData = {
+    school: document.getElementById('schoolInput').value || 'غير محدد',
+    eduManagement: document.getElementById('eduSelect').value || 'غير محدد',
+    reportTitle: document.getElementById('reportSelect').value || 'غير محدد',
+    target: document.querySelector('input[placeholder="المستهدفون"]').value || 'غير محدد',
+    count: document.querySelector('input[placeholder="العدد"]').value || 'غير محدد',
+    location: document.querySelector('input[placeholder="مكان التنفيذ"]').value || 'غير محدد',
+    semester: document.getElementById('semesterSelect').value || 'غير محدد',
+    grade: document.querySelector('input[placeholder="الصف"]').value || 'غير محدد',
+    subject: document.querySelector('input[placeholder="المادة"]').value || 'غير محدد',
+    goal: document.getElementById('goalInput').value || 'غير محدد',
+    desc1: document.getElementById('desc1Input').value || 'غير محدد',
+    desc2: document.getElementById('desc2Input').value || 'غير محدد',
+    desc3: document.getElementById('desc3Input').value || 'غير محدد',
+    desc4: document.getElementById('desc4Input').value || 'غير محدد',
+    motivators: document.getElementById('motivatorsInput').value || 'غير محدد',
+    strengths: document.getElementById('strengthsInput').value || 'غير محدد',
+    challenges: document.getElementById('challengesInput').value || 'غير محدد',
+    weaknesses: document.getElementById('weaknessesInput').value || 'غير محدد',
+    teacher: document.getElementById('teacherInput').value || 'غير محدد',
+    principal: document.getElementById('principalInput').value || 'غير محدد'
+  };
+  
+  // تنسيق النص للرسالة
+  const message = `📋 *تقرير تعليمي* 📋
+
+🏫 *المدرسة:* ${reportData.school}
+🏢 *إدارة التعليم:* ${reportData.eduManagement}
+
+📄 *نوع التقرير:* ${reportData.reportTitle}
+👥 *المستهدفون:* ${reportData.target}
+🔢 *العدد:* ${reportData.count}
+📍 *مكان التنفيذ:* ${reportData.location}
+📚 *الفصل الدراسي:* ${reportData.semester}
+📖 *الصف:* ${reportData.grade}
+📝 *المادة:* ${reportData.subject}
+
+🎯 *الهدف التربوي:*
+${reportData.goal}
+
+📝 *وصف مختصر:*
+${reportData.desc1}
+
+⚙️ *إجراءات التنفيذ:*
+${reportData.desc2}
+
+📊 *النتائج:*
+${reportData.desc3}
+
+💡 *التوصيات:*
+${reportData.desc4}
+
+✅ *المحفزات:* ${reportData.motivators}
+✅ *نقاط القوة:* ${reportData.strengths}
+⚠️ *التحديات:* ${reportData.challenges}
+⚠️ *مواطن القصور:* ${reportData.weaknesses}
+
+👨‍🏫 *المعلم:* ${reportData.teacher}
+👨‍💼 *مدير المدرسة:* ${reportData.principal}
+
+📅 *تم إنشاء التقرير في:* ${new Date().toLocaleDateString('ar-SA')}`;
+  
+  // ترميز الرسالة لرابط الواتساب
+  const encodedMessage = encodeURIComponent(message);
+  
+  // إنشاء رابط الواتساب
+  const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+  
+  // فتح الرابط في نافذة جديدة
+  window.open(whatsappURL, '_blank');
+}
+
 // تعبئة أولية للمساعدة في التجربة
 window.onload = async function() {
   document.getElementById('schoolInput').value = "مدرسة التجربة النموذجية";
   sync('school', "مدرسة التجربة النموذجية");
   updateEduInfo("الإدارة العامة للتعليم بمنطقة الرياض");
-  autoFillReport("تقرير درس تم تنفيذه");
   
   // جلب التاريخ الهجري عند تحميل الصفحة
   await getHijriDate();
+  
+  // تحميل نص تجريبي عند بدء التشغيل
+  setTimeout(() => {
+    loadSmartText(1);
+  }, 500);
 };
 </script>
 </body>
