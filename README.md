@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -282,17 +282,17 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 </div>
 
 <div class="signature-section">
-<div class="signature-box">
-<div id="teacherTypeBox"></div>
-<span id="teacherBox"></span>
-<div class="signature-line"></div>
-</div>
-<div class="signature-section">
-<div class="signature-box">
-<div id="principalTypeBox"></div>
-<span id="principalBox"></span>
-<div class="signature-line"></div>
-</div>
+  <div class="signature-box">
+    <div id="teacherTypeBox"></div>
+    <span id="teacherBox"></span>
+    <div class="signature-line"></div>
+  </div>
+
+  <div class="signature-box">
+    <div id="principalTypeBox"></div>
+    <span id="principalBox"></span>
+    <div class="signature-line"></div>
+  </div>
 </div>
 
 <div class="footer">وزارة التعليم – المملكة العربية السعودية</div>
