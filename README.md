@@ -13,16 +13,22 @@ html,body{font-family:'Cairo',sans-serif;background:#ffffff;direction:rtl;overfl
 .wrapper{max-width:830px;margin:auto;padding:15px;}
 
 .top-marquee{
-position:fixed;top:0;width:100%;background:#044a35;color:#fff;
-padding:7px;font-size:12px;white-space:nowrap;z-index:200;overflow:hidden;
+position:fixed;top:0;left:0;right:0;width:100%;background:#044a35;color:#fff;
+padding:7px;font-size:12px;z-index:300;overflow:hidden;
+white-space:nowrap;border-bottom:2px solid #022e22;
 }
-.top-marquee div{
-display:inline-block;padding-left:100%;animation:scroll 18s linear infinite;
+.marquee-inner{
+display:inline-block;
+animation:scroll 18s linear infinite;
+padding-right:100%;
 }
-@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+@keyframes scroll{
+0%{transform:translateX(100%);}
+100%{transform:translateX(-100%);}
+}
 
 .btn-container{
-text-align:center;padding:12px;background:#f5f5f5;position:fixed;top:30px;width:100%;z-index:150;
+text-align:center;padding:12px;background:#f5f5f5;position:fixed;top:32px;left:0;right:0;width:100%;z-index:200;
 display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 3px 6px rgba(0,0,0,0.25);
 }
 button.main-btn{
@@ -30,7 +36,7 @@ background:#066d4d;color:#fff;border:none;padding:10px 20px;font-size:14px;borde
 }
 
 .input-section{
-background:#f8fdfb;padding:15px;border-radius:10px;margin-top:100px;border:1px solid #e0f0ea;
+background:#f8fdfb;padding:15px;border-radius:10px;margin-top:115px;border:1px solid #e0f0ea;
 }
 
 label{font-size:14px;font-weight:700;margin-top:15px;display:block;color:#083024;}
@@ -91,8 +97,9 @@ min-height:130px;max-height:130px;overflow:hidden;
 
 .image-evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .image-box{
-min-height:140px;border:1px dashed #066d4d;border-radius:8px;
+min-height:140px;max-height:140px;border:1px dashed #066d4d;border-radius:8px;
 display:flex;align-items:center;justify-content:center;background:#ffffff;overflow:hidden;
+font-size:12px;color:#666;
 }
 .image-box img{max-width:100%;max-height:100%;object-fit:contain;}
 
@@ -105,7 +112,9 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 
 <body>
 
-<div class="top-marquee"><div>طريقة الاستخدام: يمكن الضغط على زر تعبئة أكثر من مرة لتوليد نصوص مختلفة لكل خانة دون تمدد الصندوق أو حذف محتواه السابق 🔂</div></div>
+<div class="top-marquee">
+<div class="marquee-inner">طريقة الاستخدام: يمكن الضغط على زر تعبئة أكثر من مرة لتوليد نصوص مختلفة لكل خانة دون تمدد الصندوق أو حذف المحتوى 🔂 ــ طريقة الاستخدام: يمكن الضغط على زر تعبئة أكثر من مرة لتوليد نصوص مختلفة لكل خانة دون تمدد الصندوق أو حذف المحتوى 🔂 ــ </div>
+</div>
 
 <div class="btn-container">
 <button class="main-btn" onclick="saveData()">حفظ</button>
@@ -124,7 +133,7 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 </select>
 
 <label>اسم المدرسة</label>
-<input id="school" value="سعيد بن العاص" oninput="updateReport()">
+<input id="school" value="سعيد بن العاص" placeholder="ادخل اسم المدرسة" oninput="updateReport()">
 
 <label>اسم التقرير</label>
 <select id="reportType" oninput="handleReportType()">
@@ -140,7 +149,7 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 </select>
 
 <label>اسم المعلّم</label>
-<input id="teacher" value="فهد الخالدي" oninput="updateReport()">
+<input id="teacher" value="فهد الخالدي" placeholder="اسم المعلم" oninput="updateReport()">
 
 <label>صفة المدير</label>
 <select id="principalType" oninput="updateReport()">
@@ -149,7 +158,7 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 </select>
 
 <label>اسم المدير</label>
-<input id="principal" value="نايف اللحياني" oninput="updateReport()">
+<input id="principal" value="نايف اللحياني" placeholder="اسم مدير المدرسة" oninput="updateReport()">
 
 <label>الصف</label>
 <input id="grade" placeholder="مثال: ٥/٣" oninput="updateReport()">
@@ -163,7 +172,7 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <input id="subject" placeholder="مثال: لغتي – علوم – رياضيات" oninput="updateReport()">
 
 <label>المستهدفون</label>
-<input id="target" placeholder="مثال: طلاب الصف بالكامل" oninput="updateReport()">
+<input id="target" placeholder="مثال: جميع طلاب الصف" oninput="updateReport()">
 
 <label>عدد الحضور</label>
 <input id="count" placeholder="مثال: ٢٥ طالب" oninput="updateReport()">
@@ -172,38 +181,38 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <input id="place" placeholder="مثال: داخل الصف – المختبر" oninput="updateReport()">
 
 <label>الهدف التربوي</label>
-<textarea id="goal" oninput="updateReport()"></textarea>
+<textarea id="goal" placeholder="أدخل الهدف التربوي" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('goal')">🔂 تعبئة</button></div>
 
 <label>نبذة مختصرة</label>
-<textarea id="summary" oninput="updateReport()"></textarea>
+<textarea id="summary" placeholder="أدخل نبذة مختصرة" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('summary')">🔂 تعبئة</button></div>
 
 <label>إجراءات التنفيذ</label>
-<textarea id="steps" oninput="updateReport()"></textarea>
+<textarea id="steps" placeholder="كيف تم تنفيذ النشاط؟" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('steps')">🔂 تعبئة</button></div>
 
 <label>الاستراتيجيات</label>
-<textarea id="strategies" oninput="updateReport()"></textarea>
+<textarea id="strategies" placeholder="ما هي الاستراتيجيات" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('strategies')">🔂 تعبئة</button></div>
 
 <label>نقاط القوة</label>
-<textarea id="strengths" oninput="updateReport()"></textarea>
+<textarea id="strengths" placeholder="نقاط القوة" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('strengths')">🔂 تعبئة</button></div>
 
 <label>نقاط التحسين</label>
-<textarea id="improve" oninput="updateReport()"></textarea>
+<textarea id="improve" placeholder="نقاط تحتاج تطوير" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('improve')">🔂 تعبئة</button></div>
 
 <label>التوصيات</label>
-<textarea id="recomm" oninput="updateReport()"></textarea>
+<textarea id="recomm" placeholder="توصيات مستقبلية" oninput="updateReport()"></textarea>
 <div class="auto-buttons"><button onclick="autoFill('recomm')">🔂 تعبئة</button></div>
 
 <label>الصورة 1</label>
-<input type="file" accept="image/*" onchange="loadImage(this,'imgBox1')">
+<input type="file" accept="image/*" placeholder="ارفع صورة" onchange="loadImage(this,'imgBox1')">
 
 <label>الصورة 2</label>
-<input type="file" accept="image/*" onchange="loadImage(this,'imgBox2')">
+<input type="file" accept="image/*" placeholder="ارفع صورة" onchange="loadImage(this,'imgBox2')">
 
 </div>
 </div>
@@ -221,6 +230,7 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <div class="info-grid">
 <div class="info-box"><div class="info-title">الفصل</div><div class="info-value" id="termBox"></div></div>
 <div class="info-box"><div class="info-title">الصف</div><div class="info-value" id="gradeBox"></div></div>
+<div class="info-title"></div>
 <div class="info-box"><div class="info-title">المادة</div><div class="info-value" id="subjectBox"></div></div>
 <div class="info-box"><div class="info-title">التقرير</div><div class="info-value" id="reportTypeBox"></div></div>
 </div>
@@ -263,7 +273,8 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 
 <script>
 const autoTexts={
-goal:[ "تنمية مهارات التفكير وتنشيط الإبداع وتحقيق مشاركة فعالة ودعم التعاون بين الطلاب وتنمية مهارات حل المشكلات وصقل شخصية الطالب وتحقيق نواتج تعلم عالية الجودة وتعزيز الدافعية للتعلم وتعميق الفهم وبناء الثقة والاستقلالية لديهم.",
+goal:[
+"تنمية مهارات التفكير وتنشيط الإبداع وتحقيق مشاركة فعالة ودعم التعاون بين الطلاب وتنمية مهارات حل المشكلات وصقل شخصية الطالب وتحقيق نواتج تعلم عالية الجودة وتعزيز الدافعية للتعلم وتعميق الفهم وبناء الثقة والاستقلالية لديهم.",
 "تحقيق تفاعل إيجابي داخل الصف وتنمية مهارات التواصل والعمل الجماعي واستثمار قدراتهم الذاتية وتنمية جوانب الإبداع وزيادة دافعية الطلاب للتعلم وصنع بيئة تعليمية محفزة تعزز المهارات المستقبلية للطلاب جميعهم.",
 "تنمية مهارات القراءة والفهم والمناقشة وترتيب الأفكار وتحسين قدراتهم اللغوية وتوسيع حصيلتهم العلمية وتحفيزهم للبحث والاستقصاء وتطبيق الاستراتيجيات التعليمية الحديثة لتعزيز مخرجات العملية التعليمية بشكل فعّال ومتميز.",
 "تعزيز التعاون وبناء الشخصية وتحسين مهارات العرض والتقديم وتنمية التفكير التحليلي والإبداعي وتحسين التحصيل الدراسي وتطوير المهارات الأساسية المرتبطة بالمنهج وتحقيق التعلم النشط بطريقة ممتعة وسهلة التطبيق ومستمرة التأثير.",
@@ -334,9 +345,7 @@ teacherBox.innerText=teacher.value;
 principalBox.innerText=principal.value;
 teacherTypeBox.innerText=teacherType.value;
 principalTypeBox.innerText=principalType.value;
-
 reportTypeBox.innerText=(reportType.value==="أخرى")?reportTypeInput.value:reportType.value;
-
 goalBox.innerText=goal.value;
 summaryBox.innerText=summary.value;
 stepsBox.innerText=steps.value;
@@ -388,7 +397,6 @@ document.querySelector('.top-marquee').style.display='none';
 let blob=await html2pdf().from(document.getElementById("report-content")).outputPdf("blob");
 document.querySelector('.btn-container').style.display='flex';
 document.querySelector('.top-marquee').style.display='block';
-let file=new File([blob],"report.pdf",{type:"application/pdf"});
 let url=URL.createObjectURL(blob);
 window.open(`https://wa.me/?text=${encodeURIComponent(url)}`,"_blank");
 }
