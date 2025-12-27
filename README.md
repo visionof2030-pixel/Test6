@@ -19,12 +19,12 @@ white-space:nowrap;border-bottom:2px solid #022e22;
 }
 .marquee-inner{
 display:inline-block;
-animation:scroll 25s linear infinite;
-padding-right:100%;
+padding-left:100%;
+animation:newsScroll 25s linear infinite;
 }
-@keyframes scroll{
-0%{transform:translateX(100%);}
-100%{transform:translateX(-100%);}
+@keyframes newsScroll{
+0%{transform:translateX(-100%);}
+100%{transform:translateX(100%);}
 }
 
 .btn-container{
@@ -123,10 +123,13 @@ font-size:12px;color:#666;overflow:hidden;
 .footer{text-align:center;font-size:10px;padding:6px;margin-top:20px;background:#083024;color:#fff;}
 </style>
 </head>
+
 <body>
 
 <div class="top-marquee">
-<div class="marquee-inner">طريقة الاستخدام: اضغط على زر تعبئة 🔂 عدة مرات للحصول على نصوص مختلفة دون تمدد المربعات أو تلف المحتوى — طريقة الاستخدام: اضغط على زر تعبئة 🔂 عدة مرات للحصول على نصوص مختلفة دون تمدد المربعات أو تلف المحتوى —</div>
+<div class="marquee-inner">
+طريقة الاستخدام: اضغط على زر تعبئة 🔂 عدة مرات للحصول على نصوص مختلفة دون تمدد المربعات أو تلف المحتوى — طريقة الاستخدام: اضغط على زر تعبئة 🔂 عدة مرات للحصول على نصوص مختلفة دون تمدد المربعات أو تلف المحتوى —
+</div>
 </div>
 
 <div class="btn-container">
@@ -231,6 +234,7 @@ font-size:12px;color:#666;overflow:hidden;
 
 </div>
 </div>
+
 <div id="report-content" class="wrapper">
 
 <div class="header">
@@ -400,7 +404,7 @@ document.querySelector('.top-marquee').style.display='none';
 
 html2pdf().set({
 margin:0,
-filename:"report.pdf",
+image:{type:"jpeg",quality:1},
 html2canvas:{scale:3,scrollY:0,useCORS:true},
 jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
 })
@@ -416,13 +420,26 @@ async function sharePDFWhatsApp(){
 document.querySelector('.btn-container').style.display='none';
 document.querySelector('.top-marquee').style.display='none';
 
-let blob=await html2pdf().from(document.getElementById("report-content")).outputPdf("blob");
-
+await html2pdf().set({
+margin:0,
+image:{type:"jpeg",quality:1},
+html2canvas:{scale:3,scrollY:0,useCORS:true},
+jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
+})
+.from(document.getElementById("report-content"))
+.toPdf()
+.output('blob')
+.then((pdfBlob)=>{
 document.querySelector('.btn-container').style.display='flex';
 document.querySelector('.top-marquee').style.display='block';
-
-let url=URL.createObjectURL(blob);
-window.open(`https://wa.me/?text=${encodeURIComponent(url)}`,"_blank");
+let file = new File([pdfBlob], "report.pdf", {type: "application/pdf"});
+if(navigator.canShare && navigator.canShare({files:[file]})){
+navigator.share({files:[file],title:"تقرير جاهز",text:"PDF مرفق"});
+}else{
+let url = URL.createObjectURL(pdfBlob);
+window.open(`https://wa.me/?text=${encodeURIComponent(url)}`, "_blank");
+}
+});
 }
 
 async function loadDates(){
