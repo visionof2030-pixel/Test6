@@ -143,33 +143,25 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <label>اسم المدرسة</label>
 <input id="school" placeholder="مثال: معاذ بن جبل" oninput="updateReport()">
 
-<label>اسم التقرير</label>
-<select id="reportType" oninput="handleReportType()">
-<option value="">اختر نوع التقرير</option>
-<option>تقرير نشاط إثرائي</option>
-<option>أخرى</option>
-</select>
-<input id="reportTypeInput" placeholder="أدخل اسم التقرير" oninput="updateReport()" style="display:none;">
-
 <label>صفة المعلّم</label>
 <select id="teacherType" oninput="updateReport()">
 <option value="">اختر الصفة</option>
-<option>المعلم</option>
+<option selected>المعلم</option>
 <option>المعلمة</option>
 </select>
 
 <label>اسم المعلّم</label>
-<input id="teacher" placeholder="اسم المعلّم/ــة" oninput="updateReport()">
+<input id="teacher" value="فهد الخالدي" oninput="updateReport()">
 
 <label>صفة المدير</label>
 <select id="principalType" oninput="updateReport()">
 <option value="">اختر الصفة</option>
-<option>المدير</option>
+<option selected>المدير</option>
 <option>المديرة</option>
 </select>
 
 <label>اسم المدير</label>
-<input id="principal" placeholder="اسم مدير/ مديرة المدرسة" oninput="updateReport()">
+<input id="principal" value="نايف اللحياني" oninput="updateReport()">
 
 <label>الصف</label>
 <input id="grade" placeholder="مثال: ٥/٣" oninput="updateReport()">
@@ -188,38 +180,31 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <input id="target" placeholder="مثال: طلاب الصف بالكامل" oninput="updateReport()">
 
 <label>عدد الحضور</label>
-<input id="count" placeholder="مثال: ٢٥ طالب" oninput="updateReport()">
+<input id="count" placeholder="مثال: ٢٥" oninput="updateReport()">
 
 <label>مكان التنفيذ</label>
-<input id="place" placeholder="مثال: داخل الصف – المختبر" oninput="updateReport()">
+<input id="place" placeholder="مثال: داخل الصف" oninput="updateReport()">
 
 <label>الهدف التربوي</label>
 <textarea id="goal" placeholder="أدخل الهدف التربوي"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('goal')">تعبئة</button></div>
 
 <label>نبذة مختصرة</label>
 <textarea id="summary" placeholder="أدخل نبذة مختصرة"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('summary')">تعبئة</button></div>
 
 <label>إجراءات التنفيذ</label>
 <textarea id="steps" placeholder="كيف تم تنفيذ النشاط؟"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('steps')">تعبئة</button></div>
 
 <label>الاستراتيجيات</label>
 <textarea id="strategies" placeholder="ما هي الاستراتيجيات؟"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('strategies')">تعبئة</button></div>
 
 <label>نقاط القوة</label>
 <textarea id="strengths" placeholder="نقاط القوة"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('strengths')">تعبئة</button></div>
 
 <label>نقاط التحسين</label>
 <textarea id="improve" placeholder="نقاط تحتاج تطوير"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('improve')">تعبئة</button></div>
 
 <label>التوصيات</label>
 <textarea id="recomm" placeholder="توصيات مستقبلية"></textarea>
-<div class="auto-buttons"><button onclick="autoFill('recomm')">تعبئة</button></div>
 
 <label>الصورة 1</label>
 <input type="file" accept="image/*" onchange="loadImage(this,'imgBox1')">
@@ -234,10 +219,8 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 
 <div class="header">
 <img src="https://i.ibb.co/1fc5gB6v/9-C92-E57-B-23-FA-479-D-A024-1-D5-F871-B4-F8-D.png">
-
 <div class="header-school-title">اسم المدرسة</div>
 <div class="header-school" id="schoolBox"></div>
-
 <div class="header-education" id="educationBox"></div>
 
 <div class="header-date-box">
@@ -250,7 +233,7 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <div class="info-box"><div class="info-title">الفصل</div><div class="info-value" id="termBox"></div></div>
 <div class="info-box"><div class="info-title">الصف</div><div class="info-value" id="gradeBox"></div></div>
 <div class="info-box"><div class="info-title">المادة</div><div class="info-value" id="subjectBox"></div></div>
-<div class="info-box"><div class="info-title">التقرير</div><div class="info-value" id="reportTypeBox"></div></div>
+<div class="info-box"><div class="info-title">التقرير</div><div class="info-value">تقرير نشاط إثرائي</div></div>
 </div>
 
 <div class="info-grid2">
@@ -259,7 +242,10 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 <div class="info-box"><div class="info-title">المكان</div><div class="info-value" id="placeBox"></div></div>
 </div>
 
-<div class="objective-box"><div class="objective-title">الهدف التربوي</div><div class="objective-content" id="goalBox"></div></div>
+<div class="objective-box">
+<div class="objective-title">الهدف التربوي</div>
+<div class="objective-content" id="goalBox"></div>
+</div>
 
 <div class="report-row">
 <div class="report-box"><div class="report-box-title">النبذة</div><div class="report-box-content" id="summaryBox"></div></div>
@@ -283,14 +269,14 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 
 <div class="signature-section">
   <div class="signature-box">
-    <div id="teacherTypeBox"></div>
-    <span id="teacherBox"></span>
+    <div id="teacherTypeBox">المعلم</div>
+    <span id="teacherBox">فهد الخالدي</span>
     <div class="signature-line"></div>
   </div>
 
   <div class="signature-box">
-    <div id="principalTypeBox"></div>
-    <span id="principalBox"></span>
+    <div id="principalTypeBox">المدير</div>
+    <span id="principalBox">نايف اللحياني</span>
     <div class="signature-line"></div>
   </div>
 </div>
@@ -299,21 +285,6 @@ display:flex;align-items:center;justify-content:center;background:#ffffff;overfl
 </div>
 
 <script>
-const autoTexts={
-goal:["تنمية مهارات الطلاب من خلال أنشطة تعليمية تفاعلية."],
-summary:["تم تنفيذ النشاط بمشاركة جميع الطلاب وتحفيز التعلم."],
-steps:["شرح الدرس وتقسيم الطلاب إلى مجموعات."],
-strategies:["التعلم التعاوني والعصف الذهني."],
-strengths:["تفاعل ممتاز من الطلاب وتحسن في مستوى الفهم."],
-improve:["زيادة الأنشطة التفاعلية ودعم الطلاب المتعثرين."],
-recomm:["الاستمرار في توظيف التقنيات التعليمية داخل الصف."]
-};
-
-function autoFill(x){
-document.getElementById(x).value=autoTexts[x].join(" ");
-updateReport();
-}
-
 function updateReport(){
 educationBox.innerText=education.value;
 schoolBox.innerText=school.value;
@@ -327,15 +298,6 @@ teacherBox.innerText=teacher.value;
 principalBox.innerText=principal.value;
 teacherTypeBox.innerText=teacherType.value;
 principalTypeBox.innerText=principalType.value;
-
-if(reportType.value==="أخرى"){
-reportTypeInput.style.display="block";
-reportTypeBox.innerText=reportTypeInput.value;
-}else{
-reportTypeInput.style.display="none";
-reportTypeBox.innerText=reportType.value;
-}
-
 goalBox.innerText=goal.value;
 summaryBox.innerText=summary.value;
 stepsBox.innerText=steps.value;
@@ -343,10 +305,6 @@ strategiesBox.innerText=strategies.value;
 strengthsBox.innerText=strengths.value;
 improveBox.innerText=improve.value;
 recommBox.innerText=recomm.value;
-}
-
-function handleReportType(){
-updateReport();
 }
 
 function loadImage(input,target){
@@ -368,47 +326,34 @@ localStorage.setItem("subject",subject.value);
 localStorage.setItem("target",target.value);
 localStorage.setItem("count",count.value);
 localStorage.setItem("place",place.value);
-alert("تم حفظ البيانات بنجاح");
+alert("تم حفظ البيانات");
 }
 
 function loadSavedData(){
-if(localStorage.getItem("education")) education.value = localStorage.getItem("education");
-if(localStorage.getItem("school")) school.value = localStorage.getItem("school");
-if(localStorage.getItem("teacherType")) teacherType.value = localStorage.getItem("teacherType");
-if(localStorage.getItem("teacher")) teacher.value = localStorage.getItem("teacher");
-if(localStorage.getItem("principalType")) principalType.value = localStorage.getItem("principalType");
-if(localStorage.getItem("principal")) principal.value = localStorage.getItem("principal");
-if(localStorage.getItem("grade")) grade.value = localStorage.getItem("grade");
-if(localStorage.getItem("term")) term.value = localStorage.getItem("term");
-if(localStorage.getItem("subject")) subject.value = localStorage.getItem("subject");
-if(localStorage.getItem("target")) target.value = localStorage.getItem("target");
-if(localStorage.getItem("count")) count.value = localStorage.getItem("count");
-if(localStorage.getItem("place")) place.value = localStorage.getItem("place");
+education.value = localStorage.getItem("education") ?? "";
+school.value = localStorage.getItem("school") ?? "";
+teacherType.value = localStorage.getItem("teacherType") ?? "المعلم";
+teacher.value = localStorage.getItem("teacher") ?? "فهد الخالدي";
+principalType.value = localStorage.getItem("principalType") ?? "المدير";
+principal.value = localStorage.getItem("principal") ?? "نايف اللحياني";
+grade.value = localStorage.getItem("grade") ?? "";
+term.value = localStorage.getItem("term") ?? "";
+subject.value = localStorage.getItem("subject") ?? "";
+target.value = localStorage.getItem("target") ?? "";
+count.value = localStorage.getItem("count") ?? "";
+place.value = localStorage.getItem("place") ?? "";
 updateReport();
 }
 
 function downloadPDF(){
 document.querySelector('.btn-container').style.display = 'none';
-
-html2pdf().set({
-margin:0,filename:"report.pdf",
-image:{type:"jpeg",quality:1},
-html2canvas:{scale:4,useCORS:true,scrollY:0,letterRendering:true},
-jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
-})
-.from(document.getElementById("report-content"))
-.save()
-.then(()=>{
+html2pdf().from(document.getElementById("report-content")).save().then(()=>{
 document.querySelector('.btn-container').style.display = 'flex';
 });
 }
 
 async function makePDFBlob(){
-return await html2pdf().set({
-margin:0,image:{type:"jpeg",quality:1},
-html2canvas:{scale:4,useCORS:true,scrollY:0,letterRendering:true},
-jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
-}).from(document.getElementById("report-content")).outputPdf("blob");
+return await html2pdf().from(document.getElementById("report-content")).outputPdf("blob");
 }
 
 async function sharePDFWhatsApp(){
