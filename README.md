@@ -10,77 +10,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{font-family:'Cairo',sans-serif;background:#ffffff;direction:rtl;overflow-x:hidden;}
+
 .wrapper{max-width:830px;margin:auto;padding:15px;}
 
+.top-info-bar{
+position:fixed;top:0;left:0;width:100%;background:#004d33;
+color:#fff;padding:6px;text-align:center;font-size:13px;font-weight:bold;
+z-index:30;white-space:nowrap;
+}
+
 .btn-container{
-text-align:center;padding:12px;background:#f5f5f5;position:fixed;top:0;left:0;width:100%;z-index:20;
+text-align:center;padding:12px;background:#f5f5f5;position:fixed;top:36px;left:0;width:100%;z-index:20;
 display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 3px 6px rgba(0,0,0,0.25);
 }
 button.main-btn{
-background:#066d4d;color:#fff;border:none;padding:10px 20px;font-size:14px;border-radius:8px;cursor:pointer;
-flex:1;min-width:110px;max-width:160px;
+background:#066d4d;color:#fff;border:2px solid #066d4d;padding:12px 25px;font-size:14px;border-radius:8px;cursor:pointer;
+flex:1;min-width:120px;max-width:200px;font-weight:bold;
+}
+button.outline-btn{
+background:#ffffff;color:#066d4d;border:2px solid #066d4d;padding:4px 6px;font-size:12px;border-radius:6px;cursor:pointer;
+font-weight:bold;white-space:nowrap;
 }
 
 .input-section{
-background:#f8fdfb;padding:15px;border-radius:10px;margin-top:90px;
-border:1px solid #e0f0ea;max-width:100%;
+background:#f8fdfb;padding:15px;border-radius:10px;margin-top:105px;border:1px solid #e0f0ea;
+max-width:100%;
 }
+
 label{font-size:15px;font-weight:700;margin-top:15px;display:block;color:#083024;}
 input,select,textarea{
-width:100%;padding:10px;margin-top:6px;border:2px solid #066d4d;border-radius:8px;
-font-size:14px;background:#ffffff;
+width:100%;padding:12px;margin-top:6px;border:2px solid #066d4d;border-radius:8px;font-size:15px;background:#ffffff;
 }
-textarea{height:95px;resize:none;overflow-y:auto;}
+textarea{
+height:95px;resize:none;font-size:15px !important;line-height:1.7;overflow:hidden;
+}
 
-.auto-buttons{
-display:flex;justify-content:flex-end;margin-top:5px;
-}
-.auto-btn{
-border:1px solid #066d4d;
-background:#ffffff;color:#066d4d;
-font-size:11px;font-weight:bold;border-radius:5px;
-cursor:pointer;padding:4px 8px;
+.auto-buttons{display:flex;gap:6px;margin-top:6px;justify-content:flex-start;}
+
+@media (max-width:600px){
+button.main-btn{min-width:100px;font-size:13px;padding:9px;}
+.info-grid,.info-grid2{grid-template-columns:repeat(2,1fr);}
+.report-row{grid-template-columns:1fr;}
+.image-evidence-grid{grid-template-columns:1fr;}
 }
 
 #report-content{width:100%;margin:20px auto;}
 
 .header{
-background:#083024;color:#fff;text-align:center;padding:10px;
-min-height:120px;position:relative;
+background:#083024;padding:8px;min-height:140px;position:relative;
+color:#fff;text-align:center;overflow:hidden;
+display:flex;align-items:center;justify-content:center;
 }
-.header img{width:135px;}
+.header img{width:155px;opacity:.97;}
 
-.info-grid,.info-grid2{display:grid;gap:4px;margin-top:10px;}
-.info-grid{grid-template-columns:repeat(4,1fr);}
-.info-grid2{grid-template-columns:repeat(3,1fr);}
+.header-school-title{position:absolute;bottom:36px;right:8px;font-size:12px;font-weight:600;}
+.header-school{position:absolute;bottom:20px;right:8px;font-size:12px;font-weight:700;}
+.header-education{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;color:#d7f2ea;}
 
+.header-date-box{position:absolute;top:6px;left:10px;font-size:11px;text-align:right;line-height:1.3;}
+
+.info-grid{
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:4px;margin-top:10px;
+}
+.info-grid2{
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:4px;margin-bottom:8px;margin-top:10px;
+}
 .info-box{
 background:#e8f2ee;border-radius:6px;height:34px;
 display:flex;flex-direction:column;justify-content:center;align-items:center;
 border:1px solid rgba(6,109,77,0.3);
 }
-.info-title{font-size:9px;font-weight:700;}
-.info-value{font-size:10px;font-weight:700;color:#000;}
+.info-title{font-size:9px;font-weight:700;color:#083024;}
+.info-value{font-size:10px;font-weight:700;color:#000000;}
 
-.objective-box,.report-box{
-background:#fff;border-radius:8px;padding:6px;border:1px solid rgba(6,109,77,0.35);
+.objective-box{
+background:#f3f9f6;border:1px solid rgba(6,109,77,0.35);
+padding:6px 10px;border-radius:8px;margin-bottom:10px;min-height:120px;
 }
-.objective-content,.report-box-content{font-size:13px;line-height:1.4;max-height:110px;overflow-y:auto;}
+.objective-title{text-align:center;font-size:14px;font-weight:700;}
+.objective-content{font-size:14px;line-height:1.7;}
 
 .report-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
-.report-box-title{text-align:center;font-size:13px;font-weight:700;color:#083024;margin-bottom:4px;}
+.report-box{
+background:#ffffff;border-radius:8px;padding:6px;
+border:1px solid rgba(6,109,77,0.35);min-height:130px;
+}
+.report-box-title{text-align:center;font-size:13px;font-weight:700;color:#083024;border-bottom:1px solid #ccd9d0;margin-bottom:4px;}
+.report-box-content{font-size:14px;line-height:1.6;}
 
 .image-evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .image-box{
-min-height:120px;border:1px dashed #066d4d;border-radius:8px;
+min-height:140px;max-height:140px;border:1px dashed #066d4d;border-radius:8px;
 display:flex;align-items:center;justify-content:center;background:#ffffff;overflow:hidden;
-font-size:12px;
 }
-.image-box img{max-width:100%;max-height:100%;}
+.image-box img{max-width:100%;max-height:100%;object-fit:contain;}
 
-.signature-section{margin-top:15px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.signature-box{text-align:center;font-size:12px;font-weight:700;color:#083024;}
-.signature-line{height:1px;background:#083024;margin:6px auto;width:80%;}
+.signature-section{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.signature-box{text-align:center;font-size:12px;color:#083024;font-weight:700;}
+.signature-line{margin-top:8px;border-top:1px solid #083024;width:80%;margin:auto;margin-bottom:4px;}
 
 .footer{text-align:center;font-size:10px;padding:6px;margin-top:20px;background:#083024;color:#fff;}
 </style>
@@ -88,11 +117,12 @@ font-size:12px;
 
 <body>
 
+<div class="top-info-bar">اضغط زر تعبئة 🔂 أكثر من مرة لتحصل على جمل جديدة عشوائية لتعزيز تنوّع التقرير</div>
+
 <div class="btn-container">
 <button class="main-btn" onclick="downloadPDF()">تنزيل PDF</button>
-<button class="main-btn" onclick="sharePDFWhatsApp()">واتساب</button>
-<button class="main-btn" onclick="saveData()">حفظ المدخلات</button>
-<button class="main-btn" onclick="resetData()">مسح البيانات</button>
+<button class="main-btn" onclick="sharePDFWhatsApp()">مشاركة واتساب</button>
+<button class="main-btn" onclick="saveData()">حفظ البيانات</button>
 </div>
 
 <div class="wrapper">
@@ -108,20 +138,28 @@ font-size:12px;
 <label>اسم المدرسة</label>
 <input id="school" placeholder="مثال: معاذ بن جبل" oninput="updateReport()">
 
-<label>اسم التقرير</label>
-<select id="reportType" oninput="updateReport()">
-<option value="">اختر نوع التقرير</option>
-<option selected>تقرير نشاط إثرائي</option>
+<label>صفة المعلّم</label>
+<select id="teacherType" oninput="updateReport()">
+<option value="">اختر الصفة</option>
+<option selected>المعلم</option>
+<option>المعلمة</option>
 </select>
 
 <label>اسم المعلّم</label>
-<input id="teacher" placeholder="اسم المعلّم" value="فهد الخالدي" oninput="updateReport()">
+<input id="teacher" placeholder="اسم المعلّم/ــة" oninput="updateReport()">
+
+<label>صفة المدير</label>
+<select id="principalType" oninput="updateReport()">
+<option value="">اختر الصفة</option>
+<option selected>المدير</option>
+<option>المديرة</option>
+</select>
 
 <label>اسم المدير</label>
-<input id="principal" placeholder="اسم المدير" value="نايف اللحياني" oninput="updateReport()">
+<input id="principal" placeholder="اسم مدير/ مديرة المدرسة" oninput="updateReport()">
 
 <label>الصف</label>
-<input id="grade" oninput="updateReport()">
+<input id="grade" placeholder="مثال: ٥/٣" oninput="updateReport()">
 
 <label>الفصل الدراسي</label>
 <select id="term" oninput="updateReport()">
@@ -131,49 +169,63 @@ font-size:12px;
 </select>
 
 <label>المادة</label>
-<input id="subject" oninput="updateReport()">
+<input id="subject" placeholder="مثال: لغتي – علوم – رياضيات" oninput="updateReport()">
 
 <label>المستهدفون</label>
-<input id="target" oninput="updateReport()">
+<input id="target" placeholder="مثال: طلاب الصف بالكامل" oninput="updateReport()">
 
-<label>العدد</label>
-<input id="count" oninput="updateReport()">
+<label>عدد الحضور</label>
+<input id="count" placeholder="مثال: ٢٥ طالب" oninput="updateReport()">
 
-<label>المكان</label>
-<input id="place" oninput="updateReport()">
+<label>مكان التنفيذ</label>
+<input id="place" placeholder="مثال: داخل الصف – المختبر" oninput="updateReport()">
 
 <label>الهدف التربوي</label>
-<textarea id="goal" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('goal')">🔂</button></div>
+<textarea id="goal" placeholder="أدخل الهدف التربوي" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('goal')">🔂 تعبئة</button>
+</div>
 
-<label>النبذة</label>
-<textarea id="summary" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('summary')">🔂</button></div>
+<label>نبذة مختصرة</label>
+<textarea id="summary" placeholder="أدخل نبذة مختصرة" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('summary')">🔂 تعبئة</button>
+</div>
 
 <label>إجراءات التنفيذ</label>
-<textarea id="steps" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('steps')">🔂</button></div>
+<textarea id="steps" placeholder="كيف تم تنفيذ النشاط؟" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('steps')">🔂 تعبئة</button>
+</div>
 
 <label>الاستراتيجيات</label>
-<textarea id="strategies" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('strategies')">🔂</button></div>
+<textarea id="strategies" placeholder="ما هي الاستراتيجيات؟" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('strategies')">🔂 تعبئة</button>
+</div>
 
 <label>نقاط القوة</label>
-<textarea id="strengths" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('strengths')">🔂</button></div>
+<textarea id="strengths" placeholder="نقاط القوة" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('strengths')">🔂 تعبئة</button>
+</div>
 
 <label>نقاط التحسين</label>
-<textarea id="improve" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('improve')">🔂</button></div>
+<textarea id="improve" placeholder="نقاط تحتاج تطوير" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('improve')">🔂 تعبئة</button>
+</div>
 
 <label>التوصيات</label>
-<textarea id="recomm" oninput="updateReport()"></textarea>
-<div class="auto-buttons"><button class="auto-btn" onclick="rotateText('recomm')">🔂</button></div>
+<textarea id="recomm" placeholder="توصيات مستقبلية" oninput="updateReport()"></textarea>
+<div class="auto-buttons">
+<button class="outline-btn" onclick="autoFill('recomm')">🔂 تعبئة</button>
+</div>
 
-<label>صورة 1</label>
+<label>الصورة 1</label>
 <input type="file" accept="image/*" onchange="loadImage(this,'imgBox1')">
 
-<label>صورة 2</label>
+<label>الصورة 2</label>
 <input type="file" accept="image/*" onchange="loadImage(this,'imgBox2')">
 
 </div>
@@ -183,23 +235,33 @@ font-size:12px;
 
 <div class="header">
 <img src="https://i.ibb.co/1fc5gB6v/9-C92-E57-B-23-FA-479-D-A024-1-D5-F871-B4-F8-D.png">
-<div id="educationBox"></div>
+<div class="header-school-title">اسم المدرسة</div>
+<div class="header-school" id="schoolBox"></div>
+<div class="header-education" id="educationBox"></div>
+<div class="header-date-box">
+<span id="hDate"></span><br>
+<span id="gDate"></span>
+</div>
 </div>
 
 <div class="info-grid">
 <div class="info-box"><div class="info-title">الفصل</div><div class="info-value" id="termBox"></div></div>
 <div class="info-box"><div class="info-title">الصف</div><div class="info-value" id="gradeBox"></div></div>
 <div class="info-box"><div class="info-title">المادة</div><div class="info-value" id="subjectBox"></div></div>
-<div class="info-box"><div class="info-title">المدرسة</div><div class="info-value" id="schoolBox"></div></div>
+<div class="info-box"><div class="info-title">التقرير</div><div class="info-value">تقرير نشاط إثرائي</div></div>
 </div>
 
-<div class="objective-box">
-<div class="objective-content" id="goalBox"></div>
+<div class="info-grid2">
+<div class="info-box"><div class="info-title">المستهدفون</div><div class="info-value" id="targetBox"></div></div>
+<div class="info-box"><div class="info-title">العدد</div><div class="info-value" id="countBox"></div></div>
+<div class="info-box"><div class="info-title">المكان</div><div class="info-value" id="placeBox"></div></div>
 </div>
+
+<div class="objective-box"><div class="objective-title">الهدف التربوي</div><div class="objective-content" id="goalBox"></div></div>
 
 <div class="report-row">
 <div class="report-box"><div class="report-box-title">النبذة</div><div class="report-box-content" id="summaryBox"></div></div>
-<div class="report-box"><div class="report-box-title">الإجراءات</div><div class="report-box-content" id="stepsBox"></div></div>
+<div class="report-box"><div class="report-box-title">إجراءات التنفيذ</div><div class="report-box-content" id="stepsBox"></div></div>
 </div>
 
 <div class="report-row">
@@ -208,25 +270,25 @@ font-size:12px;
 </div>
 
 <div class="report-row">
-<div class="report-box"><div class="report-box-title">التحسين</div><div class="report-box-content" id="improveBox"></div></div>
+<div class="report-box"><div class="report-box-title">نقاط التحسين</div><div class="report-box-content" id="improveBox"></div></div>
 <div class="report-box"><div class="report-box-title">التوصيات</div><div class="report-box-content" id="recommBox"></div></div>
 </div>
 
 <div class="image-evidence-grid">
-<div class="image-box" id="imgBox1">صورة ١</div>
-<div class="image-box" id="imgBox2">صورة ٢</div>
+<div class="image-box" id="imgBox1">صورة توثيقية ١</div>
+<div class="image-box" id="imgBox2">صورة توثيقية ٢</div>
 </div>
 
 <div class="signature-section">
 <div class="signature-box">
-<div>توقيع المعلم</div>
+<div id="teacherTypeBox"></div>
+<span id="teacherBox"></span>
 <div class="signature-line"></div>
-<div id="teacherBox">فهد الخالدي</div>
 </div>
 <div class="signature-box">
-<div>توقيع المدير</div>
+<div id="principalTypeBox"></div>
+<span id="principalBox"></span>
 <div class="signature-line"></div>
-<div id="principalBox">نايف اللحياني</div>
 </div>
 </div>
 
@@ -236,60 +298,63 @@ font-size:12px;
 <script>
 const texts={
 goal:[
-"تنمية مهارات الطلاب وتعزيز التفكير العلمي من خلال أنشطة تعليمية تفاعلية تحفز المشاركة.",
-"اكتساب مهارات جديدة وتحسين التواصل والعمل التعاوني داخل البيئة الصفية.",
-"تعزيز قدرات الطلاب على حل المشكلات عبر تجارب عملية وتطبيقات تعليمية محفزة.",
-"رفع مستوى الفهم والإدراك عبر ربط الدروس بنشاطات ممتعة تحفز حب التعلم.",
-"تنمية مهارات الإبداع لدى الطلاب وتوسيع مداركهم باستخدام أساليب حديثة."
+"تنمية مهارات التفكير العليا لدى الطلاب وتشجيع التفاعل الإيجابي داخل البيئة التعليمية لتحقيق مخرجات تعلم متميزة.",
+"تعزيز الدافعية الداخلية للطلاب وتنمية قدراتهم البحثية والإبداعية من خلال مواقف تعليمية حقيقية ذات معنى.",
+"تنمية قيم التعاون وتنشيط دور الطالب كشريك في العملية التعليمية بما يحقق التعلم النشط والفعال والهادف.",
+"تمكين الطلاب من تطبيق المهارات المكتسبة في مواقف تعليمية متنوعة تعزز استقلاليتهم وثقتهم بأنفسهم.",
+"ربط التعلم بخبرات الحياة الواقعية وتعزيز دور الطالب في اتخاذ القرار والعمل التعاوني المسؤول."
 ],
 summary:[
-"أنشطة تعليمية ممتعة تعزز مشاركة الطلاب ورغبتهم في التعلم.",
-"تنفيذ فعاليات محفزة تساهم في ترسيخ مفهوم الدرس لدى الطلاب.",
-"إشراك الطلاب في مهام تفاعلية تعاونية تزيد من تفاعلهم داخل الصف.",
-"تطبيق نشاط إثرائي يساعد على تحسين نواتج التعلم بشكل فعال.",
-"تقديم تجربة صفية ممتعة ترفع الفهم والتحصيل الدراسي."
+"تم تنفيذ النشاط بتنظيم تعليمي محكم وبأسلوب يشجع الطلاب على المشاركة الفعالة داخل الصف الدراسي.\nمما أسهم في رفع مستوى التفاعل والتعلم.",
+"انطلق النشاط بتقديم محفز تعليمي جذاب لتشجيع الطلاب على الاستكشاف.\nوتفاعلوا مع محتوى الدرس بتعاون واضح.",
+"شارك الطلاب في تنفيذ خطوات النشاط وفق أدوار محددة.\nوقد ساهم ذلك في رفع مستوى الفهم والاستيعاب.",
+"أظهر الطلاب خلال النشاط مهارات تواصل وتعاون مميزة.\nكما برزت قدراتهم في النقاش والتشارك المعرفي.",
+"شهد النشاط حضوراً مميزاً من الطلاب وتفاعلاً عالياً.\nمما جعل الأهداف التعليمية تتحقق بشكل واضح."
 ],
 steps:[
-"شرح توضيحي ثم تقسيم الطلاب لمجموعات والعمل الجماعي.",
-"توزيع بطاقات تعليمية وتحفيز المنافسة الإيجابية بينهم.",
-"تنفيذ أنشطة تطبيقية مرتبطة بالدرس ثم مناقشة النتائج.",
-"تقديم أمثلة عملية ومشاركة الطلاب في الشرح التفاعلي.",
-"متابعة تقدم الطلاب وتقديم التغذية الراجعة المباشرة لهم."
+"بدأ النشاط بعرض تمهيدي مشوق ثم تقسيم الطلاب إلى مجموعات.\nوتوزيع المهام بشكل منظم وفق خطوات مدروسة.",
+"تم توجيه الطلاب لتنفيذ المهام في مجموعات.\nمع متابعة المعلم وتقديم الدعم المناسب.",
+"أعقب تنفيذ النشاط نقاش توضيحي حول أبرز النتائج.\nوترسيخ المفاهيم المستهدفة.",
+"اعتمد النشاط على تبادل الأدوار بين الطلاب.\nمما عزز مهارات التواصل والتشارك.",
+"اختتم النشاط بتقويم سريع لتحديد مستوى الفهم.\nوضمان تحقق أهداف الدرس."
 ],
 strategies:[
-"التعلم التعاوني وتبادل الأدوار داخل المجموعات.",
-"العصف الذهني وتنمية مهارات التفكير العليا.",
-"استراتيجيات إثرائية تحفز المشاركة الفاعلة.",
-"تطبيق التعلم النشط داخل البيئة الصفية.",
-"دمج التقنية في تنفيذ الأنشطة الصفية."
+"تم استخدام التعلم التعاوني وتوظيف مهارات التفكير.\nإضافة إلى العصف الذهني وطرح الأسئلة المحفزة.",
+"الدمج بين الاستقصاء والمناقشة الجماعية.\nلتشجيع الطلاب على التعبير عن أفكارهم.",
+"اعتماد التعلم النشط والتوجيه الذاتي.\nمن خلال أنشطة تفاعلية متنوعة.",
+"تفعيل méthode الحوار وتبادل الآراء.\nمع ربط المحتوى بخبرات الطلاب.",
+"تنويع الاستراتيجيات بما يناسب الفروق الفردية.\nوتحقيق تعلم فعال للجميع."
 ],
 strengths:[
-"تفاعل ممتاز وارتفاع مستوى المشاركة بين الطلاب.",
-"تحسن واضح في مهارات الفهم والتواصل لديهم.",
-"مستوى الاهتمام بالدرس كان عالياً لدى الجميع.",
-"ترابط تعاوني فعال بين جميع أفراد المجموعة.",
-"تحقيق نتائج تعليمية ملحوظة ومُرضية جداً."
+"تفاعل ممتاز من الطلاب أثناء النشاط.\nوظهرت مهارات قيادية مميزة لدى بعضهم.",
+"قدّم الطلاب حلولاً مبتكرة.\nوأظهروا استيعاباً جيداً لمحتوى الدرس.",
+"روح التعاون كانت واضحة في أداء المهام.\nمما ساعد على رفع مستوى التحصيل.",
+"استخدام وسائل تعليمية مشوقة.\nساهم في تعزيز الفهم والاندماج.",
+"تحقق جزء كبير من الأهداف التعليمية.\nمع اهتمام ملحوظ بالضبط الصفي."
 ],
 improve:[
-"تكثيف الأنشطة للطلاب ذوي التحصيل الأقل دعماً لهم.",
-"زيادة الوقت المخصص للاستنتاج والنقاش الجماعي.",
-"تنويع أساليب الشرح وطرق التنفيذ التحفيزية.",
-"دعم الطلاب بإرشادات إضافية خلال النشاط.",
-"رفع مستوى التحدي بما يناسب قدرات الطلاب."
+"زيادة فرص المشاركة للطلاب المتعثرين.\nلتعزيز الثقة وتحسين مستوى الأداء.",
+"تنويع أكبر في الأنشطة التفاعلية.\nلتحفيز الطلاب على الإنتاج والإبداع.",
+"رفع مستوى التنظيم بين مجموعات العمل.\nلضمان مشاركة عادلة للجميع.",
+"زيادة الوقت المخصص للتقويم المرحلي.\nلتعزيز تثبيت المفاهيم التعليمية.",
+"تطوير مهارات الطلاب التقنية.\nوتوظيفها في تنفيذ الأنشطة الصفية."
 ],
 recomm:[
-"الاستمرار في دمج التقنية لتحقيق تعلم أفضل.",
-"تنظيم فعاليات مشابهة خلال باقي الفصول.",
-"التركيز على تعزيز التعلم التعاوني أكثر.",
-"توفير موارد وأنشطة إضافية للطلاب.",
-"تخصيص وقت لمتابعة المتعثرين مستقبلاً."
-]};
+"الاستمرار في تطبيق الأنشطة التفاعلية.\nلدعم مهارات التواصل والتفكير.",
+"توظيف التقنية في جميع مراحل التعلم.\nلتنمية مهارات الطلاب الرقمية.",
+"التنسيق مع الأسرة لتعزيز التعلم.\nومتابعة تقدم الطلاب خارج الصف.",
+"تنظيم المزيد من المشاريع الجماعية.\nلتنمية روح الفريق وتحمل المسؤولية.",
+"استمرار الدعم للطلاب المحتاجين.\nمع توفير أنشطة علاجية مناسبة."
+]
+};
 
-let index={goal:0,summary:0,steps:0,strategies:0,strengths:0,improve:0,recomm:0};
+let indexTracker={
+goal:0,summary:0,steps:0,strategies:0,strengths:0,improve:0,recomm:0
+};
 
-function rotateText(id){
-index[id]=(index[id]+1)%5;
-document.getElementById(id).value=texts[id][index[id]];
+function autoFill(id){
+document.getElementById(id).value=texts[id][indexTracker[id]];
+indexTracker[id]=(indexTracker[id]+1)%texts[id].length;
 updateReport();
 }
 
@@ -304,6 +369,9 @@ countBox.innerText=count.value;
 placeBox.innerText=place.value;
 teacherBox.innerText=teacher.value;
 principalBox.innerText=principal.value;
+teacherTypeBox.innerText=teacherType.value;
+principalTypeBox.innerText=principalType.value;
+
 goalBox.innerText=goal.value;
 summaryBox.innerText=summary.value;
 stepsBox.innerText=steps.value;
@@ -313,33 +381,39 @@ improveBox.innerText=improve.value;
 recommBox.innerText=recomm.value;
 }
 
-function saveData(){
-let fields=["education","school","teacher","principal","grade","term","subject","target","count","place","goal","summary","steps","strategies","strengths","improve","recomm"];
-fields.forEach(id=>{
-localStorage.setItem(id,document.getElementById(id).value);
-});
-alert("تم حفظ المدخلات");
+function loadImage(input,target){
+let reader=new FileReader();
+reader.onload=()=>document.getElementById(target).innerHTML=`<img src="${reader.result}">`;
+reader.readAsDataURL(input.files[0]);
 }
 
-function resetData(){
-localStorage.clear();
-location.reload();
+function saveData(){
+localStorage.setItem("data",JSON.stringify({
+education:education.value,school:school.value,teacherType:teacherType.value,
+teacher:teacher.value,principalType:principalType.value,principal:principal.value,
+grade:grade.value,term:term.value,subject:subject.value,target:target.value,
+count:count.value,place:place.value
+}));
+alert("تم حفظ البيانات بنجاح");
 }
 
 function loadSavedData(){
-let fields=["education","school","teacher","principal","grade","term","subject","target","count","place","goal","summary","steps","strategies","strengths","improve","recomm"];
-fields.forEach(id=>{
-let val=localStorage.getItem(id);
-if(val!==null) document.getElementById(id).value=val;
-});
+let d=localStorage.getItem("data");
+if(!d)return;
+d=JSON.parse(d);
+education.value=d.education;
+school.value=d.school;
+teacherType.value=d.teacherType;
+teacher.value=d.teacher;
+principalType.value=d.principalType;
+principal.value=d.principal;
+grade.value=d.grade;
+term.value=d.term;
+subject.value=d.subject;
+target.value=d.target;
+count.value=d.count;
+place.value=d.place;
 updateReport();
-}
-loadSavedData();
-
-function loadImage(input,target){
-let r=new FileReader();
-r.onload=()=>document.getElementById(target).innerHTML=`<img src="${r.result}">`;
-r.readAsDataURL(input.files[0]);
 }
 
 function downloadPDF(){
@@ -354,14 +428,31 @@ return await html2pdf().from(document.getElementById("report-content")).outputPd
 }
 
 async function sharePDFWhatsApp(){
-let b=await makePDFBlob();
-let f=new File([b],"report.pdf",{type:"application/pdf"});
-if(navigator.canShare && navigator.canShare({files:[f]})){
-await navigator.share({files:[f],title:"تقرير",text:"جاهز"});
+let blob=await makePDFBlob();
+let file=new File([blob],"report.pdf",{type:"application/pdf"});
+if(navigator.canShare&&navigator.canShare({files:[file]})){
+await navigator.share({files:[file],title:"تقرير",text:"جاهز"});
 }else{
-window.open("https://wa.me/?text=تقرير جاهز","_blank");
+let url=URL.createObjectURL(blob);
+window.open(`https://wa.me/?text=${encodeURIComponent(url)}`,"_blank");
 }
 }
+
+async function loadDates(){
+const g=new Date();
+gDate.innerText=g.toLocaleDateString('ar-EG')+" م";
+try{
+let url=`https://api.aladhan.com/v1/gToH?date=${g.getDate()}-${g.getMonth()+1}-${g.getFullYear()}`;
+let res=await fetch(url);
+let j=await res.json();
+let h=j.data.hijri;
+hDate.innerText=`${h.weekday.ar} ${h.day} ${h.month.ar} ${h.year} هـ`;
+}catch(e){hDate.innerText="تعذر";}
+}
+
+loadDates();
+loadSavedData();
+updateReport();
 </script>
 
 </body>
