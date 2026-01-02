@@ -35,7 +35,7 @@ justify-content:center;
 .header-education{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:12px;}
 .header-date-box{position:absolute;top:10px;left:12px;font-size:11px;text-align:right;}
 
-/* ===== Info grids ===== */
+/* ===== Info grids (مربعات صغيرة – مستثناة) ===== */
 .info-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -72,15 +72,21 @@ width:100%;
 text-align:center;
 }
 
-/* ===== الهدف التربوي (مكبّر 40%) ===== */
+/* ===== توحيد ارتفاع جميع المربعات الكبيرة ===== */
+.objective-box,
+.report-box,
+.image-box{
+height:145px;   /* ارتفاع موحّد */
+box-sizing:border-box;
+}
+
+/* ===== الهدف التربوي (تم تصغيره 15%) ===== */
 .objective-box{
 border:1px solid #066d4d;
 border-radius:8px;
 padding:10px;
 margin:10px 12px;
 font-size:12px;
-min-height:170px; /* زيادة تقريبية 40% */
-box-sizing:border-box;
 }
 
 /* ===== Content boxes ===== */
@@ -94,7 +100,6 @@ margin:10px 12px;
 border:1px solid #066d4d;
 border-radius:8px;
 padding:6px;
-min-height:105px;
 font-size:12px;
 }
 
@@ -139,7 +144,6 @@ margin:10px 12px;
 }
 .image-box{
 border:1px dashed #066d4d;
-height:115px;
 display:flex;
 align-items:center;
 justify-content:center;
