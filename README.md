@@ -155,7 +155,7 @@ font-size:11px;
 
 <body>
 
-<button class="send-btn" onclick="sendPDFWhatsApp()">إرسال PDF عبر واتساب</button>
+<button class="send-btn" onclick="generateAndSharePDF()">إرسال PDF عبر واتساب</button>
 
 <div id="report-content">
 
@@ -221,7 +221,7 @@ font-size:11px;
 </div>
 
 <script>
-async function sendPDFWhatsApp(){
+async function generateAndSharePDF(){
 const element=document.getElementById('report-content');
 
 const pdfBlob = await html2pdf().set({
@@ -232,15 +232,20 @@ jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
 
 const file = new File([pdfBlob], "report.pdf", {type:"application/pdf"});
 
-if(navigator.canShare && navigator.canShare({files:[file]})){
+if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
 await navigator.share({
-files:[file],
-title:"تقرير PDF",
-text:"مشاركة التقرير عبر واتساب"
+files: [file],
+title: "تقرير PDF",
+text: "مشاركة التقرير"
 });
-}else{
-const url=URL.createObjectURL(pdfBlob);
-window.open(`https://wa.me/?text=${encodeURIComponent("رابط التقرير:\n"+url)}`,"_blank");
+} else {
+const link = document.createElement("a");
+link.href = URL.createObjectURL(pdfBlob);
+link.download = "report.pdf";
+link.click();
+setTimeout(()=>{
+window.open("https://wa.me/","_blank");
+},500);
 }
 }
 </script>
