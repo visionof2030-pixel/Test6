@@ -54,6 +54,16 @@ border-radius:6px;
 padding:4px;
 text-align:center;
 font-size:12px;
+position:relative;
+}
+
+/* خانة الدرس داخل المادة */
+.lesson-box{
+margin-top:2px;
+font-size:6px;
+border-top:1px dashed #066d4d;
+padding-top:2px;
+color:#083024;
 }
 
 /* ===== Content boxes ===== */
@@ -78,7 +88,7 @@ min-height:110px;
 font-size:12px;
 }
 
-/* ===== الأدوات والوسائل التعليمية (أصغر ارتفاع ممكن) ===== */
+/* ===== الأدوات والوسائل التعليمية ===== */
 .tools-box{
 border:1px solid #066d4d;
 border-radius:5px;
@@ -168,7 +178,12 @@ font-size:11px;
 <div class="info-grid">
 <div class="info-box">الفصل</div>
 <div class="info-box">الصف</div>
-<div class="info-box">المادة</div>
+
+<div class="info-box">
+المادة
+<div class="lesson-box">الدرس</div>
+</div>
+
 <div class="info-box">نوع التقرير</div>
 </div>
 
@@ -198,7 +213,6 @@ font-size:11px;
 <div class="report-box"><strong>التوصيات</strong></div>
 </div>
 
-<!-- الأدوات والوسائل التعليمية (ارتفاع مضغوط جدًا) -->
 <div class="tools-box">
 <div class="tools-title">الأدوات والوسائل التعليمية</div>
 <div class="tools-list">
