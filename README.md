@@ -145,7 +145,7 @@ font-size: 10px !important;
 
 /* تحسين واجهة الإدخال */
 .input-section{
-background:#ffffff;padding:20px;border-radius:18px;margin-top:110px; /* تم تعديل margin-top من 130px إلى 110px */
+background:#ffffff;padding:20px;border-radius:18px;margin-top:110px;
 border:2px solid #e0f0ea;box-shadow:0 8px 25px rgba(4, 74, 53, 0.1);
 position:relative;overflow:hidden;
 }
@@ -244,7 +244,7 @@ z-index: 1000;
 /* إشعارات */
 .notification {
 position: fixed;
-top: 100px; /* تم تعديل من 110px إلى 100px */
+top: 100px;
 right: 10px;
 left: 10px;
 background: linear-gradient(135deg, #066d4d 0%, #044a35 100%);
@@ -753,12 +753,12 @@ width:190mm;
 height:277mm;
 margin:auto;
 background:#ffffff;
-display:none;
+box-sizing:border-box;
+overflow:hidden;
 -webkit-print-color-adjust: exact !important;
 print-color-adjust: exact !important;
 font-family:'Cairo',sans-serif;
-box-sizing:border-box;
-overflow:hidden;
+display:none;
 }
 
 /* ===== Header ===== */
@@ -793,112 +793,156 @@ margin:0 0 8px !important;
 .info-box{
 border:1px solid #066d4d !important;
 border-radius:6px;
-height:30px !important;
+height:35px !important; /* زيادة الارتفاع لاستيعاب العنوان والقيمة */
 display:flex;
+flex-direction:column;
 align-items:center;
 justify-content:center;
 font-size:11px !important;
 padding:2px 4px !important;
 box-sizing:border-box !important;
-background:#f8fdfa !important;
+position:relative;
 }
 
-/* ===== المادة | الدرس ===== */
+/* ===== العناوين داخل المربعات الصغيرة ===== */
+.info-box-title{
+font-weight:700;
+color:#083024 !important;
+font-size:9px !important;
+position:absolute;
+top:4px;
+right:6px;
+}
+
+.info-box-value{
+color:#000000 !important;
+font-size:10px !important;
+font-weight:600;
+text-align:center;
+width:100%;
+margin-top:8px;
+}
+
+/* ===== المادة | الدرس في نفس المربع ===== */
 .subject-lesson{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+position:relative;
+height:100%;
+padding-top:10px;
+}
+.subject-lesson-title{
+font-weight:700;
+color:#083024 !important;
+font-size:9px !important;
+position:absolute;
+top:4px;
+right:6px;
+}
+.subject-lesson-value{
 display:grid;
 grid-template-columns:1fr auto 1fr;
 align-items:center;
 width:100%;
 }
-.subject-lesson span{
+.subject-lesson-value span{
 display:flex;
 justify-content:center;
-font-size:11px !important;
-color:#000000 !important;
-}
-.subject-lesson .divider{
-padding:0 6px;
-color:#066d4d !important;
 font-size:10px !important;
+color:#000000 !important;
+font-weight:600;
+padding:0 2px;
+}
+.subject-lesson-value .divider{
+font-size:9px !important;
+padding:0 4px;
+color:#066d4d !important;
 }
 
-/* ===== الهدف التربوي ===== */
+/* ===== الهدف التربوي (العنوان والقيمة) ===== */
 .objective-box{
 border:1px solid #066d4d !important;
-border-radius:8px;
-padding:8px !important;
+border-radius:8px !important;
 margin-bottom:8px !important;
-font-size:12px !important;
 height:125px !important;
+display:flex !important;
+flex-direction:column !important;
+padding:8px !important;
 box-sizing:border-box !important;
-background:#f8fdfa !important;
 }
 
 .objective-title{
-font-weight:700;
+font-weight:700 !important;
 color:#083024 !important;
-margin-bottom:5px;
-font-size:13px !important;
+font-size:12px !important;
+text-align:center !important;
+margin-bottom:5px !important;
 }
 
 .objective-content{
 color:#000000 !important;
-line-height:1.6;
+line-height:1.5;
 font-size:11px !important;
+text-align:center;
+flex-grow:1;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-/* ===== Content boxes ===== */
+/* ===== مربعات المحتوى ===== */
 .report-row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+gap:8px !important;
 margin-bottom:8px !important;
 }
 .report-box{
 border:1px solid #066d4d !important;
-border-radius:8px;
+border-radius:8px !important;
 padding:6px !important;
 font-size:12px !important;
 height:130px !important;
 box-sizing:border-box !important;
-background:#ffffff !important;
 }
 
 .report-box-title{
 font-weight:700;
 color:#083024 !important;
 margin-bottom:5px;
-font-size:13px !important;
+font-size:12px !important;
 text-align:center;
 }
 
 .report-box-content{
 color:#000000 !important;
-line-height:1.6;
+line-height:1.5;
 font-size:11px !important;
+overflow:hidden;
+max-height:100px;
 }
 
 /* ===== الأدوات والوسائل التعليمية في PDF ===== */
 .tools-box{
 border:1px solid #066d4d !important;
-border-radius:6px;
+border-radius:6px !important;
 padding:6px !important;
 font-size:11px !important;
 margin-bottom:8px !important;
-background:#f8fdfa !important;
 }
 .tools-title{
-font-weight:700;
+font-weight:700 !important;
 font-size:11px !important;
-text-align:center;
-margin-bottom:4px;
+text-align:center !important;
+margin-bottom:4px !important;
 color:#083024 !important;
 }
 .tools-list{
-display:flex;
-flex-wrap:wrap;
+display:flex !important;
+flex-wrap:wrap !important;
 gap:6px 12px !important;
-justify-content:center;
 }
 .tool-item{
 display:flex;
@@ -906,49 +950,60 @@ align-items:center;
 gap:4px !important;
 white-space:nowrap;
 color:#083024 !important;
-font-size:11px !important;
+font-size:10px !important;
 }
 
 /* علامة ✅ في PDF */
 .tool-checkmark {
 color: #066d4d !important;
 font-weight: bold;
-font-size: 12px !important;
+font-size: 11px !important;
+margin-left: 2px;
 }
 
-/* ===== Images ===== */
+/* ===== الصور (تصحيح مشكلة التمدد) ===== */
 .image-evidence-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+gap:8px !important;
 margin-bottom:8px !important;
 }
 .image-box{
 border:1px dashed #066d4d !important;
-height:120px !important;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-background:#fff !important;
+height:138px !important; /* زيادة 15٪ تقريبًا */
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+overflow:hidden !important;
 box-sizing:border-box !important;
+position:relative;
+}
+.image-box::before {
+content: 'صورة توثيقية';
+position: absolute;
+top: 5px;
+right: 5px;
+font-size: 10px;
+color: #666;
+z-index: 1;
 }
 .image-box img{
-max-width:100%;
-max-height:100%;
-object-fit:contain;
+max-width:100% !important;
+max-height:100% !important;
+width:auto !important;
+height:auto !important;
+object-fit:contain !important;
 display:block;
-border-radius:4px;
 }
 
-/* ===== Signatures ===== */
+/* ===== التوقيعات ===== */
 .signature-section{
-display:grid;
-grid-template-columns:1fr 1fr;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
 gap:30px !important;
 margin-top:6px !important;
-text-align:center;
-font-weight:700;
+text-align:center !important;
+font-weight:700 !important;
 font-size:11px !important;
 }
 .signature-line{
@@ -962,7 +1017,7 @@ margin:auto;
 .footer{
 background:#083024 !important;
 color:#fff !important;
-text-align:center;
+text-align:center !important;
 padding:5px !important;
 font-size:10px !important;
 margin-top:6px !important;
@@ -999,9 +1054,6 @@ font-size: 16px !important;
 </div>
 
 <div class="control-bar">
-    <!-- تم إزالة الجانب الأيمن (execution-text) الذي كان يحتوي على "أداة إصدار التقارير التربوية" -->
-    
-    <!-- الجانب الأيسر فقط: الأزرار والعنوان -->
     <div class="right-section">
         <!-- العبارة الجديدة - تم التعديل -->
         <div class="app-title">
@@ -1277,8 +1329,8 @@ font-size: 16px !important;
     <div class="tools-section">
       <div class="tools-grid">
         <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool1" value="سبورة تقليدية" style="display:none;">
-          <span>سبورة تقليدية</span>
+          <input type="checkbox" id="tool1" value="سبورة" style="display:none;">
+          <span>سبورة</span>
           <span class="checkmark">✅</span>
         </label>
         <label class="tool-checkbox" onclick="toggleTool(this)">
@@ -1292,28 +1344,28 @@ font-size: 16px !important;
           <span class="checkmark">✅</span>
         </label>
         <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool4" value="جهاز الحاسب" style="display:none;">
-          <span>جهاز الحاسب</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool5" value="بطاقات تعليمية" style="display:none;">
-          <span>بطاقات تعليمية</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool6" value="صور توضيحية" style="display:none;">
-          <span>صور توضيحية</span>
-          <span class="checkmark">✅</span>
-        </label>
-        <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool7" value="أوراق عمل" style="display:none;">
+          <input type="checkbox" id="tool4" value="أوراق عمل" style="display:none;">
           <span>أوراق عمل</span>
           <span class="checkmark">✅</span>
         </label>
         <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool8" value="أدوات رياضية" style="display:none;">
-          <span>أدوات رياضية</span>
+          <input type="checkbox" id="tool5" value="حاسب" style="display:none;">
+          <span>حاسب</span>
+          <span class="checkmark">✅</span>
+        </label>
+        <label class="tool-checkbox" onclick="toggleTool(this)">
+          <input type="checkbox" id="tool6" value="عرض تقديمي" style="display:none;">
+          <span>عرض تقديمي</span>
+          <span class="checkmark">✅</span>
+        </label>
+        <label class="tool-checkbox" onclick="toggleTool(this)">
+          <input type="checkbox" id="tool7" value="بطاقات تعليمية" style="display:none;">
+          <span>بطاقات تعليمية</span>
+          <span class="checkmark">✅</span>
+        </label>
+        <label class="tool-checkbox" onclick="toggleTool(this)">
+          <input type="checkbox" id="tool8" value="صور توضيحية" style="display:none;">
+          <span>صور توضيحية</span>
           <span class="checkmark">✅</span>
         </label>
         <label class="tool-checkbox" onclick="toggleTool(this)">
@@ -1322,8 +1374,8 @@ font-size: 16px !important;
           <span class="checkmark">✅</span>
         </label>
         <label class="tool-checkbox" onclick="toggleTool(this)">
-          <input type="checkbox" id="tool10" value="عرض تقديمي" style="display:none;">
-          <span>عرض تقديمي</span>
+          <input type="checkbox" id="tool10" value="أدوات رياضية" style="display:none;">
+          <span>أدوات رياضية</span>
           <span class="checkmark">✅</span>
         </label>
       </div>
@@ -1373,7 +1425,8 @@ font-size: 16px !important;
 </div>
 
 <div class="info-box">
-<div class="subject-lesson">
+<div class="subject-lesson-title">المادة | الدرس</div>
+<div class="subject-lesson-value">
 <span id="subjectBox"></span>
 <span class="divider">|</span>
 <span id="lessonBox"></span>
@@ -1446,8 +1499,8 @@ font-size: 16px !important;
 </div>
 
 <div class="image-evidence-grid">
-<div class="image-box" id="imgBox1">صورة توثيقية ١</div>
-<div class="image-box" id="imgBox2">صورة توثيقية ٢</div>
+<div class="image-box" id="imgBox1"></div>
+<div class="image-box" id="imgBox2"></div>
 </div>
 
 <div class="signature-section">
@@ -1847,43 +1900,49 @@ function toggleTool(toolElement) {
 }
 
 function updateReport(){
+    // تحديث الهيدر
     document.getElementById('educationBox').innerText = document.getElementById('education').value;
     document.getElementById('schoolBox').innerText = document.getElementById('school').value;
-    document.getElementById('termBox').innerText = document.getElementById('term').value;
-    document.getElementById('gradeBox').innerText = document.getElementById('grade').value;
-    document.getElementById('subjectBox').innerText = document.getElementById('subject').value;
-    document.getElementById('lessonBox').innerText = document.getElementById('lesson').value;
-    document.getElementById('targetBox').innerText = document.getElementById('target').value;
-    document.getElementById('countBox').innerText = document.getElementById('count').value;
-    document.getElementById('placeBox').innerText = document.getElementById('place').value;
+    
+    // تحديث المربعات الصغيرة مع العناوين
+    document.getElementById('termBox').innerText = document.getElementById('term').value || 'غير محدد';
+    document.getElementById('gradeBox').innerText = document.getElementById('grade').value || 'غير محدد';
+    document.getElementById('subjectBox').innerText = document.getElementById('subject').value || 'غير محدد';
+    document.getElementById('lessonBox').innerText = document.getElementById('lesson').value || 'غير محدد';
+    document.getElementById('reportTypeBox').innerText = getReportTypeText();
+    document.getElementById('targetBox').innerText = document.getElementById('target').value || 'غير محدد';
+    document.getElementById('countBox').innerText = document.getElementById('count').value || 'غير محدد';
+    document.getElementById('placeBox').innerText = document.getElementById('place').value || 'غير محدد';
+    
+    // تحديث التوقيعات
     document.getElementById('teacherBox').innerText = document.getElementById('teacher').value;
     document.getElementById('principalBox').innerText = document.getElementById('principal').value;
     document.getElementById('teacherTypeBox').innerText = document.getElementById('teacherType').value;
     document.getElementById('principalTypeBox').innerText = document.getElementById('principalType').value;
     
-    const reportTypeSelect = document.getElementById('reportType');
-    const reportTypeInput = document.getElementById('reportTypeInput');
-    const categorySelect = document.getElementById('reportCategory');
-    let reportType = "";
-    
-    if (categorySelect.value === "أخرى") {
-        reportType = reportTypeInput.value || "تقرير";
-        document.getElementById('reportTypeBox').innerText = reportType;
-    } else {
-        reportType = reportTypeSelect.value;
-        document.getElementById('reportTypeBox').innerText = reportType;
-    }
-    
-    document.getElementById('goalBox').innerText = document.getElementById('goal').value;
-    document.getElementById('summaryBox').innerText = document.getElementById('summary').value;
-    document.getElementById('stepsBox').innerText = document.getElementById('steps').value;
-    document.getElementById('strategiesBox').innerText = document.getElementById('strategies').value;
-    document.getElementById('strengthsBox').innerText = document.getElementById('strengths').value;
-    document.getElementById('improveBox').innerText = document.getElementById('improve').value;
-    document.getElementById('recommBox').innerText = document.getElementById('recomm').value;
+    // تحديث المحتوى
+    document.getElementById('goalBox').innerText = document.getElementById('goal').value || 'لم يتم تحديد الهدف التربوي';
+    document.getElementById('summaryBox').innerText = document.getElementById('summary').value || 'لم يتم إضافة نبذة مختصرة';
+    document.getElementById('stepsBox').innerText = document.getElementById('steps').value || 'لم يتم تحديد إجراءات التنفيذ';
+    document.getElementById('strategiesBox').innerText = document.getElementById('strategies').value || 'لم يتم تحديد الاستراتيجيات';
+    document.getElementById('strengthsBox').innerText = document.getElementById('strengths').value || 'لم يتم تحديد نقاط القوة';
+    document.getElementById('improveBox').innerText = document.getElementById('improve').value || 'لم يتم تحديد نقاط التحسين';
+    document.getElementById('recommBox').innerText = document.getElementById('recomm').value || 'لم يتم تحديد التوصيات';
     
     // تحديث الأدوات والوسائل التعليمية
     updateToolsDisplay();
+}
+
+function getReportTypeText() {
+    const reportTypeSelect = document.getElementById('reportType');
+    const reportTypeInput = document.getElementById('reportTypeInput');
+    const categorySelect = document.getElementById('reportCategory');
+    
+    if (categorySelect.value === "أخرى") {
+        return reportTypeInput.value || "تقرير";
+    } else {
+        return reportTypeSelect.value || "تقرير";
+    }
 }
 
 function updateToolsDisplay() {
@@ -1913,8 +1972,8 @@ function updateToolsDisplay() {
         const noToolsMessage = document.createElement('div');
         noToolsMessage.style.textAlign = 'center';
         noToolsMessage.style.color = '#666';
-        noToolsMessage.style.fontSize = '11px';
-        noToolsMessage.style.padding = '4px';
+        noToolsMessage.style.fontSize = '10px';
+        noToolsMessage.style.padding = '2px';
         noToolsMessage.textContent = 'لم يتم اختيار أي أدوات';
         toolsListBox.appendChild(noToolsMessage);
     }
@@ -1928,17 +1987,17 @@ function loadImage(input, target){
             imgBox.innerHTML = '';
             const img = document.createElement('img');
             img.src = e.target.result;
+            
+            // ضبط الصورة بشكل صحيح
             img.style.maxWidth = '100%';
             img.style.maxHeight = '100%';
+            img.style.width = 'auto';
+            img.style.height = 'auto';
             img.style.objectFit = 'contain';
             img.style.display = 'block';
-            imgBox.appendChild(img);
+            img.style.margin = 'auto';
             
-            // تحديث الصورة في PDF
-            const pdfImgBox = document.getElementById(target);
-            if (pdfImgBox) {
-                pdfImgBox.innerHTML = `<img src="${e.target.result}" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">`;
-            }
+            imgBox.appendChild(img);
         };
         r.readAsDataURL(input.files[0]);
     }
