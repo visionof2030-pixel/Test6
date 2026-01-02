@@ -35,7 +35,7 @@ justify-content:center;
 .header-education{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:12px;}
 .header-date-box{position:absolute;top:10px;left:12px;font-size:11px;text-align:right;}
 
-/* ===== Info grids (موحدة الارتفاع ومضغوطة) ===== */
+/* ===== Info grids ===== */
 .info-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -48,7 +48,6 @@ grid-template-columns:repeat(3,1fr);
 gap:6px;
 margin:0 12px 10px;
 }
-
 .info-box{
 border:1px solid #066d4d;
 border-radius:6px;
@@ -73,14 +72,18 @@ width:100%;
 text-align:center;
 }
 
-/* ===== Content boxes ===== */
+/* ===== الهدف التربوي (مكبّر 40%) ===== */
 .objective-box{
 border:1px solid #066d4d;
 border-radius:8px;
-padding:8px;
+padding:10px;
 margin:10px 12px;
 font-size:12px;
+min-height:170px; /* زيادة تقريبية 40% */
+box-sizing:border-box;
 }
+
+/* ===== Content boxes ===== */
 .report-row{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -127,7 +130,7 @@ height:8px;
 margin:0;
 }
 
-/* ===== Images ===== */
+/* ===== Images (ثابتة – غير قابلة للتمدد) ===== */
 .image-evidence-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -140,8 +143,14 @@ height:115px;
 display:flex;
 align-items:center;
 justify-content:center;
-color:#666;
-font-size:11px;
+overflow:hidden;
+background:#fff;
+}
+.image-box img{
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+display:block;
 }
 
 /* ===== Signatures ===== */
@@ -182,20 +191,16 @@ font-size:11px;
 <div class="header-date-box">1447 هـ<br>2026 م</div>
 </div>
 
-<!-- الصف العلوي -->
 <div class="info-grid">
 <div class="info-box">الفصل</div>
 <div class="info-box">الصف</div>
-
 <div class="info-box">
 المادة
 <div class="lesson-box">الدرس</div>
 </div>
-
 <div class="info-box">نوع التقرير</div>
 </div>
 
-<!-- الصف السفلي -->
 <div class="info-grid2">
 <div class="info-box">المستهدفون</div>
 <div class="info-box">العدد</div>
@@ -204,7 +209,7 @@ font-size:11px;
 
 <div class="objective-box">
 <strong>الهدف التربوي</strong>
-<p>...............................................................</p>
+<p>.......................................................................................................................</p>
 </div>
 
 <div class="report-row">
@@ -239,8 +244,8 @@ font-size:11px;
 </div>
 
 <div class="image-evidence-grid">
-<div class="image-box">صورة 1</div>
-<div class="image-box">صورة 2</div>
+<div class="image-box"><img src="" alt=""></div>
+<div class="image-box"><img src="" alt=""></div>
 </div>
 
 <div class="signature-section">
