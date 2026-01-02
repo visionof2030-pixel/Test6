@@ -35,35 +35,42 @@ justify-content:center;
 .header-education{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:12px;}
 .header-date-box{position:absolute;top:10px;left:12px;font-size:11px;text-align:right;}
 
-/* ===== Info grids ===== */
+/* ===== Info grids (موحدة الارتفاع ومضغوطة) ===== */
 .info-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:6px;
-margin:12px;
+margin:10px 12px;
 }
 .info-grid2{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:6px;
-margin:0 12px 12px;
+margin:0 12px 10px;
 }
+
 .info-box{
 border:1px solid #066d4d;
 border-radius:6px;
-padding:4px;
-text-align:center;
-font-size:12px;
-position:relative;
+height:32px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:11px;
+line-height:1.1;
+padding:2px;
+box-sizing:border-box;
 }
 
 /* خانة الدرس داخل المادة */
 .lesson-box{
-margin-top:2px;
+margin-top:1px;
 font-size:6px;
 border-top:1px dashed #066d4d;
-padding-top:2px;
-color:#083024;
+padding-top:1px;
+width:100%;
+text-align:center;
 }
 
 /* ===== Content boxes ===== */
@@ -71,20 +78,20 @@ color:#083024;
 border:1px solid #066d4d;
 border-radius:8px;
 padding:8px;
-margin:12px;
+margin:10px 12px;
 font-size:12px;
 }
 .report-row{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-margin:12px;
+margin:10px 12px;
 }
 .report-box{
 border:1px solid #066d4d;
 border-radius:8px;
 padding:6px;
-min-height:110px;
+min-height:105px;
 font-size:12px;
 }
 
@@ -125,11 +132,11 @@ margin:0;
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-margin:12px;
+margin:10px 12px;
 }
 .image-box{
 border:1px dashed #066d4d;
-height:120px;
+height:115px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -142,7 +149,7 @@ font-size:11px;
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:30px;
-margin:20px;
+margin:18px 12px;
 text-align:center;
 font-weight:700;
 font-size:12px;
@@ -175,6 +182,7 @@ font-size:11px;
 <div class="header-date-box">1447 هـ<br>2026 م</div>
 </div>
 
+<!-- الصف العلوي -->
 <div class="info-grid">
 <div class="info-box">الفصل</div>
 <div class="info-box">الصف</div>
@@ -187,10 +195,11 @@ font-size:11px;
 <div class="info-box">نوع التقرير</div>
 </div>
 
+<!-- الصف السفلي -->
 <div class="info-grid2">
 <div class="info-box">المستهدفون</div>
 <div class="info-box">العدد</div>
-<div class="info-box">المكان</div>
+<div class="info-box">مكان التنفيذ</div>
 </div>
 
 <div class="objective-box">
