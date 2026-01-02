@@ -35,7 +35,7 @@ justify-content:center;
 .header-education{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:12px;}
 .header-date-box{position:absolute;top:10px;left:12px;font-size:11px;text-align:right;}
 
-/* ===== Info grids (مربعات صغيرة – مستثناة) ===== */
+/* ===== Info grids ===== */
 .info-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -53,34 +53,41 @@ border:1px solid #066d4d;
 border-radius:6px;
 height:32px;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
 font-size:11px;
 line-height:1.1;
-padding:2px;
+padding:2px 4px;
 box-sizing:border-box;
 }
 
-/* خانة الدرس داخل المادة */
-.lesson-box{
-margin-top:1px;
-font-size:6px;
-border-top:1px dashed #066d4d;
-padding-top:1px;
+/* ===== المادة | الدرس في نفس المربع ===== */
+.subject-lesson{
+display:grid;
+grid-template-columns:1fr auto 1fr;
+align-items:center;
 width:100%;
-text-align:center;
+font-size:11px;
+}
+.subject-lesson span{
+display:flex;
+justify-content:center;
+}
+.subject-lesson .divider{
+font-size:10px;
+padding:0 6px;
+color:#066d4d;
 }
 
-/* ===== توحيد ارتفاع جميع المربعات الكبيرة ===== */
+/* ===== توحيد ارتفاع المربعات الكبيرة ===== */
 .objective-box,
 .report-box,
 .image-box{
-height:145px;   /* ارتفاع موحّد */
+height:145px;
 box-sizing:border-box;
 }
 
-/* ===== الهدف التربوي (تم تصغيره 15%) ===== */
+/* ===== الهدف التربوي ===== */
 .objective-box{
 border:1px solid #066d4d;
 border-radius:8px;
@@ -135,7 +142,7 @@ height:8px;
 margin:0;
 }
 
-/* ===== Images (ثابتة – غير قابلة للتمدد) ===== */
+/* ===== Images ===== */
 .image-evidence-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -198,10 +205,15 @@ font-size:11px;
 <div class="info-grid">
 <div class="info-box">الفصل</div>
 <div class="info-box">الصف</div>
+
 <div class="info-box">
-المادة
-<div class="lesson-box">الدرس</div>
+<div class="subject-lesson">
+<span>المادة</span>
+<span class="divider">|</span>
+<span>الدرس</span>
 </div>
+</div>
+
 <div class="info-box">نوع التقرير</div>
 </div>
 
