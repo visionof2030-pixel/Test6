@@ -775,7 +775,7 @@ justify-content:center;
 .header-education{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:12px;color:#fff !important;}
 .header-date-box{position:absolute;top:10px;left:12px;font-size:11px;text-align:right;color:#fff !important;}
 
-/* ===== Info grids ===== */
+/* ===== Info grids (مربعات صغيرة) ===== */
 .info-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -791,218 +791,178 @@ margin:0 12px 10px !important;
 .info-box{
 border:1px solid #066d4d !important;
 border-radius:6px;
-height:40px !important; /* زيادة الارتفاع قليلاً */
+height:32px !important;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-font-size:9px !important; /* تصغير حجم الخط */
-line-height:1.1 !important;
-padding:3px 4px !important;
-box-sizing:border-box;
+font-size:11px !important;
+padding:2px 4px !important;
+box-sizing:border-box !important;
 background:#f8fdfa !important;
-position:relative;
 }
 
-/* العناوين الصغيرة داخل المربعات */
-.info-box-title{
-font-weight:700;
-color:#083024 !important;
-font-size:8px !important; /* خط صغير جداً */
-margin-bottom:2px;
-position:absolute;
-top:3px;
-right:6px;
-}
-
-/* القيمة داخل المربعات */
-.info-box-value{
-color:#000000 !important;
-font-size:10px !important; /* حجم خط أكبر قليلاً للقيمة */
-font-weight:600;
-margin-top:5px;
-text-align:center;
-width:100%;
-}
-
-/* ===== المادة | الدرس في نفس المربع ===== */
+/* المادة | الدرس */
 .subject-lesson{
-display:flex;
-flex-direction:column;
-align-items:center;
-width:100%;
+display:grid !important;
+grid-template-columns:1fr auto 1fr !important;
+align-items:center !important;
+width:100% !important;
 }
-.subject-lesson-title{
-font-weight:700;
-color:#083024 !important;
-font-size:8px !important;
-margin-bottom:2px;
-position:absolute;
-top:3px;
-right:6px;
+.subject-lesson span{
+display:flex !important;
+justify-content:center !important;
+font-size:11px !important;
 }
-.subject-lesson-value{
-display:grid;
-grid-template-columns:1fr auto 1fr;
-align-items:center;
-width:100%;
-margin-top:5px;
-}
-.subject-lesson-value span{
-display:flex;
-justify-content:center;
-font-size:10px !important;
-color:#000000 !important;
-font-weight:600;
-}
-.subject-lesson-value .divider{
-font-size:9px !important;
-padding:0 4px;
+.subject-lesson .divider{
+padding:0 6px !important;
 color:#066d4d !important;
+font-size:10px !important;
 }
 
-/* ===== الهدف التربوي ===== */
+/* ===== ارتفاعات المربعات بعد التصغير ===== */
+/* الهدف التربوي: تصغير 20% */
 .objective-box{
 border:1px solid #066d4d !important;
 border-radius:8px;
 padding:8px !important;
 margin:10px 12px !important;
 font-size:12px !important;
-height:132px !important;
+height:106px !important;
 box-sizing:border-box !important;
 background:#f8fdfa !important;
 }
 
 .objective-title{
-font-weight:700;
+font-weight:700 !important;
 color:#083024 !important;
-margin-bottom:5px;
+margin-bottom:5px !important;
 font-size:13px !important;
 }
 
 .objective-content{
 color:#000000 !important;
-line-height:1.6;
+line-height:1.6 !important;
 font-size:11px !important;
 }
 
-/* ===== Content boxes ===== */
+/* باقي المربعات الكبيرة: تصغير 15% */
+.report-box,
+.image-box{
+height:118px !important;
+box-sizing:border-box !important;
+}
+
+/* ===== مربعات المحتوى ===== */
 .report-row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+gap:10px !important;
 margin:10px 12px !important;
 }
 .report-box{
 border:1px solid #066d4d !important;
-border-radius:8px;
+border-radius:8px !important;
 padding:6px !important;
 font-size:12px !important;
-height:139px !important;
-box-sizing:border-box !important;
 background:#ffffff !important;
 }
 
 .report-box-title{
-font-weight:700;
+font-weight:700 !important;
 color:#083024 !important;
-margin-bottom:5px;
+margin-bottom:5px !important;
 font-size:13px !important;
-text-align:center;
+text-align:center !important;
 }
 
 .report-box-content{
 color:#000000 !important;
-line-height:1.6;
+line-height:1.6 !important;
 font-size:11px !important;
 }
 
-/* ===== الأدوات والوسائل التعليمية في PDF ===== */
+/* ===== الأدوات والوسائل التعليمية (حجم خط طبيعي) ===== */
 .tools-box{
 border:1px solid #066d4d !important;
-border-radius:5px;
+border-radius:5px !important;
 margin:6px 12px !important;
-padding:2px 4px !important;
-font-size:8px !important;
-line-height:1.2 !important;
+padding:6px 8px !important;
+font-size:12px !important;
+line-height:1.4 !important;
 background:#f8fdfa !important;
 }
 .tools-title{
-font-weight:700;
-font-size:8px !important;
-text-align:center;
-margin:0 0 2px 0;
+font-weight:700 !important;
+font-size:12px !important;
+text-align:center !important;
+margin:0 0 4px 0 !important;
 color:#083024 !important;
 }
 .tools-list{
-display:flex;
-flex-wrap:wrap;
-gap:4px 8px !important;
-justify-content:center;
+display:flex !important;
+flex-wrap:wrap !important;
+gap:6px 12px !important;
 }
 .tool-item{
-display:flex;
-align-items:center;
-gap:2px !important;
-white-space:nowrap;
+display:flex !important;
+align-items:center !important;
+gap:4px !important;
+white-space:nowrap !important;
 color:#083024 !important;
-font-size:8px !important;
+font-size:12px !important;
 }
 
 /* علامة ✅ في PDF */
 .tool-checkmark {
 color: #066d4d !important;
-font-weight: bold;
-font-size: 9px !important;
+font-weight: bold !important;
+font-size: 13px !important;
 }
 
 /* ===== Images ===== */
 .image-evidence-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+gap:10px !important;
 margin:10px 12px !important;
 }
 .image-box{
 border:1px dashed #066d4d !important;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+overflow:hidden !important;
 background:#fff !important;
-height:139px !important;
-box-sizing:border-box !important;
 }
 .image-box img{
-max-width:100%;
-max-height:100%;
-object-fit:contain;
-display:block;
-border-radius:4px;
+max-width:100% !important;
+max-height:100% !important;
+object-fit:contain !important;
+display:block !important;
 }
 
 /* ===== Signatures ===== */
 .signature-section{
-display:grid;
-grid-template-columns:1fr 1fr;
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
 gap:30px !important;
 margin:18px 12px !important;
-text-align:center;
-font-weight:700;
+text-align:center !important;
+font-weight:700 !important;
 font-size:12px !important;
 }
 .signature-line{
 border-top:1px solid #000 !important;
 margin-top:6px !important;
-width:80%;
-margin:auto;
+width:80% !important;
+margin:auto !important;
 }
 
 /* ===== Footer ===== */
 .footer{
 background:#083024 !important;
 color:#fff !important;
-text-align:center;
+text-align:center !important;
 padding:6px !important;
 font-size:11px !important;
 }
@@ -1402,43 +1362,22 @@ font-size: 16px !important;
 </div>
 
 <div class="info-grid">
+<div class="info-box"><span id="termBox">الفصل</span></div>
+<div class="info-box"><span id="gradeBox">الصف</span></div>
 <div class="info-box">
-<div class="info-box-title">الفصل الدراسي</div>
-<div class="info-box-value" id="termBox"></div>
-</div>
-<div class="info-box">
-<div class="info-box-title">الصف</div>
-<div class="info-box-value" id="gradeBox"></div>
-</div>
-
-<div class="info-box">
-<div class="subject-lesson-title">المادة | الدرس</div>
-<div class="subject-lesson-value">
-<span id="subjectBox"></span>
+<div class="subject-lesson">
+<span id="subjectBox">المادة</span>
 <span class="divider">|</span>
-<span id="lessonBox"></span>
+<span id="lessonBox">الدرس</span>
 </div>
 </div>
-
-<div class="info-box">
-<div class="info-box-title">نوع التقرير</div>
-<div class="info-box-value" id="reportTypeBox"></div>
-</div>
+<div class="info-box"><span id="reportTypeBox">نوع التقرير</span></div>
 </div>
 
 <div class="info-grid2">
-<div class="info-box">
-<div class="info-box-title">المستهدفون</div>
-<div class="info-box-value" id="targetBox"></div>
-</div>
-<div class="info-box">
-<div class="info-box-title">عدد الحضور</div>
-<div class="info-box-value" id="countBox"></div>
-</div>
-<div class="info-box">
-<div class="info-box-title">مكان التنفيذ</div>
-<div class="info-box-value" id="placeBox"></div>
-</div>
+<div class="info-box"><span id="targetBox">المستهدفون</span></div>
+<div class="info-box"><span id="countBox">العدد</span></div>
+<div class="info-box"><span id="placeBox">مكان التنفيذ</span></div>
 </div>
 
 <div class="objective-box">
@@ -1953,7 +1892,7 @@ function updateToolsDisplay() {
         const noToolsMessage = document.createElement('div');
         noToolsMessage.style.textAlign = 'center';
         noToolsMessage.style.color = '#666';
-        noToolsMessage.style.fontSize = '8px';
+        noToolsMessage.style.fontSize = '12px';
         noToolsMessage.style.padding = '2px';
         noToolsMessage.textContent = 'لم يتم اختيار أي أدوات';
         toolsListBox.appendChild(noToolsMessage);
