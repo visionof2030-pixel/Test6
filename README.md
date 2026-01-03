@@ -747,7 +747,7 @@ margin-top: calc(100px + env(safe-area-inset-top));
 }
 }
 
-/* ==================== قسم PDF الجديد ==================== */
+/* ==================== قسم PDF المعدل ==================== */
 #report-content{
 width:190mm;
 height:277mm;
@@ -777,122 +777,112 @@ justify-content:center;
 .header-education{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:11px;color:#fff !important;}
 .header-date-box{position:absolute;top:8px;left:10px;font-size:10px;text-align:right;color:#fff !important;}
 
-/* ===== Info grids ===== */
-.info-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:5px;
-margin:8px 0 !important;
-}
-.info-grid2{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:5px;
-margin:0 0 8px !important;
-}
+/* ===== Info boxes ===== */
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0 !important;}
+.info-grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px !important;}
+
 .info-box{
-border:1px solid #066d4d !important;
+border:1px solid #2f9e8f !important;
 border-radius:6px;
-height:35px !important; /* زيادة الارتفاع لاستيعاب العنوان والقيمة */
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-font-size:11px !important;
-padding:2px 4px !important;
+height:40px !important;
+display:flex !important;
+flex-direction:column !important;
+align-items:center !important;
+justify-content:center !important;
 box-sizing:border-box !important;
-position:relative;
+padding:4px 2px 2px !important;
+color:#083024 !important;
 }
 
-/* ===== العناوين داخل المربعات الصغيرة ===== */
 .info-box-title{
-font-weight:700;
-color:#083024 !important;
 font-size:9px !important;
-position:absolute;
-top:4px;
-right:6px;
+font-weight:700 !important;
+line-height:1 !important;
+margin-bottom:3px !important;
+white-space:nowrap !important;
+color:#083024 !important;
 }
 
 .info-box-value{
-color:#000000 !important;
 font-size:10px !important;
-font-weight:600;
-text-align:center;
-width:100%;
-margin-top:8px;
+font-weight:600 !important;
+line-height:1.2 !important;
+text-align:center !important;
+width:100% !important;
+color:#000000 !important;
 }
 
-/* ===== المادة | الدرس في نفس المربع ===== */
-.subject-lesson{
-display:flex;
-flex-direction:column;
-align-items:center;
-width:100%;
-position:relative;
-height:100%;
-padding-top:10px;
-}
-.subject-lesson-title{
-font-weight:700;
-color:#083024 !important;
-font-size:9px !important;
-position:absolute;
-top:4px;
-right:6px;
-}
-.subject-lesson-value{
-display:grid;
-grid-template-columns:1fr auto 1fr;
-align-items:center;
-width:100%;
-}
-.subject-lesson-value span{
-display:flex;
-justify-content:center;
-font-size:10px !important;
-color:#000000 !important;
-font-weight:600;
-padding:0 2px;
-}
-.subject-lesson-value .divider{
-font-size:9px !important;
-padding:0 4px;
-color:#066d4d !important;
-}
-
-/* ===== الهدف التربوي (العنوان والقيمة) ===== */
-.objective-box{
-border:1px solid #066d4d !important;
-border-radius:8px !important;
-margin-bottom:8px !important;
-height:125px !important;
+/* ===== المادة | الدرس ===== */
+.subject-lesson-box{
+border:1px solid #2f9e8f !important;
+border-radius:6px !important;
+height:40px !important;
 display:flex !important;
 flex-direction:column !important;
-padding:8px !important;
+justify-content:center !important;
+padding:4px 2px 2px !important;
 box-sizing:border-box !important;
 }
 
-.objective-title{
+.subject-lesson-title{
+font-size:9px !important;
 font-weight:700 !important;
-color:#083024 !important;
-font-size:12px !important;
 text-align:center !important;
-margin-bottom:5px !important;
+margin-bottom:3px !important;
+color:#083024 !important;
+}
+
+.subject-lesson{
+display:grid !important;
+grid-template-columns:1fr 6px 1fr !important;
+align-items:center !important;
+}
+
+.subject,.lesson{
+font-size:10px !important;
+font-weight:600 !important;
+text-align:center !important;
+color:#000000 !important;
+}
+
+.subject-divider{
+width:1px !important;
+height:18px !important;
+background:#2f9e8f !important;
+margin:auto !important;
+}
+
+/* ===== Section titles ===== */
+.box-title{
+text-align:center !important;
+font-weight:700 !important;
+color:#2f9e8f !important;
+font-size:12px !important;
+margin-bottom:4px !important;
+}
+
+/* ===== Objective ===== */
+.objective-box{
+border:1px solid #2f9e8f !important;
+border-radius:8px !important;
+height:120px !important;
+padding:6px !important;
+box-sizing:border-box !important;
 }
 
 .objective-content{
 color:#000000 !important;
-line-height:1.5;
 font-size:11px !important;
-text-align:center;
-flex-grow:1;
-display:flex;
-align-items:center;
-justify-content:center;
+line-height:1.5 !important;
+text-align:center !important;
+height:calc(100% - 20px) !important;
+display:flex !important;
+align-items:center !important;
+justify-content:center !important;
+padding:0 4px !important;
 }
 
-/* ===== مربعات المحتوى ===== */
+/* ===== Content boxes ===== */
 .report-row{
 display:grid !important;
 grid-template-columns:1fr 1fr !important;
@@ -900,92 +890,94 @@ gap:8px !important;
 margin-bottom:8px !important;
 }
 .report-box{
-border:1px solid #066d4d !important;
+border:1px solid #2f9e8f !important;
 border-radius:8px !important;
-padding:6px !important;
-font-size:12px !important;
 height:130px !important;
+padding:6px !important;
 box-sizing:border-box !important;
-}
-
-.report-box-title{
-font-weight:700;
-color:#083024 !important;
-margin-bottom:5px;
-font-size:12px !important;
-text-align:center;
 }
 
 .report-box-content{
 color:#000000 !important;
-line-height:1.5;
 font-size:11px !important;
-overflow:hidden;
-max-height:100px;
+line-height:1.5 !important;
+overflow:hidden !important;
+max-height:calc(100% - 25px) !important;
 }
 
-/* ===== الأدوات والوسائل التعليمية في PDF ===== */
+/* ===== Tools ===== */
 .tools-box{
-border:1px solid #066d4d !important;
-border-radius:6px !important;
-padding:6px !important;
-font-size:11px !important;
-margin-bottom:8px !important;
+border:1px solid #2f9e8f !important;
+border-radius:8px !important;
+margin:8px 0 !important;
+padding:8px !important;
+background:#f9fcfb !important;
 }
 .tools-title{
 font-weight:700 !important;
-font-size:11px !important;
 text-align:center !important;
-margin-bottom:4px !important;
-color:#083024 !important;
+color:#2f9e8f !important;
+margin-bottom:6px !important;
+font-size:11px !important;
 }
 .tools-list{
 display:flex !important;
 flex-wrap:wrap !important;
 gap:6px 12px !important;
+justify-content:center !important;
 }
 .tool-item{
-display:flex;
-align-items:center;
+display:flex !important;
+align-items:center !important;
 gap:4px !important;
-white-space:nowrap;
+font-size:11px !important;
+background:#e8f4f0 !important;
+padding:3px 8px !important;
+border-radius:6px !important;
+border:1px solid #d0e6de !important;
 color:#083024 !important;
-font-size:10px !important;
+}
+.tool-checkmark{
+display:inline-flex !important;
+align-items:center !important;
+justify-content:center !important;
+width:14px !important;
+height:14px !important;
+background:#2f9e8f !important;
+border-radius:50% !important;
+color:#fff !important;
+font-size:9px !important;
+font-weight:700 !important;
 }
 
-/* علامة ✅ في PDF */
-.tool-checkmark {
-color: #066d4d !important;
-font-weight: bold;
-font-size: 11px !important;
-margin-left: 2px;
-}
-
-/* ===== الصور (تصحيح مشكلة التمدد) ===== */
+/* ===== Images ===== */
 .image-evidence-grid{
 display:grid !important;
 grid-template-columns:1fr 1fr !important;
 gap:8px !important;
-margin-bottom:8px !important;
+margin:8px 0 !important;
 }
 .image-box{
-border:1px dashed #066d4d !important;
-height:138px !important; /* زيادة 15٪ تقريبًا */
+border:1px dashed #2f9e8f !important;
+height:150px !important;
 display:flex !important;
 align-items:center !important;
 justify-content:center !important;
 overflow:hidden !important;
-box-sizing:border-box !important;
-position:relative;
+background:#f9fcfb !important;
+position:relative !important;
 }
 .image-box::before {
-content: 'صورة توثيقية';
-position: absolute;
-top: 5px;
-right: 5px;
-font-size: 10px;
-color: #666;
-z-index: 1;
+content: 'صورة توثيقية' !important;
+position: absolute !important;
+top: 5px !important;
+right: 5px !important;
+font-size: 10px !important;
+color: #666 !important;
+background: rgba(255, 255, 255, 0.9) !important;
+padding: 2px 6px !important;
+border-radius: 3px !important;
+z-index:1 !important;
 }
 .image-box img{
 max-width:100% !important;
@@ -993,24 +985,25 @@ max-height:100% !important;
 width:auto !important;
 height:auto !important;
 object-fit:contain !important;
-display:block;
+display:block !important;
 }
 
-/* ===== التوقيعات ===== */
+/* ===== Signatures ===== */
 .signature-section{
 display:grid !important;
 grid-template-columns:1fr 1fr !important;
 gap:30px !important;
 margin-top:6px !important;
 text-align:center !important;
-font-weight:700 !important;
 font-size:11px !important;
+font-weight:700 !important;
 }
 .signature-line{
 border-top:1px solid #000 !important;
 margin-top:6px !important;
-width:80%;
-margin:auto;
+width:80% !important;
+margin-left:auto !important;
+margin-right:auto !important;
 }
 
 /* ===== Footer ===== */
@@ -1018,8 +1011,8 @@ margin:auto;
 background:#083024 !important;
 color:#fff !important;
 text-align:center !important;
-padding:5px !important;
 font-size:10px !important;
+padding:5px !important;
 margin-top:6px !important;
 }
 
@@ -1400,7 +1393,7 @@ font-size: 16px !important;
 </div>
 </div>
 
-<!-- قسم PDF المحسن الجديد -->
+<!-- قسم PDF المعدل -->
 <div id="report-content" class="pdf-export" style="display:none;">
 
 <div class="header">
@@ -1423,16 +1416,10 @@ font-size: 16px !important;
 <div class="info-box-title">الصف</div>
 <div class="info-box-value" id="gradeBox"></div>
 </div>
-
 <div class="info-box">
-<div class="subject-lesson-title">المادة | الدرس</div>
-<div class="subject-lesson-value">
-<span id="subjectBox"></span>
-<span class="divider">|</span>
-<span id="lessonBox"></span>
+<div class="info-box-title">العدد</div>
+<div class="info-box-value" id="countBox"></div>
 </div>
-</div>
-
 <div class="info-box">
 <div class="info-box-title">نوع التقرير</div>
 <div class="info-box-value" id="reportTypeBox"></div>
@@ -1444,9 +1431,13 @@ font-size: 16px !important;
 <div class="info-box-title">المستهدفون</div>
 <div class="info-box-value" id="targetBox"></div>
 </div>
-<div class="info-box">
-<div class="info-box-title">عدد الحضور</div>
-<div class="info-box-value" id="countBox"></div>
+<div class="subject-lesson-box">
+<div class="subject-lesson-title">المادة | الدرس</div>
+<div class="subject-lesson">
+<div class="subject" id="subjectBox"></div>
+<div class="subject-divider"></div>
+<div class="lesson" id="lessonBox"></div>
+</div>
 </div>
 <div class="info-box">
 <div class="info-box-title">مكان التنفيذ</div>
@@ -1455,44 +1446,43 @@ font-size: 16px !important;
 </div>
 
 <div class="objective-box">
-<div class="objective-title">الهدف التربوي</div>
+<div class="box-title">الهدف التربوي</div>
 <div class="objective-content" id="goalBox"></div>
 </div>
 
 <div class="report-row">
 <div class="report-box">
-<div class="report-box-title">النبذة</div>
+<div class="box-title">النبذة</div>
 <div class="report-box-content" id="summaryBox"></div>
 </div>
 <div class="report-box">
-<div class="report-box-title">إجراءات التنفيذ</div>
+<div class="box-title">إجراءات التنفيذ</div>
 <div class="report-box-content" id="stepsBox"></div>
 </div>
 </div>
 
 <div class="report-row">
 <div class="report-box">
-<div class="report-box-title">الاستراتيجيات</div>
+<div class="box-title">الاستراتيجيات</div>
 <div class="report-box-content" id="strategiesBox"></div>
 </div>
 <div class="report-box">
-<div class="report-box-title">نقاط القوة</div>
+<div class="box-title">نقاط القوة</div>
 <div class="report-box-content" id="strengthsBox"></div>
 </div>
 </div>
 
 <div class="report-row">
 <div class="report-box">
-<div class="report-box-title">نقاط التحسين</div>
+<div class="box-title">نقاط التحسين</div>
 <div class="report-box-content" id="improveBox"></div>
 </div>
 <div class="report-box">
-<div class="report-box-title">التوصيات</div>
+<div class="box-title">التوصيات</div>
 <div class="report-box-content" id="recommBox"></div>
 </div>
 </div>
 
-<!-- قسم الأدوات والوسائل التعليمية في PDF -->
 <div class="tools-box">
 <div class="tools-title">الأدوات والوسائل التعليمية</div>
 <div class="tools-list" id="toolsListBox"></div>
@@ -1504,19 +1494,21 @@ font-size: 16px !important;
 </div>
 
 <div class="signature-section">
-<div class="signature-box">
+<div>
 <div id="teacherTypeBox"></div>
 <span id="teacherBox"></span>
 <div class="signature-line"></div>
 </div>
-<div class="signature-box">
+<div>
 <div id="principalTypeBox"></div>
 <span id="principalBox"></span>
 <div class="signature-line"></div>
 </div>
 </div>
 
-<div class="footer">وزارة التعليم – المملكة العربية السعودية</div>
+<div class="footer">
+وزارة التعليم – المملكة العربية السعودية
+</div>
 </div>
 
 <script>
@@ -1904,15 +1896,16 @@ function updateReport(){
     document.getElementById('educationBox').innerText = document.getElementById('education').value;
     document.getElementById('schoolBox').innerText = document.getElementById('school').value;
     
-    // تحديث المربعات الصغيرة مع العناوين
-    document.getElementById('termBox').innerText = document.getElementById('term').value || 'غير محدد';
+    // تحديث المربعات الصغيرة
+    const termValue = document.getElementById('term').value;
+    document.getElementById('termBox').innerText = termValue ? `الفصل الدراسي ${termValue}` : 'غير محدد';
     document.getElementById('gradeBox').innerText = document.getElementById('grade').value || 'غير محدد';
-    document.getElementById('subjectBox').innerText = document.getElementById('subject').value || 'غير محدد';
-    document.getElementById('lessonBox').innerText = document.getElementById('lesson').value || 'غير محدد';
+    document.getElementById('countBox').innerText = document.getElementById('count').value || 'غير محدد';
     document.getElementById('reportTypeBox').innerText = getReportTypeText();
     document.getElementById('targetBox').innerText = document.getElementById('target').value || 'غير محدد';
-    document.getElementById('countBox').innerText = document.getElementById('count').value || 'غير محدد';
     document.getElementById('placeBox').innerText = document.getElementById('place').value || 'غير محدد';
+    document.getElementById('subjectBox').innerText = document.getElementById('subject').value || 'غير محدد';
+    document.getElementById('lessonBox').innerText = document.getElementById('lesson').value || 'غير محدد';
     
     // تحديث التوقيعات
     document.getElementById('teacherBox').innerText = document.getElementById('teacher').value;
@@ -1959,11 +1952,11 @@ function updateToolsDisplay() {
         }
     }
     
-    // عرض الأدوات المختارة فقط مع علامة ✅
+    // عرض الأدوات المختارة فقط مع علامة ✓ احترافية
     selectedTools.forEach(tool => {
         const toolItem = document.createElement('div');
         toolItem.className = 'tool-item';
-        toolItem.innerHTML = `<span class="tool-checkmark">✅</span> ${tool}`;
+        toolItem.innerHTML = `<span class="tool-checkmark">✓</span> ${tool}`;
         toolsListBox.appendChild(toolItem);
     });
     
