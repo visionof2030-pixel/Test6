@@ -15,7 +15,7 @@
 }
 
 :root{
-  --main:#073a2c;
+  --main:#062f25;      /* أغمق نصف درجة من السابق */
   --border:#2f9e8f;
 }
 
@@ -89,6 +89,7 @@ body{
   text-align:center;
   font-size:10px;
   min-height:34px;
+  overflow:hidden;
 }
 .info-title{
   position:absolute;
@@ -103,6 +104,9 @@ body{
 .info-value{
   font-size:10px;
   font-weight:600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 /* مادة | درس */
@@ -111,6 +115,7 @@ body{
   border-radius:7px;
   position:relative;
   padding:14px 4px 6px;
+  overflow:hidden;
 }
 .subject-lesson-title{
   position:absolute;
@@ -143,6 +148,7 @@ body{
   height:110px;
   display:flex;
   flex-direction:column;
+  overflow:hidden;
 }
 .box-objective .box-title{
   text-align:center;
@@ -155,6 +161,7 @@ body{
   font-size:11px;
   line-height:1.5;
   text-align:center;
+  overflow:hidden;
 }
 
 /* المربعات الكبيرة */
@@ -166,6 +173,7 @@ body{
   height:150px;
   display:flex;
   flex-direction:column;
+  overflow:hidden;
 }
 .box-title{
   text-align:center;
@@ -178,8 +186,10 @@ body{
   font-size:11px;
   line-height:1.5;
   text-align:center;
+  overflow:hidden;
 }
 
+/* الصفوف */
 .row{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -192,6 +202,7 @@ body{
   border-radius:8px;
   padding:6px;
   margin-bottom:6px;
+  overflow:hidden;
 }
 .tools-title{
   text-align:center;
@@ -215,6 +226,7 @@ body{
   display:flex;
   align-items:center;
   gap:5px;
+  white-space:nowrap;
 }
 .tool span{
   background:var(--border);
@@ -249,7 +261,7 @@ body{
   object-fit:contain;
 }
 
-/* التوقيعات – تنسيق محسّن */
+/* التوقيعات */
 .signatures{
   display:grid;
   grid-template-columns:1fr 1fr;
