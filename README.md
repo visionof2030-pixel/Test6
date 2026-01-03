@@ -140,7 +140,7 @@ body{
   border-radius:8px;
   padding:8px;
   margin-bottom:6px;
-  height:90px;
+  height:110px;
   display:flex;
   flex-direction:column;
 }
