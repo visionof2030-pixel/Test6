@@ -163,7 +163,7 @@ body{
   border-radius:8px;
   padding:8px;
   margin-bottom:6px;
-  height:125px;
+  height:150px;
   display:flex;
   flex-direction:column;
 }
