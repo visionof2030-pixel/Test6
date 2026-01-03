@@ -53,7 +53,7 @@ body{
 /* الهيدر */
 .header{
   background:var(--main);
-  height:130px;
+  height:150px;
   border-radius:8px;
   color:#fff;
   display:flex;
