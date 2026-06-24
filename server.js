@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const fetch = require("node-fetch");
 
 const HOST = "http://amir11.bounceme.net:8080";
 const USER = "YZjwcwnLjh";
@@ -24,4 +23,4 @@ app.get("/*", async (req, res) => {
   }
 });
 
-app.listen(3000);
+app.listen(3000, () => console.log("running"));
